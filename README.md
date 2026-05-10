@@ -6,7 +6,7 @@ and ask questions in plain English — get accurate, cited answers
 powered by GPT-4o-mini.
 
 ## 🎯 Live Demo
-[Click here to try the live app](your-streamlit-url-here)
+[Click here to try the live app](https://legal-rag-kk.streamlit.app/)
 
 Upload a legal contract → Ask questions → Get instant answers
 
