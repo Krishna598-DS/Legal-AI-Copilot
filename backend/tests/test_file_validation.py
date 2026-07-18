@@ -203,9 +203,13 @@ def test_empty_pdf_no_pages():
     import fitz
 
     doc = fitz.open()
-    # 0 pages
-    data = doc.tobytes()
-    doc.close()
+    # Newer PyMuPDF cannot serialize a 0-page document via tobytes().
+    try:
+        data = doc.tobytes()
+    except ValueError:
+        data = b"%PDF-1.4\n1 0 obj<<>>endobj\ntrailer<<>>\n%%EOF\n"
+    finally:
+        doc.close()
     with pytest.raises(UploadValidationError) as ei:
         validate_upload(
             filename="empty.pdf",

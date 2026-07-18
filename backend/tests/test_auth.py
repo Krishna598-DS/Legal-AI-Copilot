@@ -41,7 +41,7 @@ def auth_headers():
             "accept_disclaimer": True,
         },
     )
-    if r.status_code == 400 and "already" in r.text.lower():
+    if r.status_code in (400, 409) or "already" in r.text.lower():
         r = client.post(
             "/auth/login", json={"email": email, "password": password}
         )

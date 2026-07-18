@@ -20,10 +20,12 @@ jobs:
       - name: Run tests
         env:
           SECRET_KEY: ci-secret-key-at-least-32-characters-long
-          ENVIRONMENT: development
+          ENVIRONMENT: testing
           REQUIRE_EMAIL_VERIFICATION: "false"
           OPENAI_API_KEY: sk-test-not-used
+          ADMIN_EMAILS: admin@example.com
           FRONTEND_DIR: ${{ github.workspace }}/frontend
+          PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
         run: |
           export PYTHONPATH=$PWD/backend
-          pytest -q backend/tests
+          pytest -q backend/tests --tb=short

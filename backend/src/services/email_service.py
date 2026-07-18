@@ -60,7 +60,7 @@ def send_password_reset_email(to_email: str, token: str) -> None:
     link = f"{settings.FRONTEND_URL}/?reset_token={token}"
     send_email(
         to_email,
-        "Reset your AI Legal Copilot password"
+        "Reset your AI Legal Copilot password",
         (
             f"Reset your password using this link:\n{link}\n\n"
             f"Or use token: {token}\n\n"

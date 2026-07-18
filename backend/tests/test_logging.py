@@ -50,8 +50,14 @@ class _ListHandler(logging.Handler):
 
 @pytest.fixture
 def capture_logs():
+    # Other test modules may leave LOG_LEVEL=WARNING in the env/settings cache.
+    os.environ["LOG_LEVEL"] = "INFO"
+    os.environ["LOG_FORMAT"] = "json"
+    clear_settings_cache()
     logger = setup_logging(force=True)
+    logger.setLevel(logging.INFO)
     handler = _ListHandler()
+    handler.setLevel(logging.INFO)
     logger.addHandler(handler)
     yield handler
     logger.removeHandler(handler)

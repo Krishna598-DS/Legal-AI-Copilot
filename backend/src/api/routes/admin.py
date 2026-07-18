@@ -18,10 +18,11 @@ from src.errors import AuthorizationError, NotFoundError, ValidationAppError
 from src.llm.expert_prompts import EXPERT_CATEGORIES
 
 router = APIRouter(prefix="/admin", tags=["admin"])
-settings = get_settings()
 
 
 def require_admin(user: User = Depends(get_current_user)) -> User:
+    # Read settings at request time so tests/env changes are honored.
+    settings = get_settings()
     allowed = {
         e.strip().lower()
         for e in settings.ADMIN_EMAILS.split(",")
