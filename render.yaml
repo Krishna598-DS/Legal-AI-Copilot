@@ -1,5 +1,7 @@
 # Free Render blueprint — single web service (API + UI).
-# Set OPENAI_API_KEY (and optional ADMIN_EMAILS) in the Render dashboard.
+# Set OPENAI_API_KEY in the Render dashboard (sync: false).
+# After first deploy, set APP_BASE_URL / FRONTEND_URL to the service URL.
+# Do not set CORS_ORIGINS to a bare URL — omit it or use a JSON array.
 
 services:
   - type: web
@@ -22,6 +24,6 @@ services:
       - key: OPENAI_API_KEY
         sync: false
       - key: ADMIN_EMAILS
-        sync: false
+        value: krishnakishoregedela@gmail.com
       - key: REQUIRE_EMAIL_VERIFICATION
         value: "false"

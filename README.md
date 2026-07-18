@@ -4,8 +4,15 @@
 
 A full-stack, multi-user RAG product that turns uploaded legal documents into cited explanations, risk highlights, consultation briefings, and expert-category recommendations — with confidence scoring and a legal AI safety layer.
 
-### Live demo
-[Try the live app](https://legal-rag-kk.streamlit.app/)
+### Live demos
+
+| | |
+|---|---|
+| **Production app (FastAPI + UI)** | [https://legal-rag-t4gw.onrender.com](https://legal-rag-t4gw.onrender.com) |
+| **Streamlit demo** | [https://legal-rag-kk.streamlit.app](https://legal-rag-kk.streamlit.app/) |
+| **Dashboard** | [Render service](https://dashboard.render.com/web/srv-d9dilpernols73ch42eg) |
+
+> Free Render instances may sleep when idle — the first request can take ~30–60s to wake.
 
 > This project is **legal information**, not legal advice. It does not create an attorney–client relationship.
 
@@ -105,6 +112,8 @@ pytest -q backend/tests
 ```
 
 ### Deploy
+
+**Live on Render:** [https://legal-rag-t4gw.onrender.com](https://legal-rag-t4gw.onrender.com)
 
 Hosting can be near-$0 (Render / Fly / HF Spaces); OpenAI usage is billed separately.  
 See `render.yaml`, `fly.toml`, `Dockerfile`, `README_SPACE.md`.
