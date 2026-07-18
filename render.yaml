@@ -1,0 +1,27 @@
+# Free Render blueprint — single web service (API + UI).
+# Set OPENAI_API_KEY (and optional ADMIN_EMAILS) in the Render dashboard.
+
+services:
+  - type: web
+    name: legal-rag
+    runtime: docker
+    plan: free
+    region: oregon
+    healthCheckPath: /health
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DATABASE_URL
+        value: sqlite:///./data/app.db
+      - key: PYTHONPATH
+        value: /app/backend
+      - key: FRONTEND_DIR
+        value: /app/frontend
+      - key: SECRET_KEY
+        generateValue: true
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ADMIN_EMAILS
+        sync: false
+      - key: REQUIRE_EMAIL_VERIFICATION
+        value: "false"

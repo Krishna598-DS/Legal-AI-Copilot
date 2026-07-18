@@ -1,0 +1,14 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.git/
+.pytest_cache/
+.env
+.streamlit/
+logs/
+data/uploads/
+data/indexes/
+data/*.db
+*.md
+.github/

@@ -1,0 +1,54 @@
+# Core LangChain
+langchain==0.3.7
+langchain-community==0.3.7
+langchain-openai==0.2.9
+langchain-core==0.3.63
+langchain-text-splitters==0.3.8
+
+# LLM and Embeddings
+openai==1.109.1
+tiktoken==0.8.0
+
+# Vector Database
+faiss-cpu>=1.9.0
+rank-bm25==0.2.2
+
+# Document Processing
+pymupdf==1.24.13
+python-dotenv==1.0.1
+
+# API Backend
+fastapi==0.115.0
+uvicorn==0.30.0
+python-multipart==0.0.9
+
+# Auth & database
+sqlalchemy==2.0.35
+psycopg2-binary==2.9.10
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
+email-validator==2.2.0
+
+# Cache / rate limits
+redis==5.2.1
+
+# Observability / optional integrations
+sentry-sdk[fastapi]==2.19.2
+google-auth==2.37.0
+stripe==11.4.1
+
+# Frontend
+streamlit==1.40.0
+
+# Evaluation
+ragas==0.2.6
+datasets==4.8.4
+
+# Utilities
+pydantic==2.9.2
+pydantic-settings==2.6.1
+requests==2.33.1
+numpy==1.26.4
+httpx==0.28.1
+pytest==8.3.4

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="AI Legal Copilot — understand legal documents, explain contracts, detect risks, prepare for consultations, and connect with the right legal professionals." />
+  <title>AI Legal Copilot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Auth / onboarding -->
+    <section id="view-auth" class="view">
+      <div class="auth-shell">
+        <header class="brand">
+          <h1 class="brand-hero">AI Legal Copilot</h1>
+          <p class="tagline">
+            Understand legal documents, explain contracts, detect risks, and walk into consultations prepared —
+            then connect with the right legal professionals.
+          </p>
+          <ul class="value-props" aria-label="What you can do">
+            <li>Understand documents</li>
+            <li>Explain contracts</li>
+            <li>Detect risks</li>
+            <li>Prepare for counsel</li>
+            <li>Find professionals</li>
+          </ul>
+        </header>
+        <div class="disclaimer">
+          This is legal information, not legal advice. It does not create an attorney–client relationship.
+          Confirm important decisions with a licensed professional.
+        </div>
+        <div class="tabs">
+          <button class="tab active" data-tab="login">Sign in</button>
+          <button class="tab" data-tab="register">Create account</button>
+          <button class="tab" data-tab="forgot">Forgot password</button>
+        </div>
+        <form id="form-login" class="card panel">
+          <p class="panel-lead">Welcome back. Your documents stay private to your account.</p>
+          <label>Email<input type="email" name="email" required autocomplete="email" /></label>
+          <label>Password<input type="password" name="password" required autocomplete="current-password" /></label>
+          <button type="submit" class="btn primary">Sign in</button>
+          <p id="login-error" class="error"></p>
+        </form>
+        <form id="form-register" class="card panel hidden">
+          <p class="panel-lead">Create your account to upload agreements and get plain-language help with citations.</p>
+          <label>Full name<input type="text" name="full_name" autocomplete="name" /></label>
+          <label>Email<input type="email" name="email" required autocomplete="email" /></label>
+          <label>Password (min 8)<input type="password" name="password" minlength="8" required autocomplete="new-password" /></label>
+          <label>I am a…
+            <select name="role" required>
+              <option value="" disabled selected>Select your role</option>
+              <option value="individual">Individual</option>
+              <option value="lawyer">Lawyer</option>
+              <option value="chartered_accountant">Chartered Accountant</option>
+              <option value="business_owner">Business Owner</option>
+              <option value="hr_professional">HR Professional</option>
+              <option value="student">Student</option>
+            </select>
+          </label>
+          <label class="check"><input type="checkbox" name="accept" required /> I accept the disclaimer &amp; privacy policy</label>
+          <button type="submit" class="btn primary">Create account</button>
+          <p id="register-error" class="error"></p>
+        </form>
+        <form id="form-forgot" class="card panel hidden">
+          <p class="panel-lead">We’ll email a reset link if that address has an account.</p>
+          <label>Email<input type="email" name="email" required autocomplete="email" /></label>
+          <button type="submit" class="btn">Send reset link</button>
+          <hr class="soft-rule" />
+          <label>Reset token<input type="text" name="token" autocomplete="one-time-code" /></label>
+          <label>New password<input type="password" name="new_password" minlength="8" autocomplete="new-password" /></label>
+          <button type="button" id="btn-reset" class="btn">Set new password</button>
+          <p id="forgot-msg" class="muted"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- App shell -->
+    <section id="view-app" class="view hidden">
+      <header class="copilot-topbar">
+        <div class="topbar-brand">
+          <button type="button" id="btn-home" class="brand-link" aria-label="Go to home">
+            <span class="brand-mark">AI Legal Copilot</span>
+          </button>
+          <nav class="topbar-nav" aria-label="Primary">
+            <button type="button" id="nav-home" class="nav-link active" data-nav="dashboard">Home</button>
+            <button type="button" id="nav-docs" class="nav-link" data-nav="workspace">My documents</button>
+          </nav>
+          <span id="topbar-role" class="pill role-pill"></span>
+        </div>
+        <div class="topbar-meta">
+          <span id="usage" class="usage muted" title="Plan usage this hour"></span>
+          <span id="user-email" class="muted topbar-email"></span>
+          <button id="btn-admin" class="btn ghost compact hidden" type="button">Admin</button>
+          <button id="btn-logout" class="btn ghost compact" type="button">Sign out</button>
+        </div>
+      </header>
+
+      <!-- Home -->
+      <div id="panel-dashboard" class="copilot-home">
+        <div class="dash-layout">
+          <section class="dash-main">
+            <header class="dash-hero">
+              <p class="eyebrow" id="dash-eyebrow">Your Copilot</p>
+              <h1 id="dash-title">Welcome back</h1>
+              <p id="dash-subtitle" class="dash-subtitle"></p>
+            </header>
+            <div id="dash-onboarding" class="onboarding-strip hidden" aria-live="polite">
+              <h2 class="onboarding-title">Get started in three steps</h2>
+              <ol class="onboarding-steps">
+                <li><strong>Upload</strong> a contract or agreement (PDF or text)</li>
+                <li><strong>Ask</strong> for an explanation, risk scan, or plain-language answers</li>
+                <li><strong>Prepare</strong> a briefing — then find the right professional if you need one</li>
+              </ol>
+            </div>
+            <div id="dash-actions" class="dash-grid" role="list"></div>
+          </section>
+          <aside class="dash-rail">
+            <div class="rail-card">
+              <h3>My documents</h3>
+              <p id="dash-doc-summary" class="muted">No documents yet.</p>
+              <ul id="dash-doc-list"></ul>
+              <div id="dash-doc-empty" class="empty-state compact hidden">
+                <p>Upload your first agreement to unlock explanations, risk checks, and consultation prep.</p>
+              </div>
+              <button type="button" id="btn-open-workspace" class="btn primary rail-cta">Open my documents</button>
+            </div>
+            <div class="rail-card disclaimer slim">
+              Not legal advice. Answers are grounded in your documents and may be incomplete — verify with a licensed professional.
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- Documents workspace -->
+      <div id="panel-workspace" class="workspace hidden">
+        <aside class="sidebar">
+          <button type="button" id="btn-back-dashboard" class="btn ghost compact">← Home</button>
+          <p id="user-role" class="muted hidden"></p>
+
+          <div class="sidebar-block">
+            <h3 id="upload-heading">Add a document</h3>
+            <p class="sidebar-hint muted">PDF or TXT. Processing stays private to your account.</p>
+            <input type="file" id="file-input" accept=".pdf,.txt" />
+            <button id="btn-upload" class="btn primary" type="button">Upload &amp; analyze</button>
+            <p id="upload-msg" class="muted"></p>
+          </div>
+
+          <div class="sidebar-block">
+            <h3>My documents</h3>
+            <ul id="doc-list"></ul>
+            <div id="doc-list-empty" class="empty-state compact hidden">
+              <p>No documents yet. Upload a contract to begin.</p>
+            </div>
+          </div>
+
+          <div class="sidebar-actions">
+            <p class="sidebar-section-label">Understand</p>
+            <button id="btn-explain-doc" class="btn ghost" type="button">Explain this document</button>
+            <button id="btn-risks-doc" class="btn ghost" type="button">Detect risks</button>
+            <p class="sidebar-section-label">Prepare &amp; connect</p>
+            <button id="btn-consult-doc" class="btn ghost" type="button">Prepare for consultation</button>
+            <button id="btn-expert-doc" class="btn ghost" type="button">Find a legal professional</button>
+            <p class="sidebar-section-label">Conversation</p>
+            <button id="btn-reset-chat" class="btn ghost" type="button">Clear conversation</button>
+            <button id="btn-export" class="btn ghost" type="button">Export notes</button>
+            <button id="btn-delete-doc" class="btn ghost danger" type="button">Remove document</button>
+          </div>
+        </aside>
+        <main class="main">
+          <header class="main-header">
+            <div class="main-header-text">
+              <h2 id="active-doc-title">Choose a document to get started</h2>
+              <p id="active-doc-hint" class="muted main-header-hint">Upload or select a file, then ask questions or run a guided review.</p>
+            </div>
+            <span id="status-pill" class="pill">Ready</span>
+          </header>
+          <p id="welcome-banner" class="welcome-banner muted hidden"></p>
+          <div id="intent-hint" class="intent-hint hidden"></div>
+          <section id="explain-panel" class="explain-panel card hidden">
+            <div class="explain-header">
+              <h3>Document explanation</h3>
+              <button type="button" id="btn-explain-close" class="btn ghost compact">Close</button>
+            </div>
+            <p id="explain-status" class="muted">Generating a plain-language explanation with citations…</p>
+            <div id="explain-sections" class="explain-sections"></div>
+            <p id="explain-disclaimer" class="muted explain-disclaimer"></p>
+          </section>
+          <section id="risks-panel" class="risks-panel card hidden">
+            <div class="risks-header">
+              <h3>Risk highlights</h3>
+              <button type="button" id="btn-risks-close" class="btn ghost compact">Close</button>
+            </div>
+            <p id="risks-status" class="muted">Scanning for common legal risks with citations…</p>
+            <div id="risks-list" class="risks-list"></div>
+            <p id="risks-disclaimer" class="muted explain-disclaimer"></p>
+          </section>
+          <section id="consult-panel" class="consult-panel card hidden">
+            <div class="consult-header">
+              <h3>Consultation briefing</h3>
+              <button type="button" id="btn-consult-close" class="btn ghost compact">Close</button>
+            </div>
+            <p id="consult-status" class="muted">Building a cited briefing to save time with your lawyer…</p>
+            <div id="consult-sections" class="consult-sections"></div>
+            <div class="consult-actions">
+              <button type="button" id="btn-consult-pdf" class="btn primary" disabled>Download PDF briefing</button>
+            </div>
+            <p id="consult-disclaimer" class="muted explain-disclaimer"></p>
+          </section>
+          <div id="chat" class="chat"></div>
+          <div id="chat-empty" class="empty-state chat-empty hidden">
+            <h3>Ask your Copilot</h3>
+            <p>Try questions like “What are my payment obligations?” or “When can either party terminate?” Answers include page citations when available.</p>
+            <ul class="empty-suggestions">
+              <li>Summarize the key obligations in plain language</li>
+              <li>What happens if I miss a deadline?</li>
+              <li>Are there auto-renewal or penalty clauses?</li>
+            </ul>
+          </div>
+          <form id="form-ask" class="ask-bar">
+            <input id="ask-input" type="text" placeholder="Ask about this document…" autocomplete="off" />
+            <button class="btn primary" type="submit">Ask</button>
+          </form>
+          <section id="compare" class="compare card">
+            <h3>Compare contracts</h3>
+            <p class="muted compare-lead">See how two agreements differ on payment, termination, liability, and other core terms.</p>
+            <div class="row">
+              <select id="cmp-a" aria-label="First document"></select>
+              <select id="cmp-b" aria-label="Second document"></select>
+            </div>
+            <input id="cmp-q" type="text" value="Compare payment, termination, and liability terms." />
+            <button id="btn-compare" class="btn" type="button">Run comparison</button>
+            <div id="cmp-out" class="cmp-out"></div>
+          </section>
+          <section id="admin-panel" class="card hidden">
+            <h3>Admin</h3>
+            <pre id="admin-stats"></pre>
+            <div id="admin-users"></div>
+            <h4 class="admin-subhead">Legal professionals directory</h4>
+            <p class="muted">Manually curate professionals users can discover. External directory APIs are not connected yet.</p>
+            <form id="form-admin-professional" class="admin-pro-form">
+              <div class="row">
+                <input name="name" placeholder="Name" required />
+                <select name="specialization" id="admin-pro-spec" required></select>
+              </div>
+              <div class="row">
+                <input name="city" placeholder="City" required />
+                <input name="state" placeholder="State" />
+                <input name="country" placeholder="Country" />
+              </div>
+              <div class="row">
+                <input name="phone" placeholder="Phone" />
+                <input name="email" type="email" placeholder="Email" />
+                <input name="website" placeholder="Website" />
+              </div>
+              <div class="row">
+                <input name="latitude" type="number" step="any" placeholder="Latitude" />
+                <input name="longitude" type="number" step="any" placeholder="Longitude" />
+                <label class="check"><input name="verified" type="checkbox" /> Verified</label>
+              </div>
+              <button class="btn primary" type="submit">Add professional</button>
+              <p id="admin-pro-msg" class="muted"></p>
+            </form>
+            <div id="admin-professionals"></div>
+          </section>
+          <section id="expert-panel" class="card expert-panel hidden">
+            <div class="expert-header">
+              <h3>Find the right legal professional</h3>
+              <button type="button" id="btn-expert-close" class="btn ghost compact">Close</button>
+            </div>
+            <p class="muted">
+              Your Copilot suggests an <strong>expert category</strong> based on your document.
+              Directory profiles below are manually curated — not an endorsement of a specific person.
+            </p>
+            <div id="expert-recommendation" class="expert-recommendation">
+              <p id="expert-status" class="muted">Select a document, then get a category recommendation.</p>
+              <div id="expert-result" class="expert-result hidden">
+                <p class="expert-label">Recommended category</p>
+                <p id="expert-category" class="expert-category"></p>
+                <p class="expert-label">Why this fits</p>
+                <p id="expert-reason" class="expert-reason"></p>
+                <p id="expert-signals" class="muted expert-signals"></p>
+              </div>
+              <p id="expert-disclaimer" class="muted explain-disclaimer"></p>
+            </div>
+            <div id="expert-directory" class="expert-directory hidden">
+              <h4>Professionals near you</h4>
+              <p class="muted">
+                Location is optional. We only access it if you tap
+                <strong>Use my location</strong> and grant permission.
+              </p>
+              <div class="directory-controls">
+                <button type="button" id="btn-use-location" class="btn primary">Use my location</button>
+                <form id="form-city-search" class="city-search">
+                  <input id="directory-city" type="text" placeholder="Or search by city…" autocomplete="address-level2" />
+                  <button class="btn" type="submit">Search city</button>
+                </form>
+              </div>
+              <p id="expert-directory-status" class="muted"></p>
+              <div id="expert-directory-list" class="pro-list"></div>
+            </div>
+            <div class="expert-actions">
+              <button type="button" id="btn-expert-recommend" class="btn primary">Recommend expert category</button>
+              <button type="button" id="btn-expert-export" class="btn ghost">Export prep notes</button>
+            </div>
+            <ul class="expert-tips">
+              <li>Export your conversation with page citations</li>
+              <li>Note clauses you still find unclear</li>
+              <li>Bring jurisdiction and parties involved</li>
+            </ul>
+          </section>
+        </main>
+      </div>
+    </section>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

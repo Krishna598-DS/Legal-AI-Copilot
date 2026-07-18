@@ -1,17 +1,25 @@
-# Python-generated files
+# Runtime data
+data/uploads/
+data/indexes/
+data/*.db
+data/app-dbeaver-copy.db
+data/processed/
+data/raw/
+logs/
+
+# Caches
+.pytest_cache/
 __pycache__/
 *.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
 
-# Virtual environments
-.venv
+# Secrets / local env
 .env
-venv/
 .streamlit/secrets.toml
-data/raw/*.pdf
-data/raw/*.txt
-data/processed/
-logs/
+.venv
+venv/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+
