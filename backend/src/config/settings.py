@@ -106,8 +106,8 @@ class Settings(BaseSettings):
     # ── CORS ────────────────────────────────────────────────────
     CORS_ORIGINS: list[str] = Field(
         default_factory=lambda: [
-            "http://localhost:8510",
-            "http://127.0.0.1:8510",
+            "http://localhost:3000",
+            "http://127.0.0.1:3000",
         ]
     )
 

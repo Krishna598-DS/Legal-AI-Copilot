@@ -1,4 +1,0 @@
-# Place TLS certificates here for HTTPS via nginx:
-#   fullchain.pem
-#   privkey.pem
-# Generate locally with mkcert or Let's Encrypt.

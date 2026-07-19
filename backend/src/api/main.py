@@ -114,7 +114,11 @@ app.include_router(professionals.router)
 app.include_router(admin.router)
 
 if WEB_DIR.is_dir():
+    # Next.js static export assets
     app.mount("/static", StaticFiles(directory=str(WEB_DIR)), name="static")
+    next_assets = WEB_DIR / "_next"
+    if next_assets.is_dir():
+        app.mount("/_next", StaticFiles(directory=str(next_assets)), name="next_static")
 
 
 @app.get("/api")
@@ -138,4 +142,12 @@ def serve_ui():
     index = WEB_DIR / "index.html"
     if index.is_file():
         return FileResponse(index)
+    return api_info()
+
+
+@app.get("/favicon.ico")
+def favicon():
+    icon = WEB_DIR / "favicon.ico"
+    if icon.is_file():
+        return FileResponse(icon)
     return api_info()

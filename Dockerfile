@@ -1,3 +1,12 @@
+# ── Frontend (Next.js static export) ─────────────────────────────
+FROM node:20-bookworm-slim AS web-build
+WORKDIR /web
+COPY web/package.json web/package-lock.json* ./
+RUN npm install
+COPY web/ ./
+RUN npm run build && FRONTEND_OUT=/frontend node scripts/copy-out.mjs
+
+# ── API + static UI ──────────────────────────────────────────────
 FROM python:3.12-slim
 
 WORKDIR /app
@@ -10,7 +19,7 @@ COPY backend/requirements.txt /app/backend/requirements.txt
 RUN pip install --no-cache-dir -r /app/backend/requirements.txt
 
 COPY backend /app/backend
-COPY frontend /app/frontend
+COPY --from=web-build /frontend /app/frontend
 
 RUN mkdir -p /app/data/uploads /app/data/indexes /app/logs \
     && chmod +x /app/backend/scripts/start.sh

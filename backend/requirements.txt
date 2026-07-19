@@ -38,9 +38,6 @@ sentry-sdk[fastapi]==2.19.2
 google-auth==2.37.0
 stripe==11.4.1
 
-# Frontend
-streamlit==1.40.0
-
 # Evaluation
 ragas==0.2.6
 datasets==4.8.4
