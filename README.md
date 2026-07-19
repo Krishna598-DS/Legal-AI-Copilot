@@ -37,6 +37,23 @@ Optional: build static UI for same-origin serving by FastAPI:
 cd web && npm run build:static   # writes ./frontend (gitignored)
 ```
 
+## CI/CD
+
+GitHub Actions (`.github/workflows/ci-cd.yml`) on every PR and push to `main`:
+
+1. **Frontend** — `npm ci`, lint, build  
+2. **Backend** — install deps, route smoke, pytest  
+3. **Docker** — build the production image  
+4. **Deploy** (push to `main` only) — calls the Render deploy hook after CI passes
+
+### One-time Render hook setup
+
+1. Render dashboard → your service → **Settings** → **Deploy Hook** → copy URL  
+2. GitHub repo → **Settings** → **Secrets and variables** → **Actions**  
+3. Add secret `RENDER_DEPLOY_HOOK` = that URL  
+
+Recommended: turn **off** Render auto-deploy so production only updates after CI is green.
+
 ## Deploy
 
 Render uses `Dockerfile` + `render.yaml`. Set `OPENAI_API_KEY` and `SECRET_KEY` in the service env.
@@ -44,8 +61,9 @@ Render uses `Dockerfile` + `render.yaml`. Set `OPENAI_API_KEY` and `SECRET_KEY` 
 ## Layout
 
 ```
-web/        UI source (edit here)
-backend/    API + RAG (edit here)
-Dockerfile  production image
-render.yaml Render config
+web/                      UI source (edit here)
+backend/                  API + RAG (edit here)
+.github/workflows/        CI/CD
+Dockerfile                production image
+render.yaml               Render config
 ```
