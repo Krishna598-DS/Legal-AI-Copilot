@@ -1,0 +1,13 @@
+{
+  "id": "service_agreement_001_response_time",
+  "question": "How quickly must the provider respond to critical incidents?",
+  "ground_truth_answer": "Within two (2) hours.",
+  "source_document": { "document_id": "service_agreement_001", "file": "documents/service_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 3 - Service Level Agreement", "span_hint": "respond to critical incidents within two (2) hours" } ],
+  "document_metadata": { "title": "Managed IT Services Agreement (Synthetic)", "doc_type": "Service Agreement", "jurisdiction": "US-IL", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "time-limits",
+  "tags": ["sla", "response-time"],
+  "dataset_version": "v2"
+}

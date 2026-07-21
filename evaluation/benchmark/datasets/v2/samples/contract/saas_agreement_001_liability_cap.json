@@ -1,0 +1,29 @@
+{
+  "id": "saas_agreement_001_liability_cap",
+  "question": "What is the cap on Provider's aggregate liability under this Agreement?",
+  "ground_truth_answer": "The fees Customer paid in the twelve (12) months preceding the claim.",
+  "source_document": {
+    "document_id": "saas_agreement_001",
+    "file": "documents/saas_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 8 - Limitation of Liability",
+      "span_hint": "Provider's aggregate liability under this Agreement is limited to the fees paid by Customer in the twelve (12) months preceding the claim."
+    }
+  ],
+  "document_metadata": {
+    "title": "SaaS Subscription Agreement (Synthetic)",
+    "doc_type": "SaaS Agreement",
+    "jurisdiction": "US-NY",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "money",
+  "tags": [
+    "liability-cap"
+  ],
+  "dataset_version": "v2"
+}

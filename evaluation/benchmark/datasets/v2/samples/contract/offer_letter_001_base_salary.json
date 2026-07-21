@@ -1,0 +1,29 @@
+{
+  "id": "offer_letter_001_base_salary",
+  "question": "What annual base salary is Morgan Ellis being offered, and how is it paid?",
+  "ground_truth_answer": "$108,000 per year, paid on a bi-weekly basis.",
+  "source_document": {
+    "document_id": "offer_letter_001",
+    "file": "documents/offer_letter_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 2 - Compensation",
+      "span_hint": "Employee will receive an annual base salary of $108,000, paid on a bi-weekly basis."
+    }
+  ],
+  "document_metadata": {
+    "title": "Employment Offer Letter (Synthetic)",
+    "doc_type": "Offer Letter",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "money",
+  "tags": [
+    "base-salary"
+  ],
+  "dataset_version": "v2"
+}

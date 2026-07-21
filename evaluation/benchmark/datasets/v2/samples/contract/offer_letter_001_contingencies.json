@@ -1,0 +1,29 @@
+{
+  "id": "offer_letter_001_contingencies",
+  "question": "Is this job offer contingent on anything?",
+  "ground_truth_answer": "Yes. The offer is contingent upon successful completion of a background check and reference verification.",
+  "source_document": {
+    "document_id": "offer_letter_001",
+    "file": "documents/offer_letter_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 7 - Contingencies",
+      "span_hint": "This offer is contingent upon successful completion of a background check and reference verification."
+    }
+  ],
+  "document_metadata": {
+    "title": "Employment Offer Letter (Synthetic)",
+    "doc_type": "Offer Letter",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "contingencies"
+  ],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "shareholder_agreement_001_governing_law",
+  "question": "Which state's law governs this Shareholder Agreement?",
+  "ground_truth_answer": "The State of California.",
+  "source_document": {
+    "document_id": "shareholder_agreement_001",
+    "file": "documents/shareholder_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 8 - Governing Law",
+      "span_hint": "This Agreement shall be governed by the laws of the State of California."
+    }
+  ],
+  "document_metadata": {
+    "title": "Shareholder Agreement (Synthetic)",
+    "doc_type": "Shareholder Agreement",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "governing-law"
+  ],
+  "dataset_version": "v2"
+}

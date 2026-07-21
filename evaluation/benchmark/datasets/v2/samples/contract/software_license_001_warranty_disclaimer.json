@@ -1,0 +1,30 @@
+{
+  "id": "software_license_001_warranty_disclaimer",
+  "question": "Does Licensor provide any implied warranties on the Software?",
+  "ground_truth_answer": "No. The Software is provided \"as is,\" and Licensor disclaims all implied warranties.",
+  "source_document": {
+    "document_id": "software_license_001",
+    "file": "documents/software_license_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 7 - Warranty Disclaimer",
+      "span_hint": "The Software is provided \"as is.\" Licensor disclaims all implied warranties."
+    }
+  ],
+  "document_metadata": {
+    "title": "Software License Agreement (Synthetic)",
+    "doc_type": "Software License Agreement",
+    "jurisdiction": "US-MA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "negative questions",
+  "tags": [
+    "warranty-disclaimer",
+    "negative-question"
+  ],
+  "dataset_version": "v2"
+}

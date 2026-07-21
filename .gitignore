@@ -19,6 +19,9 @@ data/
 logs/
 frontend/
 
+# RAG evaluation harness — isolated eval DB/uploads/indexes/logs (never production data)
+evaluation/benchmark/.state/
+
 # OS / IDE
 .DS_Store
 .idea/

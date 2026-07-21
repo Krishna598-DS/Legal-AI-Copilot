@@ -1,0 +1,30 @@
+{
+  "id": "saas_agreement_001_subscription_price",
+  "question": "How much does Customer pay for the Professional Plan, and how is it billed?",
+  "ground_truth_answer": "$1,200 per month for up to ten (10) users, billed annually in advance, totaling $14,400 per year.",
+  "source_document": {
+    "document_id": "saas_agreement_001",
+    "file": "documents/saas_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 1 - Subscription",
+      "span_hint": "Customer subscribes to the Professional Plan for up to ten (10) users at $1,200 per month, billed annually in advance ($14,400 per year)."
+    }
+  ],
+  "document_metadata": {
+    "title": "SaaS Subscription Agreement (Synthetic)",
+    "doc_type": "SaaS Agreement",
+    "jurisdiction": "US-NY",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "money",
+  "tags": [
+    "subscription-price",
+    "billing"
+  ],
+  "dataset_version": "v2"
+}

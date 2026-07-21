@@ -1,0 +1,13 @@
+{
+  "id": "privacy_policy_001_change_notice",
+  "question": "How much notice is given before material changes to the privacy policy take effect?",
+  "ground_truth_answer": "At least thirty (30) days in advance, via email or in-app notice.",
+  "source_document": { "document_id": "privacy_policy_001", "file": "documents/privacy_policy_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Section 9 - Changes to this Policy", "span_hint": "at least thirty (30) days in advance" } ],
+  "document_metadata": { "title": "Privacy Policy (Synthetic)", "doc_type": "Privacy Policy", "jurisdiction": "US-CA", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "time-limits",
+  "tags": ["notice", "changes"],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "nda_mutual_001_termination_notice",
+  "question": "How many days written notice does either party need to give to terminate this agreement?",
+  "ground_truth_answer": "Either party may terminate the agreement by giving thirty (30) days written notice to the other party.",
+  "source_document": {
+    "document_id": "nda_mutual_001",
+    "file": "documents/nda_mutual_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    { "section": "Clause 8 - Termination", "span_hint": "thirty (30) days written notice" }
+  ],
+  "document_metadata": {
+    "title": "Mutual Non-Disclosure Agreement (Synthetic)",
+    "doc_type": "NDA",
+    "jurisdiction": "US-generic",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "risk",
+  "tags": ["termination", "notice-period"],
+  "dataset_version": "v2"
+}

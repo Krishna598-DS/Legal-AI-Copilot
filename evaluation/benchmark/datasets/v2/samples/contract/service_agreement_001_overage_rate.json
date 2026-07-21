@@ -1,0 +1,13 @@
+{
+  "id": "service_agreement_001_overage_rate",
+  "question": "What is the rate for support hours beyond the monthly allotment?",
+  "ground_truth_answer": "$110 per hour for additional hours beyond the 40 included hours.",
+  "source_document": { "document_id": "service_agreement_001", "file": "documents/service_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 2 - Service Fees", "span_hint": "Additional hours are billed at $110 per hour" } ],
+  "document_metadata": { "title": "Managed IT Services Agreement (Synthetic)", "doc_type": "Service Agreement", "jurisdiction": "US-IL", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "money",
+  "tags": ["money", "fees"],
+  "dataset_version": "v2"
+}

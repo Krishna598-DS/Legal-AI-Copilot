@@ -1,0 +1,29 @@
+{
+  "id": "confidentiality_agreement_001_governing_law",
+  "question": "Which state's law governs this Confidentiality Agreement?",
+  "ground_truth_answer": "The State of Michigan.",
+  "source_document": {
+    "document_id": "confidentiality_agreement_001",
+    "file": "documents/confidentiality_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 8 - Governing Law",
+      "span_hint": "This Agreement shall be governed by the laws of the State of Michigan."
+    }
+  ],
+  "document_metadata": {
+    "title": "Confidentiality Agreement (Synthetic)",
+    "doc_type": "Confidentiality Agreement",
+    "jurisdiction": "US-MI",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "governing-law"
+  ],
+  "dataset_version": "v2"
+}

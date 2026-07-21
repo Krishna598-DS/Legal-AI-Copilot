@@ -1,0 +1,22 @@
+{
+  "id": "nda_mutual_001_breach_penalty",
+  "question": "What monetary penalty applies if a party breaches the confidentiality obligations?",
+  "ground_truth_answer": "This information is not found in the provided document.",
+  "source_document": {
+    "document_id": "nda_mutual_001",
+    "file": "documents/nda_mutual_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [],
+  "document_metadata": {
+    "title": "Mutual Non-Disclosure Agreement (Synthetic)",
+    "doc_type": "NDA",
+    "jurisdiction": "US-generic",
+    "source": "synthetic"
+  },
+  "difficulty": "hard",
+  "category": "contract",
+  "question_type": "risk",
+  "tags": ["abstention", "penalty"],
+  "dataset_version": "v1"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "loan_agreement_001_interest_rate",
+  "question": "What interest rate applies to this loan?",
+  "ground_truth_answer": "A fixed interest rate of 7.25% per annum.",
+  "source_document": {
+    "document_id": "loan_agreement_001",
+    "file": "documents/loan_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 2 - Interest Rate",
+      "span_hint": "The loan bears a fixed interest rate of 7.25% per annum."
+    }
+  ],
+  "document_metadata": {
+    "title": "Loan Agreement (Synthetic)",
+    "doc_type": "Loan Agreement",
+    "jurisdiction": "US-OH",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "interest-rate"
+  ],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "consulting_agreement_001_success_bonus",
+  "question": "Is the consultant entitled to a success bonus if the client implements the recommended changes?",
+  "ground_truth_answer": "This information is not found in the provided document. The Agreement describes a flat project fee but does not mention any success bonus tied to implementation of recommendations.",
+  "source_document": { "document_id": "consulting_agreement_001", "file": "documents/consulting_agreement_001.txt", "category": "contract" },
+  "expected_citations": [],
+  "document_metadata": { "title": "Consulting Agreement (Synthetic)", "doc_type": "Consulting Agreement", "jurisdiction": "US-MN", "source": "synthetic" },
+  "difficulty": "hard",
+  "category": "contract",
+  "question_type": "missing information",
+  "tags": ["missing-information", "bonus"],
+  "dataset_version": "v2"
+}

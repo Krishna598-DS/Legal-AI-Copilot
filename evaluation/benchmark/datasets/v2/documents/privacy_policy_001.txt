@@ -1,0 +1,33 @@
+PRIVACY POLICY
+
+Lumen Analytics Inc. ("Company") provides this Privacy Policy to describe how we collect, use, and share information in connection with the Lumen Analytics service ("Service").
+
+Section 1 - Information We Collect
+We collect account information (such as name and email address), usage data, and information from cookies.
+
+Section 2 - How We Use Information
+We use information to provide and improve the Service, to communicate with users, and for security purposes.
+
+Section 3 - Sharing of Information
+We do not sell personal information. We may share information with service providers under confidentiality obligations, or as required by law.
+
+Section 4 - Data Retention
+We retain account data for as long as the account is active, and for ninety (90) days after account deletion for backup purposes.
+
+Section 5 - Your Rights
+Users may request access to, correction of, or deletion of their personal information by emailing privacy@lumenanalytics.example.
+
+Section 6 - Cookies
+We use cookies for authentication and analytics. Users may disable cookies in their browser settings, which may limit functionality of the Service.
+
+Section 7 - Children's Privacy
+The Service is not directed to children under the age of 13, and we do not knowingly collect personal information from children under 13.
+
+Section 8 - International Transfers
+Data may be processed in the United States and other countries with appropriate safeguards.
+
+Section 9 - Changes to this Policy
+We will notify users of material changes to this Policy at least thirty (30) days in advance via email or in-app notice.
+
+Section 10 - Governing Law
+This Policy shall be governed by the laws of the State of California.

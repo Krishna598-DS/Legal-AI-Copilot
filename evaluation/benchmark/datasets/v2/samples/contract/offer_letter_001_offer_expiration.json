@@ -1,0 +1,30 @@
+{
+  "id": "offer_letter_001_offer_expiration",
+  "question": "How long does Morgan have to sign and return the offer before it expires?",
+  "ground_truth_answer": "Seven (7) days.",
+  "source_document": {
+    "document_id": "offer_letter_001",
+    "file": "documents/offer_letter_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 8 - Acceptance",
+      "span_hint": "This offer will expire if not signed and returned within seven (7) days."
+    }
+  ],
+  "document_metadata": {
+    "title": "Employment Offer Letter (Synthetic)",
+    "doc_type": "Offer Letter",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "offer-expiration",
+    "deadline"
+  ],
+  "dataset_version": "v2"
+}

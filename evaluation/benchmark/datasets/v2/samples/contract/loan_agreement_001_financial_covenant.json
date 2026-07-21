@@ -1,0 +1,30 @@
+{
+  "id": "loan_agreement_001_financial_covenant",
+  "question": "What minimum debt service coverage ratio must Borrower maintain?",
+  "ground_truth_answer": "At least 1.25.",
+  "source_document": {
+    "document_id": "loan_agreement_001",
+    "file": "documents/loan_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 8 - Financial Covenants",
+      "span_hint": "Borrower shall maintain a debt service coverage ratio of at least 1.25."
+    }
+  ],
+  "document_metadata": {
+    "title": "Loan Agreement (Synthetic)",
+    "doc_type": "Loan Agreement",
+    "jurisdiction": "US-OH",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "financial-covenant",
+    "dscr"
+  ],
+  "dataset_version": "v2"
+}

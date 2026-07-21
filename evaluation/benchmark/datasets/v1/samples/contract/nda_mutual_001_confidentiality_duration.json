@@ -1,0 +1,24 @@
+{
+  "id": "nda_mutual_001_confidentiality_duration",
+  "question": "How long do the confidentiality obligations last after information is disclosed?",
+  "ground_truth_answer": "The confidentiality obligations survive for five (5) years from the date of disclosure of the applicable Confidential Information.",
+  "source_document": {
+    "document_id": "nda_mutual_001",
+    "file": "documents/nda_mutual_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    { "section": "Clause 5 - Duration of Confidentiality", "span_hint": "five (5) years from the date of disclosure" }
+  ],
+  "document_metadata": {
+    "title": "Mutual Non-Disclosure Agreement (Synthetic)",
+    "doc_type": "NDA",
+    "jurisdiction": "US-generic",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "risk",
+  "tags": ["confidentiality", "duration"],
+  "dataset_version": "v1"
+}

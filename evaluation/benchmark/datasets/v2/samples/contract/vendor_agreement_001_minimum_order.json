@@ -1,0 +1,29 @@
+{
+  "id": "vendor_agreement_001_minimum_order",
+  "question": "What is the minimum monthly order Buyer must place?",
+  "ground_truth_answer": "$2,000 per month.",
+  "source_document": {
+    "document_id": "vendor_agreement_001",
+    "file": "documents/vendor_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 2 - Minimum Order",
+      "span_hint": "Buyer shall place a minimum monthly order of $2,000."
+    }
+  ],
+  "document_metadata": {
+    "title": "Vendor Supply Agreement (Synthetic)",
+    "doc_type": "Vendor Agreement",
+    "jurisdiction": "US-GA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "money",
+  "tags": [
+    "minimum-order"
+  ],
+  "dataset_version": "v2"
+}

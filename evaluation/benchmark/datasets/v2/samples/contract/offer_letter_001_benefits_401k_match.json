@@ -1,0 +1,31 @@
+{
+  "id": "offer_letter_001_benefits_401k_match",
+  "question": "What retirement and paid time off benefits is Employee eligible for?",
+  "ground_truth_answer": "A 401(k) plan with a 4% company match, and twenty (20) days of paid time off annually, in addition to health insurance.",
+  "source_document": {
+    "document_id": "offer_letter_001",
+    "file": "documents/offer_letter_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 5 - Benefits",
+      "span_hint": "Employee is eligible for health insurance, a 401(k) plan with a 4% company match, and twenty (20) days of paid time off annually, per Company policy."
+    }
+  ],
+  "document_metadata": {
+    "title": "Employment Offer Letter (Synthetic)",
+    "doc_type": "Offer Letter",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "benefits",
+    "401k",
+    "pto"
+  ],
+  "dataset_version": "v2"
+}

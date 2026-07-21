@@ -1,0 +1,13 @@
+{
+  "id": "contractor_agreement_001_invoice_payment",
+  "question": "How quickly must invoices be paid?",
+  "ground_truth_answer": "Within fifteen (15) days of invoice receipt.",
+  "source_document": { "document_id": "contractor_agreement_001", "file": "documents/contractor_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 2 - Compensation", "span_hint": "payable within fifteen (15) days of invoice receipt" } ],
+  "document_metadata": { "title": "Independent Contractor Agreement (Synthetic)", "doc_type": "Independent Contractor Agreement", "jurisdiction": "US-WA", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "time-limits",
+  "tags": ["payment", "invoicing"],
+  "dataset_version": "v2"
+}

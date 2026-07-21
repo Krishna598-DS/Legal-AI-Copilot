@@ -1,0 +1,30 @@
+{
+  "id": "shareholder_agreement_001_drag_along_threshold",
+  "question": "What percentage of shareholder approval is needed to force all shareholders into a company sale?",
+  "ground_truth_answer": "Shareholders holding at least 75% of outstanding shares must approve the sale to trigger the drag-along right, at which point all shareholders must participate on the same terms.",
+  "source_document": {
+    "document_id": "shareholder_agreement_001",
+    "file": "documents/shareholder_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 4 - Drag-Along Rights",
+      "span_hint": "If Shareholders holding at least 75% of outstanding shares approve a sale of the Company, all Shareholders must participate in the sale on the same terms."
+    }
+  ],
+  "document_metadata": {
+    "title": "Shareholder Agreement (Synthetic)",
+    "doc_type": "Shareholder Agreement",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "drag-along",
+    "threshold"
+  ],
+  "dataset_version": "v2"
+}

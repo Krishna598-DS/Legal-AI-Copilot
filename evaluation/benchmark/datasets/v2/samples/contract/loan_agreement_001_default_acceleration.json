@@ -1,0 +1,30 @@
+{
+  "id": "loan_agreement_001_default_acceleration",
+  "question": "What can Lender do if Borrower defaults on the loan?",
+  "ground_truth_answer": "Lender may accelerate the loan and demand the full outstanding balance, upon events of default such as missed payments beyond the cure period, insolvency, or breach of covenants.",
+  "source_document": {
+    "document_id": "loan_agreement_001",
+    "file": "documents/loan_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 7 - Events of Default",
+      "span_hint": "Upon default, Lender may accelerate and demand the full outstanding balance."
+    }
+  ],
+  "document_metadata": {
+    "title": "Loan Agreement (Synthetic)",
+    "doc_type": "Loan Agreement",
+    "jurisdiction": "US-OH",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "default",
+    "acceleration"
+  ],
+  "dataset_version": "v2"
+}

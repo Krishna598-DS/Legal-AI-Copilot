@@ -1,0 +1,29 @@
+{
+  "id": "vendor_agreement_001_delivery_timeline",
+  "question": "How quickly must Vendor deliver orders after they are placed?",
+  "ground_truth_answer": "Within five (5) business days of order placement.",
+  "source_document": {
+    "document_id": "vendor_agreement_001",
+    "file": "documents/vendor_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 4 - Delivery",
+      "span_hint": "Vendor shall deliver orders within five (5) business days of order placement."
+    }
+  ],
+  "document_metadata": {
+    "title": "Vendor Supply Agreement (Synthetic)",
+    "doc_type": "Vendor Agreement",
+    "jurisdiction": "US-GA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "delivery-timeline"
+  ],
+  "dataset_version": "v2"
+}

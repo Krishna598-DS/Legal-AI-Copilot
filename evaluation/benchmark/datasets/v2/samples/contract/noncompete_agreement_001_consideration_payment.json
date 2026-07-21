@@ -1,0 +1,30 @@
+{
+  "id": "noncompete_agreement_001_consideration_payment",
+  "question": "What does Employee receive in exchange for agreeing to the non-compete covenant?",
+  "ground_truth_answer": "Compensation equal to 50% of Employee's base salary during the restricted period, paid monthly.",
+  "source_document": {
+    "document_id": "noncompete_agreement_001",
+    "file": "documents/noncompete_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 4 - Consideration",
+      "span_hint": "In exchange for this covenant, Company shall pay Employee compensation equal to 50% of Employee's base salary during the restricted period, paid monthly."
+    }
+  ],
+  "document_metadata": {
+    "title": "Restrictive Covenant (Non-Compete) Agreement (Synthetic)",
+    "doc_type": "Non-Compete Agreement",
+    "jurisdiction": "US-MA",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "money",
+  "tags": [
+    "consideration",
+    "garden-leave-pay"
+  ],
+  "dataset_version": "v2"
+}

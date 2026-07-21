@@ -1,0 +1,30 @@
+{
+  "id": "offer_letter_001_at_will_employment",
+  "question": "Does Company need cause or advance notice to terminate Morgan's employment?",
+  "ground_truth_answer": "No. Employment is at-will and may be terminated by either party at any time, with or without cause or notice.",
+  "source_document": {
+    "document_id": "offer_letter_001",
+    "file": "documents/offer_letter_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 6 - At-Will Employment",
+      "span_hint": "Employment with Company is at-will and may be terminated by either party at any time, with or without cause or notice."
+    }
+  ],
+  "document_metadata": {
+    "title": "Employment Offer Letter (Synthetic)",
+    "doc_type": "Offer Letter",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "negative questions",
+  "tags": [
+    "at-will",
+    "negative-question"
+  ],
+  "dataset_version": "v2"
+}

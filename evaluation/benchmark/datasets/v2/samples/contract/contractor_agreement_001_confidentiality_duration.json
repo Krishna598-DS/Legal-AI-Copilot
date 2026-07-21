@@ -1,0 +1,13 @@
+{
+  "id": "contractor_agreement_001_confidentiality_duration",
+  "question": "How long does the confidentiality obligation last after the engagement ends?",
+  "ground_truth_answer": "Three (3) years afterward.",
+  "source_document": { "document_id": "contractor_agreement_001", "file": "documents/contractor_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 6 - Confidentiality", "span_hint": "three (3) years afterward" } ],
+  "document_metadata": { "title": "Independent Contractor Agreement (Synthetic)", "doc_type": "Independent Contractor Agreement", "jurisdiction": "US-WA", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "confidentiality",
+  "tags": ["confidentiality", "duration"],
+  "dataset_version": "v2"
+}

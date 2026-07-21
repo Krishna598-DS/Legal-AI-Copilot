@@ -1,0 +1,13 @@
+{
+  "id": "service_agreement_001_data_access",
+  "question": "What restrictions apply to the provider's access to the client's data?",
+  "ground_truth_answer": "Provider shall not access Client's data except as necessary to perform the managed IT support services.",
+  "source_document": { "document_id": "service_agreement_001", "file": "documents/service_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 6 - Data Handling", "span_hint": "shall not access Client's data except as necessary" } ],
+  "document_metadata": { "title": "Managed IT Services Agreement (Synthetic)", "doc_type": "Service Agreement", "jurisdiction": "US-IL", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "conditions",
+  "tags": ["data-handling", "restrictions"],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "partnership_agreement_001_dissolution_triggers",
+  "question": "What events cause the partnership to dissolve?",
+  "ground_truth_answer": "Unanimous written agreement of the partners, the death of a partner, or as otherwise required by law.",
+  "source_document": { "document_id": "partnership_agreement_001", "file": "documents/partnership_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 6 - Dissolution", "span_hint": "unanimous written agreement of the Partners, the death of a Partner" } ],
+  "document_metadata": { "title": "General Partnership Agreement (Synthetic)", "doc_type": "Partnership Agreement", "jurisdiction": "US-CO", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "conditions",
+  "tags": ["dissolution"],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "purchase_agreement_001_taxes",
+  "question": "Who is responsible for paying applicable sales and use taxes on the equipment purchase?",
+  "ground_truth_answer": "Buyer is responsible for all applicable sales and use taxes arising from the purchase.",
+  "source_document": { "document_id": "purchase_agreement_001", "file": "documents/purchase_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 6 - Taxes", "span_hint": "Buyer is responsible for all applicable sales and use taxes" } ],
+  "document_metadata": { "title": "Equipment Purchase Agreement (Synthetic)", "doc_type": "Purchase Agreement", "jurisdiction": "US-OR", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "responsibilities",
+  "tags": ["taxes", "responsibility"],
+  "dataset_version": "v2"
+}

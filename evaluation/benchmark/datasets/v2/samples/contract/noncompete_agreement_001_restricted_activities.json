@@ -1,0 +1,30 @@
+{
+  "id": "noncompete_agreement_001_restricted_activities",
+  "question": "What specific activities is Employee barred from during the restricted period?",
+  "ground_truth_answer": "Research, development, or commercialization of gene-editing therapeutics for any company that competes with Company.",
+  "source_document": {
+    "document_id": "noncompete_agreement_001",
+    "file": "documents/noncompete_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 3 - Restricted Activities",
+      "span_hint": "During the restricted period and within the geographic scope, Employee shall not engage in research, development, or commercialization of gene-editing therapeutics for any company that competes with Company."
+    }
+  ],
+  "document_metadata": {
+    "title": "Restrictive Covenant (Non-Compete) Agreement (Synthetic)",
+    "doc_type": "Non-Compete Agreement",
+    "jurisdiction": "US-MA",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "restricted-activities",
+    "scope"
+  ],
+  "dataset_version": "v2"
+}

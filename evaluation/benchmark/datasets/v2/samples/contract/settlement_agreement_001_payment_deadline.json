@@ -1,0 +1,29 @@
+{
+  "id": "settlement_agreement_001_payment_deadline",
+  "question": "How soon after the Effective Date must Company pay the settlement amount?",
+  "ground_truth_answer": "Within fourteen (14) days of the Effective Date.",
+  "source_document": {
+    "document_id": "settlement_agreement_001",
+    "file": "documents/settlement_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 2 - Settlement Payment",
+      "span_hint": "Company shall pay Claimant $18,500, less applicable withholdings, within fourteen (14) days of the Effective Date."
+    }
+  ],
+  "document_metadata": {
+    "title": "Settlement Agreement and Release (Synthetic)",
+    "doc_type": "Settlement Agreement",
+    "jurisdiction": "US-AZ",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "payment-deadline"
+  ],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "noncompete_agreement_001_geographic_scope",
+  "question": "What is the geographic scope of the non-compete restriction?",
+  "ground_truth_answer": "A seventy-five (75) mile radius of Company's primary research facility in Cambridge, Massachusetts.",
+  "source_document": {
+    "document_id": "noncompete_agreement_001",
+    "file": "documents/noncompete_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 2 - Geographic Scope",
+      "span_hint": "The restrictions apply within a seventy-five (75) mile radius of Company's primary research facility in Cambridge, Massachusetts."
+    }
+  ],
+  "document_metadata": {
+    "title": "Restrictive Covenant (Non-Compete) Agreement (Synthetic)",
+    "doc_type": "Non-Compete Agreement",
+    "jurisdiction": "US-MA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "geographic-scope"
+  ],
+  "dataset_version": "v2"
+}

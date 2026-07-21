@@ -1,0 +1,13 @@
+{
+  "id": "purchase_agreement_001_price",
+  "question": "What is the total purchase price for the equipment?",
+  "ground_truth_answer": "$85,000.",
+  "source_document": { "document_id": "purchase_agreement_001", "file": "documents/purchase_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 1 - Purchase Price", "span_hint": "total purchase price for the Equipment is $85,000" } ],
+  "document_metadata": { "title": "Equipment Purchase Agreement (Synthetic)", "doc_type": "Purchase Agreement", "jurisdiction": "US-OR", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "financial",
+  "tags": ["money", "price"],
+  "dataset_version": "v2"
+}

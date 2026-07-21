@@ -1,0 +1,30 @@
+{
+  "id": "vendor_agreement_001_renewal_notice",
+  "question": "How does this Agreement renew, and how much notice is needed to stop it?",
+  "ground_truth_answer": "The Agreement has an initial one (1) year term, automatically renewing for successive one (1) year terms unless either party gives forty-five (45) days' notice of non-renewal.",
+  "source_document": {
+    "document_id": "vendor_agreement_001",
+    "file": "documents/vendor_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 6 - Term and Renewal",
+      "span_hint": "This Agreement has an initial term of one (1) year, automatically renewing for successive one (1) year terms unless either party provides forty-five (45) days' notice of non-renewal."
+    }
+  ],
+  "document_metadata": {
+    "title": "Vendor Supply Agreement (Synthetic)",
+    "doc_type": "Vendor Agreement",
+    "jurisdiction": "US-GA",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "renewal",
+    "notice-period"
+  ],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "vendor_agreement_001_payment_terms",
+  "question": "What are the payment terms for invoices under this agreement?",
+  "ground_truth_answer": "Net 30 days from the invoice date.",
+  "source_document": { "document_id": "vendor_agreement_001", "file": "documents/vendor_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 3 - Payment Terms", "span_hint": "due net 30 days from the invoice date" } ],
+  "document_metadata": { "title": "Vendor Supply Agreement (Synthetic)", "doc_type": "Vendor Agreement", "jurisdiction": "US-GA", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "money",
+  "tags": ["payment-terms"],
+  "dataset_version": "v2"
+}

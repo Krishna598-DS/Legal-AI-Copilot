@@ -1,0 +1,24 @@
+{
+  "id": "lease_residential_001_termination_notice",
+  "question": "How many days notice must either party give to terminate the month-to-month tenancy?",
+  "ground_truth_answer": "Sixty (60) days written notice.",
+  "source_document": {
+    "document_id": "lease_residential_001",
+    "file": "documents/lease_residential_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    { "section": "Clause 6 - Termination and Notice", "span_hint": "sixty (60) days written notice" }
+  ],
+  "document_metadata": {
+    "title": "Residential Lease Agreement (Synthetic)",
+    "doc_type": "Lease",
+    "jurisdiction": "US-OR",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "risk",
+  "tags": ["termination", "notice-period"],
+  "dataset_version": "v1"
+}

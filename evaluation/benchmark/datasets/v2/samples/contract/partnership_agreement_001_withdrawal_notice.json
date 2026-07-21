@@ -1,0 +1,13 @@
+{
+  "id": "partnership_agreement_001_withdrawal_notice",
+  "question": "How much notice must a partner give to withdraw from the partnership?",
+  "ground_truth_answer": "Ninety (90) days' written notice.",
+  "source_document": { "document_id": "partnership_agreement_001", "file": "documents/partnership_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 5 - Withdrawal of a Partner", "span_hint": "ninety (90) days' written notice" } ],
+  "document_metadata": { "title": "General Partnership Agreement (Synthetic)", "doc_type": "Partnership Agreement", "jurisdiction": "US-CO", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "time-limits",
+  "tags": ["withdrawal", "notice-period"],
+  "dataset_version": "v2"
+}

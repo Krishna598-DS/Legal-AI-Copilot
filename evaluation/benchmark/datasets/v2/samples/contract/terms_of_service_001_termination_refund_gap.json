@@ -1,0 +1,13 @@
+{
+  "id": "terms_of_service_001_termination_refund_gap",
+  "question": "If the Company terminates a user's account for violating the prohibited conduct rules, is the user entitled to a refund for their current subscription period?",
+  "ground_truth_answer": "This information is not found in the provided document. The Company may terminate accounts that violate the Terms with or without notice, but the refund policy only addresses voluntary cancellation by the user, not termination by the Company for a violation.",
+  "source_document": { "document_id": "terms_of_service_001", "file": "documents/terms_of_service_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 8 - Termination by Company", "span_hint": "may suspend or terminate accounts that violate these Terms" } ],
+  "document_metadata": { "title": "Terms of Service (Synthetic)", "doc_type": "Terms of Service", "jurisdiction": "US-DE", "source": "synthetic" },
+  "difficulty": "hard",
+  "category": "contract",
+  "question_type": "multi-clause reasoning",
+  "tags": ["multi-clause", "termination", "refunds"],
+  "dataset_version": "v2"
+}

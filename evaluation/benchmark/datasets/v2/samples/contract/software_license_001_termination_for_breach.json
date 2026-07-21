@@ -1,0 +1,30 @@
+{
+  "id": "software_license_001_termination_for_breach",
+  "question": "Can Licensor terminate immediately if Licensee reverse-engineers or resells the Software?",
+  "ground_truth_answer": "Yes. Licensor may terminate immediately if Licensee breaches the restrictions in Clause 4 (no reverse-engineering, sublicensing, or reselling).",
+  "source_document": {
+    "document_id": "software_license_001",
+    "file": "documents/software_license_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 6 - Term and Termination",
+      "span_hint": "Licensor may terminate immediately if Licensee breaches the restrictions in Clause 4."
+    }
+  ],
+  "document_metadata": {
+    "title": "Software License Agreement (Synthetic)",
+    "doc_type": "Software License Agreement",
+    "jurisdiction": "US-MA",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "multi-clause reasoning",
+  "tags": [
+    "termination",
+    "multi-clause"
+  ],
+  "dataset_version": "v2"
+}

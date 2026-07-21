@@ -1,0 +1,22 @@
+{
+  "id": "employment_agreement_001_severance",
+  "question": "What severance payment is the employee entitled to upon termination without cause?",
+  "ground_truth_answer": "This information is not found in the provided document.",
+  "source_document": {
+    "document_id": "employment_agreement_001",
+    "file": "documents/employment_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [],
+  "document_metadata": {
+    "title": "Employment Agreement (Synthetic)",
+    "doc_type": "Employment",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "hard",
+  "category": "contract",
+  "question_type": "financial",
+  "tags": ["abstention", "severance"],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "settlement_agreement_001_admission_of_liability",
+  "question": "Does this settlement mean Company admitted wrongdoing regarding the overtime wage claim?",
+  "ground_truth_answer": "No. The Agreement expressly states it is not an admission of wrongdoing by Company, and the dispute is resolved without any admission of liability.",
+  "source_document": {
+    "document_id": "settlement_agreement_001",
+    "file": "documents/settlement_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 3 - No Admission of Liability",
+      "span_hint": "This Agreement is not an admission of wrongdoing by Company."
+    }
+  ],
+  "document_metadata": {
+    "title": "Settlement Agreement and Release (Synthetic)",
+    "doc_type": "Settlement Agreement",
+    "jurisdiction": "US-AZ",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "negative questions",
+  "tags": [
+    "no-admission",
+    "negative-question"
+  ],
+  "dataset_version": "v2"
+}

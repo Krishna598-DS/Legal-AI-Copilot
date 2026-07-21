@@ -1,0 +1,30 @@
+{
+  "id": "software_license_001_support_terms",
+  "question": "What support and update services does Licensor provide during the license term?",
+  "ground_truth_answer": "Standard support during business hours by email and phone, plus all minor version updates during the license term.",
+  "source_document": {
+    "document_id": "software_license_001",
+    "file": "documents/software_license_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 5 - Support and Updates",
+      "span_hint": "Licensor provides standard support during business hours by email and phone, and includes all minor version updates during the license term."
+    }
+  ],
+  "document_metadata": {
+    "title": "Software License Agreement (Synthetic)",
+    "doc_type": "Software License Agreement",
+    "jurisdiction": "US-MA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "support",
+    "updates"
+  ],
+  "dataset_version": "v2"
+}

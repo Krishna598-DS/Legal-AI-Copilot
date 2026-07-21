@@ -1,0 +1,30 @@
+LOAN AGREEMENT
+
+This Loan Agreement ("Agreement") is entered into as of February 15, 2026, between Summit Community Bank ("Lender") and Ridgeline Hardware LLC ("Borrower").
+
+Clause 1 - Loan Amount
+Lender shall provide Borrower a term loan in the principal amount of $150,000.
+
+Clause 2 - Interest Rate
+The loan bears a fixed interest rate of 7.25% per annum.
+
+Clause 3 - Repayment
+Borrower shall repay the loan in sixty (60) equal monthly installments of principal and interest, beginning thirty (30) days after the funding date.
+
+Clause 4 - Prepayment
+Borrower may prepay the loan in whole or in part at any time without penalty.
+
+Clause 5 - Late Fee
+If a payment is more than ten (10) days late, a late fee of 5% of the overdue payment applies.
+
+Clause 6 - Collateral
+The loan is secured by a lien on Borrower's business equipment.
+
+Clause 7 - Events of Default
+An event of default includes missed payments beyond the applicable cure period, insolvency of Borrower, or breach of covenants. Upon default, Lender may accelerate and demand the full outstanding balance.
+
+Clause 8 - Financial Covenants
+Borrower shall maintain a debt service coverage ratio of at least 1.25.
+
+Clause 9 - Governing Law
+This Agreement shall be governed by the laws of the State of Ohio.

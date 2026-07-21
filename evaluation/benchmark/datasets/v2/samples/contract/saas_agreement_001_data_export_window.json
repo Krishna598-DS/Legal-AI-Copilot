@@ -1,0 +1,30 @@
+{
+  "id": "saas_agreement_001_data_export_window",
+  "question": "After termination, how long does Customer have to export its data before it may be deleted?",
+  "ground_truth_answer": "Thirty (30) days after termination, after which the data may be deleted.",
+  "source_document": {
+    "document_id": "saas_agreement_001",
+    "file": "documents/saas_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 7 - Data Export",
+      "span_hint": "Upon termination, Provider shall make Customer's data available for export for thirty (30) days, after which it may be deleted."
+    }
+  ],
+  "document_metadata": {
+    "title": "SaaS Subscription Agreement (Synthetic)",
+    "doc_type": "SaaS Agreement",
+    "jurisdiction": "US-NY",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "data-export",
+    "termination"
+  ],
+  "dataset_version": "v2"
+}

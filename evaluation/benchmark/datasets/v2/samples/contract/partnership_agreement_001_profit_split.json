@@ -1,0 +1,13 @@
+{
+  "id": "partnership_agreement_001_profit_split",
+  "question": "How are profits and losses shared between the partners?",
+  "ground_truth_answer": "60% to Cole and 40% to Shah, proportional to their capital contributions.",
+  "source_document": { "document_id": "partnership_agreement_001", "file": "documents/partnership_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 3 - Profit and Loss Sharing", "span_hint": "60% to Cole and 40% to Shah" } ],
+  "document_metadata": { "title": "General Partnership Agreement (Synthetic)", "doc_type": "Partnership Agreement", "jurisdiction": "US-CO", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "money",
+  "tags": ["profit-sharing"],
+  "dataset_version": "v2"
+}

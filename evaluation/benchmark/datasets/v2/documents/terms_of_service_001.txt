@@ -1,0 +1,36 @@
+TERMS OF SERVICE
+
+These Terms of Service ("Terms") govern use of the Pathwise budgeting application ("Service"), operated by Pathwise App Inc. ("Company").
+
+Clause 1 - Acceptance of Terms
+By creating an account, the user agrees to be bound by these Terms.
+
+Clause 2 - Eligibility
+Users must be at least 18 years old to use the Service.
+
+Clause 3 - Subscription and Billing
+The Premium subscription costs $9.99 per month or $89 per year, billed automatically until canceled.
+
+Clause 4 - Free Trial
+New users receive a fourteen (14) day free trial of Premium. If not canceled before the trial ends, billing begins automatically.
+
+Clause 5 - Cancellation
+Users may cancel at any time through account settings. Cancellation takes effect at the end of the current billing period, and no partial refunds are provided.
+
+Clause 6 - User Content
+Users retain ownership of content they submit but grant the Company a license to use such content to operate the Service.
+
+Clause 7 - Prohibited Conduct
+Users may not reverse-engineer the application, use it for unlawful purposes, or attempt to access other users' accounts.
+
+Clause 8 - Termination by Company
+The Company may suspend or terminate accounts that violate these Terms, with or without notice.
+
+Clause 9 - Disclaimer of Warranties
+The Service is provided "as is" without warranties of any kind.
+
+Clause 10 - Limitation of Liability
+The Company's liability is limited to the amount paid by the user in the twelve (12) months preceding the claim.
+
+Clause 11 - Governing Law
+These Terms shall be governed by the laws of the State of Delaware.

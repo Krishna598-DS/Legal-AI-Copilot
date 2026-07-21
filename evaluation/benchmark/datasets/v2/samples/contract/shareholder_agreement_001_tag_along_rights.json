@@ -1,0 +1,30 @@
+{
+  "id": "shareholder_agreement_001_tag_along_rights",
+  "question": "If the majority shareholder sells his shares to an outside buyer, what option do the minority shareholders have?",
+  "ground_truth_answer": "Minority Shareholders may elect to sell their shares as part of that same transaction, on the same terms as the majority shareholder's sale.",
+  "source_document": {
+    "document_id": "shareholder_agreement_001",
+    "file": "documents/shareholder_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 5 - Tag-Along Rights",
+      "span_hint": "If a majority Shareholder sells shares to a third party, minority Shareholders may elect to sell their shares on the same terms as part of that sale."
+    }
+  ],
+  "document_metadata": {
+    "title": "Shareholder Agreement (Synthetic)",
+    "doc_type": "Shareholder Agreement",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "tag-along",
+    "minority-rights"
+  ],
+  "dataset_version": "v2"
+}

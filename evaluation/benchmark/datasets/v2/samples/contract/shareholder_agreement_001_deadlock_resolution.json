@@ -1,0 +1,30 @@
+{
+  "id": "shareholder_agreement_001_deadlock_resolution",
+  "question": "What happens if the Board cannot reach a majority decision on a matter?",
+  "ground_truth_answer": "If the Board cannot reach a majority decision for sixty (60) days, the matter must be submitted to mediation.",
+  "source_document": {
+    "document_id": "shareholder_agreement_001",
+    "file": "documents/shareholder_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 6 - Deadlock Resolution",
+      "span_hint": "If the Board cannot reach a majority decision on a matter for sixty (60) days, the matter shall be submitted to mediation."
+    }
+  ],
+  "document_metadata": {
+    "title": "Shareholder Agreement (Synthetic)",
+    "doc_type": "Shareholder Agreement",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "deadlock",
+    "dispute-resolution"
+  ],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "consulting_agreement_001_payment_schedule",
+  "question": "What is the payment installment schedule for the consulting fee?",
+  "ground_truth_answer": "$16,000 at signing, $16,000 at the 45-day midpoint, and $16,000 upon delivery of the final report.",
+  "source_document": { "document_id": "consulting_agreement_001", "file": "documents/consulting_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 2 - Fees", "span_hint": "$16,000 at signing, $16,000 at the 45-day midpoint" } ],
+  "document_metadata": { "title": "Consulting Agreement (Synthetic)", "doc_type": "Consulting Agreement", "jurisdiction": "US-MN", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "money",
+  "tags": ["payment-schedule", "installments"],
+  "dataset_version": "v2"
+}

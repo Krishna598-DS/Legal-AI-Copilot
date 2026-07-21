@@ -1,0 +1,29 @@
+{
+  "id": "software_license_001_liability_cap",
+  "question": "What is the cap on Licensor's liability under this Agreement?",
+  "ground_truth_answer": "The license fees paid by Licensee in the twelve (12) months preceding the claim.",
+  "source_document": {
+    "document_id": "software_license_001",
+    "file": "documents/software_license_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 8 - Limitation of Liability",
+      "span_hint": "Licensor's liability is limited to the license fees paid by Licensee in the twelve (12) months preceding the claim."
+    }
+  ],
+  "document_metadata": {
+    "title": "Software License Agreement (Synthetic)",
+    "doc_type": "Software License Agreement",
+    "jurisdiction": "US-MA",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "money",
+  "tags": [
+    "liability-cap"
+  ],
+  "dataset_version": "v2"
+}

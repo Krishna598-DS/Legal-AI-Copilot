@@ -1,0 +1,30 @@
+{
+  "id": "software_license_001_user_limit_overage",
+  "question": "How many named users are covered by the base license, and what does it cost to add more?",
+  "ground_truth_answer": "The license covers up to twenty-five (25) named users. Additional users may be added at $600 per user per year.",
+  "source_document": {
+    "document_id": "software_license_001",
+    "file": "documents/software_license_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 3 - Number of Users",
+      "span_hint": "The license covers up to twenty-five (25) named users. Additional users may be added at $600 per user per year."
+    }
+  ],
+  "document_metadata": {
+    "title": "Software License Agreement (Synthetic)",
+    "doc_type": "Software License Agreement",
+    "jurisdiction": "US-MA",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "user-limit",
+    "overage-pricing"
+  ],
+  "dataset_version": "v2"
+}

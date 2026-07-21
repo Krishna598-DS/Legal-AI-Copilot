@@ -1,0 +1,13 @@
+{
+  "id": "service_agreement_001_liability_cap",
+  "question": "What is the limit on the provider's liability?",
+  "ground_truth_answer": "Limited to the fees paid by Client in the three (3) months preceding the claim.",
+  "source_document": { "document_id": "service_agreement_001", "file": "documents/service_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 7 - Limitation of Liability", "span_hint": "fees paid by Client in the three (3) months preceding the claim" } ],
+  "document_metadata": { "title": "Managed IT Services Agreement (Synthetic)", "doc_type": "Service Agreement", "jurisdiction": "US-IL", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "liability",
+  "tags": ["liability", "cap"],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "loan_agreement_001_repayment_term",
+  "question": "Over what period does Borrower repay the loan, and when do payments begin?",
+  "ground_truth_answer": "Sixty (60) equal monthly installments of principal and interest, beginning thirty (30) days after the funding date.",
+  "source_document": {
+    "document_id": "loan_agreement_001",
+    "file": "documents/loan_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 3 - Repayment",
+      "span_hint": "Borrower shall repay the loan in sixty (60) equal monthly installments of principal and interest, beginning thirty (30) days after the funding date."
+    }
+  ],
+  "document_metadata": {
+    "title": "Loan Agreement (Synthetic)",
+    "doc_type": "Loan Agreement",
+    "jurisdiction": "US-OH",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "repayment-schedule"
+  ],
+  "dataset_version": "v2"
+}

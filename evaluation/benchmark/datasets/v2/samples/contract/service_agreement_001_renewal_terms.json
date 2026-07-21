@@ -1,0 +1,13 @@
+{
+  "id": "service_agreement_001_renewal_terms",
+  "question": "How does this agreement renew, and what notice is required to prevent renewal?",
+  "ground_truth_answer": "The agreement has an initial 12-month term and automatically renews for successive 12-month terms unless either party provides 60 days' notice of non-renewal.",
+  "source_document": { "document_id": "service_agreement_001", "file": "documents/service_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 4 - Term", "span_hint": "automatically renewing for successive twelve (12) month terms" } ],
+  "document_metadata": { "title": "Managed IT Services Agreement (Synthetic)", "doc_type": "Service Agreement", "jurisdiction": "US-IL", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "renewal",
+  "tags": ["renewal", "notice-period"],
+  "dataset_version": "v2"
+}

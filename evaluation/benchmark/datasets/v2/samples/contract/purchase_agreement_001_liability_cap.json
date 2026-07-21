@@ -1,0 +1,13 @@
+{
+  "id": "purchase_agreement_001_liability_cap",
+  "question": "Is there a cap on the seller's liability under this agreement?",
+  "ground_truth_answer": "Yes. Seller's total liability under the Agreement shall not exceed the Purchase Price of $85,000.",
+  "source_document": { "document_id": "purchase_agreement_001", "file": "documents/purchase_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 7 - Limitation of Liability", "span_hint": "shall not exceed the Purchase Price" } ],
+  "document_metadata": { "title": "Equipment Purchase Agreement (Synthetic)", "doc_type": "Purchase Agreement", "jurisdiction": "US-OR", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "liability",
+  "tags": ["liability", "cap"],
+  "dataset_version": "v2"
+}

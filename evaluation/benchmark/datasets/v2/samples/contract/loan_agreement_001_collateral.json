@@ -1,0 +1,30 @@
+{
+  "id": "loan_agreement_001_collateral",
+  "question": "What secures this loan?",
+  "ground_truth_answer": "A lien on Borrower's business equipment.",
+  "source_document": {
+    "document_id": "loan_agreement_001",
+    "file": "documents/loan_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 6 - Collateral",
+      "span_hint": "The loan is secured by a lien on Borrower's business equipment."
+    }
+  ],
+  "document_metadata": {
+    "title": "Loan Agreement (Synthetic)",
+    "doc_type": "Loan Agreement",
+    "jurisdiction": "US-OH",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "collateral",
+    "security-interest"
+  ],
+  "dataset_version": "v2"
+}

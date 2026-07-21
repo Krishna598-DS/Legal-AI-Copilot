@@ -1,0 +1,13 @@
+{
+  "id": "commercial_lease_001_term",
+  "question": "What is the term of this lease, including start and end dates?",
+  "ground_truth_answer": "Five (5) years, commencing April 1, 2026, and ending March 31, 2031.",
+  "source_document": { "document_id": "commercial_lease_001", "file": "documents/commercial_lease_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 1 - Term", "span_hint": "commencing April 1, 2026, and ending March 31, 2031" } ],
+  "document_metadata": { "title": "Commercial Lease Agreement (Synthetic)", "doc_type": "Commercial Lease", "jurisdiction": "US-TX", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "general",
+  "tags": ["dates", "term"],
+  "dataset_version": "v2"
+}

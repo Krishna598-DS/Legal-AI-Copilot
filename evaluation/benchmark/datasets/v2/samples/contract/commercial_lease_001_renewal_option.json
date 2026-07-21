@@ -1,0 +1,13 @@
+{
+  "id": "commercial_lease_001_renewal_option",
+  "question": "What must the tenant do to renew this lease, and on what terms?",
+  "ground_truth_answer": "Tenant may renew for one additional five (5) year term by providing written notice at least 180 days before expiration of the initial term, at then-current fair market rent.",
+  "source_document": { "document_id": "commercial_lease_001", "file": "documents/commercial_lease_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 7 - Renewal Option", "span_hint": "written notice at least 180 days before" } ],
+  "document_metadata": { "title": "Commercial Lease Agreement (Synthetic)", "doc_type": "Commercial Lease", "jurisdiction": "US-TX", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "risk",
+  "tags": ["renewal", "notice-period"],
+  "dataset_version": "v2"
+}

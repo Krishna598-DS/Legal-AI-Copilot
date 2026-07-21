@@ -1,0 +1,13 @@
+{
+  "id": "commercial_lease_001_maintenance_split",
+  "question": "Who is responsible for maintaining the roof and HVAC systems versus the interior of the premises?",
+  "ground_truth_answer": "Landlord is responsible for maintaining the structure, roof, and HVAC systems. Tenant is responsible for maintaining the interior of the premises and any fixtures Tenant installs.",
+  "source_document": { "document_id": "commercial_lease_001", "file": "documents/commercial_lease_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 6 - Maintenance", "span_hint": "Landlord is responsible for maintaining the structure, roof, and HVAC" } ],
+  "document_metadata": { "title": "Commercial Lease Agreement (Synthetic)", "doc_type": "Commercial Lease", "jurisdiction": "US-TX", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "general",
+  "tags": ["maintenance", "responsibility"],
+  "dataset_version": "v2"
+}

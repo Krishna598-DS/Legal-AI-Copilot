@@ -1,0 +1,29 @@
+{
+  "id": "loan_agreement_001_principal_amount",
+  "question": "What is the principal amount of the loan Lender is providing?",
+  "ground_truth_answer": "$150,000.",
+  "source_document": {
+    "document_id": "loan_agreement_001",
+    "file": "documents/loan_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 1 - Loan Amount",
+      "span_hint": "Lender shall provide Borrower a term loan in the principal amount of $150,000."
+    }
+  ],
+  "document_metadata": {
+    "title": "Loan Agreement (Synthetic)",
+    "doc_type": "Loan Agreement",
+    "jurisdiction": "US-OH",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "money",
+  "tags": [
+    "principal-amount"
+  ],
+  "dataset_version": "v2"
+}

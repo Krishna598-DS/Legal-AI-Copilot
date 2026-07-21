@@ -1,0 +1,13 @@
+{
+  "id": "commercial_lease_001_insurance",
+  "question": "What insurance must the tenant maintain under this lease?",
+  "ground_truth_answer": "Commercial general liability insurance with limits of at least $1,000,000 per occurrence, naming Landlord as an additional insured.",
+  "source_document": { "document_id": "commercial_lease_001", "file": "documents/commercial_lease_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 9 - Insurance", "span_hint": "at least $1,000,000 per occurrence" } ],
+  "document_metadata": { "title": "Commercial Lease Agreement (Synthetic)", "doc_type": "Commercial Lease", "jurisdiction": "US-TX", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "risk",
+  "tags": ["insurance", "liability"],
+  "dataset_version": "v2"
+}

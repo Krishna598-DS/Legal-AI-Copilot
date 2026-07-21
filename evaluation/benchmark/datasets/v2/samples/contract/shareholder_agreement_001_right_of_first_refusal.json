@@ -1,0 +1,31 @@
+{
+  "id": "shareholder_agreement_001_right_of_first_refusal",
+  "question": "Can a shareholder sell shares directly to an outside buyer without offering them to the other shareholders first?",
+  "ground_truth_answer": "No. A Shareholder must first offer the shares to the other Shareholders at the same price and on the same terms (right of first refusal) before transferring to a third party.",
+  "source_document": {
+    "document_id": "shareholder_agreement_001",
+    "file": "documents/shareholder_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 3 - Transfer Restrictions",
+      "span_hint": "No Shareholder may transfer shares to a third party without first offering them to the other Shareholders at the same price and on the same terms (right of first refusal)."
+    }
+  ],
+  "document_metadata": {
+    "title": "Shareholder Agreement (Synthetic)",
+    "doc_type": "Shareholder Agreement",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "negative questions",
+  "tags": [
+    "transfer-restrictions",
+    "right-of-first-refusal",
+    "negative-question"
+  ],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "loan_agreement_001_prepayment_penalty",
+  "question": "Does Borrower owe a penalty for paying off the loan early?",
+  "ground_truth_answer": "No. Borrower may prepay the loan in whole or in part at any time without penalty.",
+  "source_document": {
+    "document_id": "loan_agreement_001",
+    "file": "documents/loan_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 4 - Prepayment",
+      "span_hint": "Borrower may prepay the loan in whole or in part at any time without penalty."
+    }
+  ],
+  "document_metadata": {
+    "title": "Loan Agreement (Synthetic)",
+    "doc_type": "Loan Agreement",
+    "jurisdiction": "US-OH",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "negative questions",
+  "tags": [
+    "prepayment",
+    "negative-question"
+  ],
+  "dataset_version": "v2"
+}

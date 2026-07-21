@@ -1,0 +1,30 @@
+{
+  "id": "software_license_001_term_renewal_notice",
+  "question": "How does this license renew, and how much notice is required to stop renewal?",
+  "ground_truth_answer": "The Agreement has a one (1) year term and automatically renews unless either party provides sixty (60) days' notice.",
+  "source_document": {
+    "document_id": "software_license_001",
+    "file": "documents/software_license_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 6 - Term and Termination",
+      "span_hint": "This Agreement has a one (1) year term, automatically renewing unless either party provides sixty (60) days' notice."
+    }
+  ],
+  "document_metadata": {
+    "title": "Software License Agreement (Synthetic)",
+    "doc_type": "Software License Agreement",
+    "jurisdiction": "US-MA",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "renewal",
+    "notice-period"
+  ],
+  "dataset_version": "v2"
+}

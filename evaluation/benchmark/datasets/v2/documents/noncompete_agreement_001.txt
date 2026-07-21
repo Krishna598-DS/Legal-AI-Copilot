@@ -1,0 +1,24 @@
+RESTRICTIVE COVENANT (NON-COMPETE) AGREEMENT
+
+This Restrictive Covenant Agreement ("Agreement") is entered into as of January 10, 2026, between Halcyon Biotech Inc. ("Company") and Dr. Elena Petrova ("Employee").
+
+Clause 1 - Restricted Period
+The restrictions in this Agreement apply for eighteen (18) months following termination of Employee's employment for any reason.
+
+Clause 2 - Geographic Scope
+The restrictions apply within a seventy-five (75) mile radius of Company's primary research facility in Cambridge, Massachusetts.
+
+Clause 3 - Restricted Activities
+During the restricted period and within the geographic scope, Employee shall not engage in research, development, or commercialization of gene-editing therapeutics for any company that competes with Company.
+
+Clause 4 - Consideration
+In exchange for this covenant, Company shall pay Employee compensation equal to 50% of Employee's base salary during the restricted period, paid monthly.
+
+Clause 5 - Non-Solicitation of Employees
+Employee shall not solicit Company's employees to leave their employment for twenty-four (24) months following termination.
+
+Clause 6 - Reasonableness and Severability
+If a court finds any restriction in this Agreement unreasonable, the court may reduce the scope of the restriction rather than void the entire Agreement.
+
+Clause 7 - Governing Law
+This Agreement shall be governed by the laws of the Commonwealth of Massachusetts.

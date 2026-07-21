@@ -1,0 +1,13 @@
+{
+  "id": "consulting_agreement_001_travel_expenses",
+  "question": "Who is responsible for the consultant's travel expenses?",
+  "ground_truth_answer": "Client shall reimburse Consultant for pre-approved travel expenses incurred in connection with the engagement.",
+  "source_document": { "document_id": "consulting_agreement_001", "file": "documents/consulting_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 3 - Expenses", "span_hint": "reimburse Consultant for pre-approved travel expenses" } ],
+  "document_metadata": { "title": "Consulting Agreement (Synthetic)", "doc_type": "Consulting Agreement", "jurisdiction": "US-MN", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "responsibilities",
+  "tags": ["expenses", "responsibility"],
+  "dataset_version": "v2"
+}

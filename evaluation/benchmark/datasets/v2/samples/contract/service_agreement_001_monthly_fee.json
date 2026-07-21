@@ -1,0 +1,13 @@
+{
+  "id": "service_agreement_001_monthly_fee",
+  "question": "What is the monthly fee and how many support hours does it cover?",
+  "ground_truth_answer": "$4,200 per month, covering up to 40 support hours.",
+  "source_document": { "document_id": "service_agreement_001", "file": "documents/service_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 2 - Service Fees", "span_hint": "flat fee of $4,200 per month, covering up to 40 support hours" } ],
+  "document_metadata": { "title": "Managed IT Services Agreement (Synthetic)", "doc_type": "Service Agreement", "jurisdiction": "US-IL", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "financial",
+  "tags": ["money", "fees"],
+  "dataset_version": "v2"
+}

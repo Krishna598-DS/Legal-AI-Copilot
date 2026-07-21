@@ -1,0 +1,29 @@
+{
+  "id": "saas_agreement_001_governing_law",
+  "question": "Which state's law governs this SaaS Subscription Agreement?",
+  "ground_truth_answer": "The State of New York.",
+  "source_document": {
+    "document_id": "saas_agreement_001",
+    "file": "documents/saas_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 9 - Governing Law",
+      "span_hint": "This Agreement shall be governed by the laws of the State of New York."
+    }
+  ],
+  "document_metadata": {
+    "title": "SaaS Subscription Agreement (Synthetic)",
+    "doc_type": "SaaS Agreement",
+    "jurisdiction": "US-NY",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "governing-law"
+  ],
+  "dataset_version": "v2"
+}
