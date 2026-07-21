@@ -1,0 +1,29 @@
+{
+  "dataset_version": "v2",
+  "description": "Sprint 2 benchmark: full-coverage synthetic contract fixtures across 20 document types, expanding on v1's three-document NDA/lease/employment set.",
+  "documents": [
+    "commercial_lease_001",
+    "confidentiality_agreement_001",
+    "consulting_agreement_001",
+    "contractor_agreement_001",
+    "employment_agreement_001",
+    "lease_residential_001",
+    "loan_agreement_001",
+    "nda_mutual_001",
+    "noncompete_agreement_001",
+    "offer_letter_001",
+    "partnership_agreement_001",
+    "privacy_policy_001",
+    "purchase_agreement_001",
+    "saas_agreement_001",
+    "service_agreement_001",
+    "settlement_agreement_001",
+    "shareholder_agreement_001",
+    "software_license_001",
+    "terms_of_service_001",
+    "vendor_agreement_001"
+  ],
+  "categories": ["contract"],
+  "sample_count": 141,
+  "notes": "All source documents are synthetic (no real user or client data). Sample counts per document range 5-8, sized to the number of distinct salient clauses in each fixture. Includes negative questions, numeric-reasoning, and multi-clause-reasoning question types alongside straightforward factual lookups. IPC / Constitution categories remain planned for a later dataset version, not v2."
+}

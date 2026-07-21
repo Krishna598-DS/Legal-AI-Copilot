@@ -1,0 +1,31 @@
+{
+  "id": "offer_letter_001_signing_bonus_clawback",
+  "question": "If Morgan resigns nine months after her start date, does she keep the signing bonus?",
+  "ground_truth_answer": "No. The $5,000 signing bonus is subject to repayment in full if Employee resigns within twelve (12) months of the start date, and nine months falls within that clawback window.",
+  "source_document": {
+    "document_id": "offer_letter_001",
+    "file": "documents/offer_letter_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 3 - Signing Bonus",
+      "span_hint": "Employee will receive a one-time signing bonus of $5,000, payable in the first paycheck, subject to repayment in full if Employee resigns within twelve (12) months of the start date."
+    }
+  ],
+  "document_metadata": {
+    "title": "Employment Offer Letter (Synthetic)",
+    "doc_type": "Offer Letter",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "hard",
+  "category": "contract",
+  "question_type": "numeric reasoning",
+  "tags": [
+    "signing-bonus",
+    "clawback",
+    "multi-clause"
+  ],
+  "dataset_version": "v2"
+}

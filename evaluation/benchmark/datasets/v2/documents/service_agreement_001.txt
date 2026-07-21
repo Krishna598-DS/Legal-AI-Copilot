@@ -1,0 +1,27 @@
+MANAGED IT SERVICES AGREEMENT
+
+This Managed IT Services Agreement ("Agreement") is entered into as of January 6, 2026, between Northlake IT Services ("Provider") and Comet Retail Group ("Client").
+
+Clause 1 - Services
+Provider shall deliver managed IT support services, including helpdesk support, network monitoring, and backup management.
+
+Clause 2 - Service Fees
+Client shall pay Provider a flat fee of $4,200 per month, covering up to 40 support hours. Additional hours are billed at $110 per hour.
+
+Clause 3 - Service Level Agreement
+Provider shall respond to critical incidents within two (2) hours and shall use commercially reasonable efforts to resolve critical incidents within eight (8) business hours where feasible.
+
+Clause 4 - Term
+This Agreement has an initial term of twelve (12) months, automatically renewing for successive twelve (12) month terms unless either party provides sixty (60) days' notice of non-renewal.
+
+Clause 5 - Termination for Convenience
+Either party may terminate this Agreement for convenience upon ninety (90) days' written notice.
+
+Clause 6 - Data Handling
+Provider shall not access Client's data except as necessary to perform the Services described in Clause 1.
+
+Clause 7 - Limitation of Liability
+Provider's liability under this Agreement is limited to the fees paid by Client in the three (3) months preceding the claim.
+
+Clause 8 - Governing Law
+This Agreement shall be governed by the laws of the State of Illinois.

@@ -1,0 +1,24 @@
+{
+  "id": "employment_agreement_001_vacation_days",
+  "question": "How many days of paid vacation does the employee accrue per year?",
+  "ground_truth_answer": "Fifteen (15) days per calendar year.",
+  "source_document": {
+    "document_id": "employment_agreement_001",
+    "file": "documents/employment_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    { "section": "Clause 3 - Benefits", "span_hint": "fifteen (15) days of paid vacation" }
+  ],
+  "document_metadata": {
+    "title": "Employment Agreement (Synthetic)",
+    "doc_type": "Employment",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "financial",
+  "tags": ["benefits", "vacation"],
+  "dataset_version": "v2"
+}

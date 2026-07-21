@@ -1,0 +1,13 @@
+{
+  "id": "privacy_policy_001_user_rights",
+  "question": "What rights do users have regarding their personal information, and how do they exercise them?",
+  "ground_truth_answer": "Users may request access to, correction of, or deletion of their personal information by emailing privacy@lumenanalytics.example.",
+  "source_document": { "document_id": "privacy_policy_001", "file": "documents/privacy_policy_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Section 5 - Your Rights", "span_hint": "request access to, correction of, or deletion of" } ],
+  "document_metadata": { "title": "Privacy Policy (Synthetic)", "doc_type": "Privacy Policy", "jurisdiction": "US-CA", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "responsibilities",
+  "tags": ["user-rights", "data-access"],
+  "dataset_version": "v2"
+}

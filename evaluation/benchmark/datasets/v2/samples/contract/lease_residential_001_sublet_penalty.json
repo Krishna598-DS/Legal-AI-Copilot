@@ -1,0 +1,22 @@
+{
+  "id": "lease_residential_001_sublet_penalty",
+  "question": "What penalty applies if the tenant sublets the unit without permission?",
+  "ground_truth_answer": "This information is not found in the provided document.",
+  "source_document": {
+    "document_id": "lease_residential_001",
+    "file": "documents/lease_residential_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [],
+  "document_metadata": {
+    "title": "Residential Lease Agreement (Synthetic)",
+    "doc_type": "Lease",
+    "jurisdiction": "US-OR",
+    "source": "synthetic"
+  },
+  "difficulty": "hard",
+  "category": "contract",
+  "question_type": "risk",
+  "tags": ["abstention", "subletting"],
+  "dataset_version": "v2"
+}

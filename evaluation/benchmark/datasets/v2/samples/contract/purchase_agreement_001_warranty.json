@@ -1,0 +1,13 @@
+{
+  "id": "purchase_agreement_001_warranty",
+  "question": "How long is the equipment warranty?",
+  "ground_truth_answer": "Twelve (12) months from the date of delivery, against defects in material and workmanship.",
+  "source_document": { "document_id": "purchase_agreement_001", "file": "documents/purchase_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 4 - Warranty", "span_hint": "twelve (12) months from the date of delivery" } ],
+  "document_metadata": { "title": "Equipment Purchase Agreement (Synthetic)", "doc_type": "Purchase Agreement", "jurisdiction": "US-OR", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "general",
+  "tags": ["warranty", "time-limits"],
+  "dataset_version": "v2"
+}

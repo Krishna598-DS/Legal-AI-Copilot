@@ -1,0 +1,31 @@
+{
+  "id": "saas_agreement_001_renewal_notice",
+  "question": "How does this Agreement renew, and how much notice is required to stop renewal?",
+  "ground_truth_answer": "The Agreement has an initial 12-month term and automatically renews for successive 12-month terms unless either party gives thirty (30) days' notice of non-renewal.",
+  "source_document": {
+    "document_id": "saas_agreement_001",
+    "file": "documents/saas_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 5 - Term",
+      "span_hint": "This Agreement has an initial term of twelve (12) months, automatically renewing for successive twelve (12) month terms unless either party provides thirty (30) days' notice of non-renewal."
+    }
+  ],
+  "document_metadata": {
+    "title": "SaaS Subscription Agreement (Synthetic)",
+    "doc_type": "SaaS Agreement",
+    "jurisdiction": "US-NY",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "renewal",
+    "term",
+    "notice-period"
+  ],
+  "dataset_version": "v2"
+}

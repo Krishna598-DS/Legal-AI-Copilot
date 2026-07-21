@@ -1,0 +1,30 @@
+{
+  "id": "saas_agreement_001_data_ownership",
+  "question": "Does the Provider own the data Customer uploads to the Service?",
+  "ground_truth_answer": "No. Customer retains all ownership of its data uploaded to the Service. Provider may only use aggregated, de-identified data for product improvement.",
+  "source_document": {
+    "document_id": "saas_agreement_001",
+    "file": "documents/saas_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 4 - Data Ownership",
+      "span_hint": "Customer retains all ownership of its data uploaded to the Service. Provider may use aggregated, de-identified data for product improvement purposes."
+    }
+  ],
+  "document_metadata": {
+    "title": "SaaS Subscription Agreement (Synthetic)",
+    "doc_type": "SaaS Agreement",
+    "jurisdiction": "US-NY",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "negative questions",
+  "tags": [
+    "data-ownership",
+    "negative-question"
+  ],
+  "dataset_version": "v2"
+}

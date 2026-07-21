@@ -1,0 +1,30 @@
+{
+  "id": "saas_agreement_001_uptime_sla",
+  "question": "What uptime commitment does the Provider make, and how is it measured?",
+  "ground_truth_answer": "Provider will use commercially reasonable efforts to maintain 99.5% uptime, measured monthly, excluding scheduled maintenance.",
+  "source_document": {
+    "document_id": "saas_agreement_001",
+    "file": "documents/saas_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 2 - Service Availability",
+      "span_hint": "Provider shall use commercially reasonable efforts to maintain 99.5% uptime, measured monthly, excluding scheduled maintenance."
+    }
+  ],
+  "document_metadata": {
+    "title": "SaaS Subscription Agreement (Synthetic)",
+    "doc_type": "SaaS Agreement",
+    "jurisdiction": "US-NY",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "sla",
+    "uptime"
+  ],
+  "dataset_version": "v2"
+}

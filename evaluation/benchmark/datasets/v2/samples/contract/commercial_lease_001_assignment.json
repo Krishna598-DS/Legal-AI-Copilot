@@ -1,0 +1,13 @@
+{
+  "id": "commercial_lease_001_assignment",
+  "question": "Under what terms may the tenant assign this lease to a new business owner?",
+  "ground_truth_answer": "This information is not found in the provided document. The lease only addresses subletting the premises for a different use, not the terms for assigning the lease itself to a new owner.",
+  "source_document": { "document_id": "commercial_lease_001", "file": "documents/commercial_lease_001.txt", "category": "contract" },
+  "expected_citations": [],
+  "document_metadata": { "title": "Commercial Lease Agreement (Synthetic)", "doc_type": "Commercial Lease", "jurisdiction": "US-TX", "source": "synthetic" },
+  "difficulty": "hard",
+  "category": "contract",
+  "question_type": "general",
+  "tags": ["missing-information", "assignment"],
+  "dataset_version": "v2"
+}

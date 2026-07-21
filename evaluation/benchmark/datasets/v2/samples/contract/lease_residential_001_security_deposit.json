@@ -1,0 +1,24 @@
+{
+  "id": "lease_residential_001_security_deposit",
+  "question": "What is the security deposit amount?",
+  "ground_truth_answer": "$2,200, paid prior to occupancy.",
+  "source_document": {
+    "document_id": "lease_residential_001",
+    "file": "documents/lease_residential_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    { "section": "Clause 4 - Security Deposit", "span_hint": "security deposit of $2,200" }
+  ],
+  "document_metadata": {
+    "title": "Residential Lease Agreement (Synthetic)",
+    "doc_type": "Lease",
+    "jurisdiction": "US-OR",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "financial",
+  "tags": ["deposit"],
+  "dataset_version": "v2"
+}

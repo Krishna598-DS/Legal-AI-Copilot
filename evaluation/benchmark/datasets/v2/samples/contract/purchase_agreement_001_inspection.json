@@ -1,0 +1,13 @@
+{
+  "id": "purchase_agreement_001_inspection",
+  "question": "How many days does the buyer have to inspect and reject non-conforming equipment?",
+  "ground_truth_answer": "Ten (10) business days after delivery.",
+  "source_document": { "document_id": "purchase_agreement_001", "file": "documents/purchase_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 3 - Inspection Period", "span_hint": "ten (10) business days after delivery" } ],
+  "document_metadata": { "title": "Equipment Purchase Agreement (Synthetic)", "doc_type": "Purchase Agreement", "jurisdiction": "US-OR", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "conditions",
+  "tags": ["inspection", "time-limits"],
+  "dataset_version": "v2"
+}

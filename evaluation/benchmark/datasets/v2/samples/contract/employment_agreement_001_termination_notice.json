@@ -1,0 +1,24 @@
+{
+  "id": "employment_agreement_001_termination_notice",
+  "question": "What notice period is required to terminate this agreement without cause?",
+  "ground_truth_answer": "Thirty (30) days written notice from either party.",
+  "source_document": {
+    "document_id": "employment_agreement_001",
+    "file": "documents/employment_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    { "section": "Clause 4 - At-Will Employment and Termination Notice", "span_hint": "thirty (30) days written notice" }
+  ],
+  "document_metadata": {
+    "title": "Employment Agreement (Synthetic)",
+    "doc_type": "Employment",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "risk",
+  "tags": ["termination", "notice-period"],
+  "dataset_version": "v2"
+}

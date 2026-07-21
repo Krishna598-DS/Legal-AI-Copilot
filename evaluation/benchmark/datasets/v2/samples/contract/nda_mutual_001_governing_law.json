@@ -1,0 +1,24 @@
+{
+  "id": "nda_mutual_001_governing_law",
+  "question": "Which state's law governs this agreement?",
+  "ground_truth_answer": "The State of Delaware.",
+  "source_document": {
+    "document_id": "nda_mutual_001",
+    "file": "documents/nda_mutual_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    { "section": "Clause 9 - Governing Law", "span_hint": "laws of the State of Delaware" }
+  ],
+  "document_metadata": {
+    "title": "Mutual Non-Disclosure Agreement (Synthetic)",
+    "doc_type": "NDA",
+    "jurisdiction": "US-generic",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "general",
+  "tags": ["governing-law"],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,30 @@
+EMPLOYMENT AGREEMENT
+
+This Employment Agreement ("Agreement") is entered into as of January 15, 2026, between Solara Robotics, Inc. ("Company") and Marcus Webb ("Employee").
+
+Clause 1 - Position
+Employee is employed as Senior Firmware Engineer, reporting to the Director of Engineering, and shall perform the duties customarily associated with that role.
+
+Clause 2 - Compensation
+Company shall pay Employee an annual base salary of $95,000, payable in accordance with Company's standard payroll practices.
+
+Clause 3 - Benefits
+Employee is eligible to participate in Company's group health insurance plan and shall accrue fifteen (15) days of paid vacation per calendar year, in addition to Company-observed holidays.
+
+Clause 4 - At-Will Employment and Termination Notice
+Employment under this Agreement is at-will. Either Party may terminate this Agreement without cause by providing thirty (30) days written notice to the other Party.
+
+Clause 5 - Confidentiality
+Employee agrees not to disclose Company's trade secrets or proprietary information, both during employment and after termination of this Agreement.
+
+Clause 6 - Non-Competition
+For a period of twelve (12) months following termination of employment, Employee shall not, within a fifty (50) mile radius of Company's headquarters, work for or consult with any business that directly competes with Company's robotics products.
+
+Clause 7 - Intellectual Property
+All inventions, designs, and works created by Employee within the scope of employment shall be the sole property of Company.
+
+Clause 8 - Expense Reimbursement
+Company shall reimburse Employee for reasonable, pre-approved business expenses incurred in the performance of Employee's duties, submitted with appropriate documentation.
+
+Clause 9 - Governing Law
+This Agreement shall be governed by the laws of the State of California.

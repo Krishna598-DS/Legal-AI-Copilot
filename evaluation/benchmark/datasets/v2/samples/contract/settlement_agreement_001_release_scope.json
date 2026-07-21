@@ -1,0 +1,30 @@
+{
+  "id": "settlement_agreement_001_release_scope",
+  "question": "What claims does Claimant release Company from, and is there a time limit on the release?",
+  "ground_truth_answer": "Claimant releases Company from all wage-related claims through the Effective Date only; the release does not cover conduct after that date.",
+  "source_document": {
+    "document_id": "settlement_agreement_001",
+    "file": "documents/settlement_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 4 - Release of Claims",
+      "span_hint": "Claimant releases Company from all claims related to wages through the Effective Date."
+    }
+  ],
+  "document_metadata": {
+    "title": "Settlement Agreement and Release (Synthetic)",
+    "doc_type": "Settlement Agreement",
+    "jurisdiction": "US-AZ",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "release-of-claims",
+    "scope"
+  ],
+  "dataset_version": "v2"
+}

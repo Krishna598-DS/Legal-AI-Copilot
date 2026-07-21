@@ -1,0 +1,13 @@
+{
+  "id": "terms_of_service_001_free_trial",
+  "question": "How long is the free trial for new users?",
+  "ground_truth_answer": "Fourteen (14) days.",
+  "source_document": { "document_id": "terms_of_service_001", "file": "documents/terms_of_service_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 4 - Free Trial", "span_hint": "fourteen (14) day free trial" } ],
+  "document_metadata": { "title": "Terms of Service (Synthetic)", "doc_type": "Terms of Service", "jurisdiction": "US-DE", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "time-limits",
+  "tags": ["trial", "time-limits"],
+  "dataset_version": "v2"
+}

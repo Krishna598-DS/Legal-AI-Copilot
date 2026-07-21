@@ -1,0 +1,13 @@
+{
+  "id": "contractor_agreement_001_work_product_ownership",
+  "question": "Who owns the work product created under this agreement, and when does ownership transfer?",
+  "ground_truth_answer": "All deliverables are works made for hire and are owned by Client, but ownership transfers upon Client's receipt of full payment.",
+  "source_document": { "document_id": "contractor_agreement_001", "file": "documents/contractor_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 5 - Ownership of Work Product", "span_hint": "owned by Client upon receipt of full payment" } ],
+  "document_metadata": { "title": "Independent Contractor Agreement (Synthetic)", "doc_type": "Independent Contractor Agreement", "jurisdiction": "US-WA", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "definition",
+  "tags": ["ownership", "work-product"],
+  "dataset_version": "v2"
+}

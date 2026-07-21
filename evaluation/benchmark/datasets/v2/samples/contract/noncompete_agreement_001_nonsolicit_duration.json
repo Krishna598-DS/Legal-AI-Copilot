@@ -1,0 +1,31 @@
+{
+  "id": "noncompete_agreement_001_nonsolicit_duration",
+  "question": "Do the non-compete period and the employee non-solicitation period last the same length of time?",
+  "ground_truth_answer": "No. The non-compete restriction lasts eighteen (18) months after termination, while the non-solicitation of employees restriction lasts twenty-four (24) months — two different durations.",
+  "source_document": {
+    "document_id": "noncompete_agreement_001",
+    "file": "documents/noncompete_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 5 - Non-Solicitation of Employees",
+      "span_hint": "Employee shall not solicit Company's employees to leave their employment for twenty-four (24) months following termination."
+    }
+  ],
+  "document_metadata": {
+    "title": "Restrictive Covenant (Non-Compete) Agreement (Synthetic)",
+    "doc_type": "Non-Compete Agreement",
+    "jurisdiction": "US-MA",
+    "source": "synthetic"
+  },
+  "difficulty": "hard",
+  "category": "contract",
+  "question_type": "multi-clause reasoning",
+  "tags": [
+    "multi-clause",
+    "non-solicit",
+    "duration-comparison"
+  ],
+  "dataset_version": "v2"
+}

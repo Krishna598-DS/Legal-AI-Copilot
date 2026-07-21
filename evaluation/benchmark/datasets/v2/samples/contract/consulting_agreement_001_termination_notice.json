@@ -1,0 +1,13 @@
+{
+  "id": "consulting_agreement_001_termination_notice",
+  "question": "How much notice must the client give to terminate this agreement for convenience?",
+  "ground_truth_answer": "Thirty (30) days' written notice, paying Consultant for services rendered to date.",
+  "source_document": { "document_id": "consulting_agreement_001", "file": "documents/consulting_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 7 - Termination", "span_hint": "thirty (30) days' written notice" } ],
+  "document_metadata": { "title": "Consulting Agreement (Synthetic)", "doc_type": "Consulting Agreement", "jurisdiction": "US-MN", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "termination",
+  "tags": ["termination", "notice-period"],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "software_license_001_license_fee",
+  "question": "How much is the annual license fee for the Software, and when is it paid?",
+  "ground_truth_answer": "$22,000 per year, payable in advance each year.",
+  "source_document": {
+    "document_id": "software_license_001",
+    "file": "documents/software_license_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 2 - License Fee",
+      "span_hint": "Licensee shall pay an annual license fee of $22,000, payable in advance each year."
+    }
+  ],
+  "document_metadata": {
+    "title": "Software License Agreement (Synthetic)",
+    "doc_type": "Software License Agreement",
+    "jurisdiction": "US-MA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "money",
+  "tags": [
+    "license-fee"
+  ],
+  "dataset_version": "v2"
+}

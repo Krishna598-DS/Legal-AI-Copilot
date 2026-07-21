@@ -1,0 +1,30 @@
+SAAS SUBSCRIPTION AGREEMENT
+
+This SaaS Subscription Agreement ("Agreement") is entered into as of May 1, 2026, between Cirrus Metrics Inc. ("Provider") and Palmwood Retailers Inc. ("Customer") for the "CirrusMetrics" analytics dashboard service (the "Service").
+
+Clause 1 - Subscription
+Customer subscribes to the Professional Plan for up to ten (10) users at $1,200 per month, billed annually in advance ($14,400 per year).
+
+Clause 2 - Service Availability
+Provider shall use commercially reasonable efforts to maintain 99.5% uptime, measured monthly, excluding scheduled maintenance.
+
+Clause 3 - Service Credits
+If uptime falls below 99.5% in a given month, Customer is entitled to a service credit equal to 5% of that month's fees for each full percentage point below the target, up to a maximum credit of 30%.
+
+Clause 4 - Data Ownership
+Customer retains all ownership of its data uploaded to the Service. Provider may use aggregated, de-identified data for product improvement purposes.
+
+Clause 5 - Term
+This Agreement has an initial term of twelve (12) months, automatically renewing for successive twelve (12) month terms unless either party provides thirty (30) days' notice of non-renewal.
+
+Clause 6 - Termination for Breach
+Either party may terminate this Agreement for an uncured material breach after thirty (30) days' written notice.
+
+Clause 7 - Data Export
+Upon termination, Provider shall make Customer's data available for export for thirty (30) days, after which it may be deleted.
+
+Clause 8 - Limitation of Liability
+Provider's aggregate liability under this Agreement is limited to the fees paid by Customer in the twelve (12) months preceding the claim.
+
+Clause 9 - Governing Law
+This Agreement shall be governed by the laws of the State of New York.

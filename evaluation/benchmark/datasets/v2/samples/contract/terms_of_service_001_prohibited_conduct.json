@@ -1,0 +1,13 @@
+{
+  "id": "terms_of_service_001_prohibited_conduct",
+  "question": "What conduct is prohibited under these terms?",
+  "ground_truth_answer": "Users may not reverse-engineer the application, use it for unlawful purposes, or attempt to access other users' accounts.",
+  "source_document": { "document_id": "terms_of_service_001", "file": "documents/terms_of_service_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 7 - Prohibited Conduct", "span_hint": "reverse-engineer the application" } ],
+  "document_metadata": { "title": "Terms of Service (Synthetic)", "doc_type": "Terms of Service", "jurisdiction": "US-DE", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "conditions",
+  "tags": ["prohibited-conduct"],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,27 @@
+SHAREHOLDER AGREEMENT
+
+This Shareholder Agreement ("Agreement") is entered into as of January 15, 2026, among the shareholders of Nova Robotics, Inc. ("Company"): Marcus Lin, holding 45% of outstanding shares; Sara Whitfield, holding 35%; and Devon Park, holding 20% (together, the "Shareholders").
+
+Clause 1 - Purpose
+This Agreement governs the rights and obligations of the Shareholders with respect to the Company.
+
+Clause 2 - Board Composition
+The Board of Directors shall consist of three (3) directors. Each Shareholder holding at least 20% of outstanding shares may appoint one director.
+
+Clause 3 - Transfer Restrictions
+No Shareholder may transfer shares to a third party without first offering them to the other Shareholders at the same price and on the same terms (right of first refusal).
+
+Clause 4 - Drag-Along Rights
+If Shareholders holding at least 75% of outstanding shares approve a sale of the Company, all Shareholders must participate in the sale on the same terms.
+
+Clause 5 - Tag-Along Rights
+If a majority Shareholder sells shares to a third party, minority Shareholders may elect to sell their shares on the same terms as part of that sale.
+
+Clause 6 - Deadlock Resolution
+If the Board cannot reach a majority decision on a matter for sixty (60) days, the matter shall be submitted to mediation.
+
+Clause 7 - Non-Compete
+A Shareholder who is also an employee of the Company shall not engage in a competing robotics business while holding shares and for twelve (12) months after ceasing to hold shares.
+
+Clause 8 - Governing Law
+This Agreement shall be governed by the laws of the State of California.

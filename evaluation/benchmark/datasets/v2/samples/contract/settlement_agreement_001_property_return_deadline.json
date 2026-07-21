@@ -1,0 +1,30 @@
+{
+  "id": "settlement_agreement_001_property_return_deadline",
+  "question": "How long does Claimant have to return Company property after the Effective Date?",
+  "ground_truth_answer": "Five (5) days.",
+  "source_document": {
+    "document_id": "settlement_agreement_001",
+    "file": "documents/settlement_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 7 - Return of Property",
+      "span_hint": "Claimant shall return all Company property within five (5) days of the Effective Date."
+    }
+  ],
+  "document_metadata": {
+    "title": "Settlement Agreement and Release (Synthetic)",
+    "doc_type": "Settlement Agreement",
+    "jurisdiction": "US-AZ",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "property-return",
+    "deadline"
+  ],
+  "dataset_version": "v2"
+}

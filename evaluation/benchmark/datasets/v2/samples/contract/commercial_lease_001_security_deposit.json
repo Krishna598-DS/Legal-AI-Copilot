@@ -1,0 +1,13 @@
+{
+  "id": "commercial_lease_001_security_deposit",
+  "question": "How much is the security deposit for this commercial lease?",
+  "ground_truth_answer": "$13,000, equal to two months' base rent, payable prior to occupancy.",
+  "source_document": { "document_id": "commercial_lease_001", "file": "documents/commercial_lease_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 4 - Security Deposit", "span_hint": "security deposit of $13,000" } ],
+  "document_metadata": { "title": "Commercial Lease Agreement (Synthetic)", "doc_type": "Commercial Lease", "jurisdiction": "US-TX", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "financial",
+  "tags": ["money", "deposit"],
+  "dataset_version": "v2"
+}

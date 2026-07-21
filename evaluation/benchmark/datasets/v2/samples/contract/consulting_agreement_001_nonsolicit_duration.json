@@ -1,0 +1,13 @@
+{
+  "id": "consulting_agreement_001_nonsolicit_duration",
+  "question": "How long does the non-solicitation restriction on the consultant last after the engagement?",
+  "ground_truth_answer": "Twelve (12) months after the engagement ends.",
+  "source_document": { "document_id": "consulting_agreement_001", "file": "documents/consulting_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 6 - Non-Solicitation", "span_hint": "for twelve (12) months afterward" } ],
+  "document_metadata": { "title": "Consulting Agreement (Synthetic)", "doc_type": "Consulting Agreement", "jurisdiction": "US-MN", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "time-limits",
+  "tags": ["non-solicitation", "duration"],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "privacy_policy_001_international_safeguards",
+  "question": "What specific legal safeguards (such as Standard Contractual Clauses) apply when data is transferred internationally?",
+  "ground_truth_answer": "The policy states that data may be processed in the United States and other countries with appropriate safeguards, but it does not specify what those safeguards are.",
+  "source_document": { "document_id": "privacy_policy_001", "file": "documents/privacy_policy_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Section 8 - International Transfers", "span_hint": "other countries with appropriate safeguards" } ],
+  "document_metadata": { "title": "Privacy Policy (Synthetic)", "doc_type": "Privacy Policy", "jurisdiction": "US-CA", "source": "synthetic" },
+  "difficulty": "hard",
+  "category": "contract",
+  "question_type": "jurisdiction",
+  "tags": ["ambiguous-wording", "international-transfer"],
+  "dataset_version": "v2"
+}

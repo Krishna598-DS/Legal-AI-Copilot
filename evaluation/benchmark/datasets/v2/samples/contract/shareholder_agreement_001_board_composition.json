@@ -1,0 +1,30 @@
+{
+  "id": "shareholder_agreement_001_board_composition",
+  "question": "How many directors sit on the Board, and who is entitled to appoint one?",
+  "ground_truth_answer": "The Board consists of three (3) directors. Each Shareholder holding at least 20% of outstanding shares may appoint one director.",
+  "source_document": {
+    "document_id": "shareholder_agreement_001",
+    "file": "documents/shareholder_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 2 - Board Composition",
+      "span_hint": "The Board of Directors shall consist of three (3) directors. Each Shareholder holding at least 20% of outstanding shares may appoint one director."
+    }
+  ],
+  "document_metadata": {
+    "title": "Shareholder Agreement (Synthetic)",
+    "doc_type": "Shareholder Agreement",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "board-composition",
+    "governance"
+  ],
+  "dataset_version": "v2"
+}

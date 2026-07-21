@@ -1,0 +1,24 @@
+{
+  "id": "nda_mutual_001_exclusions",
+  "question": "What categories of information are excluded from the definition of Confidential Information?",
+  "ground_truth_answer": "Information that is or becomes publicly available through no fault of the receiving party, was already known to the receiving party before disclosure, is independently developed by the receiving party without using the disclosing party's information, or is rightfully obtained from a third party without restriction.",
+  "source_document": {
+    "document_id": "nda_mutual_001",
+    "file": "documents/nda_mutual_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    { "section": "Clause 3 - Exclusions", "span_hint": "publicly available through no fault of the receiving Party" }
+  ],
+  "document_metadata": {
+    "title": "Mutual Non-Disclosure Agreement (Synthetic)",
+    "doc_type": "NDA",
+    "jurisdiction": "US-generic",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "general",
+  "tags": ["definitions", "exclusions"],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "contractor_agreement_001_noncompete",
+  "question": "Does this agreement restrict the contractor from working for the client's competitors?",
+  "ground_truth_answer": "No. The Agreement explicitly does not restrict Contractor from performing design services for other clients, including businesses that compete with Client.",
+  "source_document": { "document_id": "contractor_agreement_001", "file": "documents/contractor_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 7 - No Non-Compete", "span_hint": "does not restrict Contractor from performing design services for other clients" } ],
+  "document_metadata": { "title": "Independent Contractor Agreement (Synthetic)", "doc_type": "Independent Contractor Agreement", "jurisdiction": "US-WA", "source": "synthetic" },
+  "difficulty": "hard",
+  "category": "contract",
+  "question_type": "negative questions",
+  "tags": ["non-compete", "negative-question"],
+  "dataset_version": "v2"
+}

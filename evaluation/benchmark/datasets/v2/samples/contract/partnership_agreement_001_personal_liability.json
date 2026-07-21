@@ -1,0 +1,13 @@
+{
+  "id": "partnership_agreement_001_personal_liability",
+  "question": "Are the partners' personal assets at risk for the partnership's debts?",
+  "ground_truth_answer": "Yes, implicitly — the Agreement states the Partners are jointly and severally liable for partnership obligations, as is standard for general partnerships, which means each partner can be held personally responsible for the full amount of partnership debts.",
+  "source_document": { "document_id": "partnership_agreement_001", "file": "documents/partnership_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 7 - Liability", "span_hint": "jointly and severally liable for the obligations of the Partnership" } ],
+  "document_metadata": { "title": "General Partnership Agreement (Synthetic)", "doc_type": "Partnership Agreement", "jurisdiction": "US-CO", "source": "synthetic" },
+  "difficulty": "hard",
+  "category": "contract",
+  "question_type": "liability",
+  "tags": ["multi-clause", "liability", "reasoning"],
+  "dataset_version": "v2"
+}

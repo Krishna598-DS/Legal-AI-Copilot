@@ -1,0 +1,30 @@
+{
+  "id": "offer_letter_001_equity_vesting",
+  "question": "How many stock options is Employee eligible for, and what is the vesting schedule?",
+  "ground_truth_answer": "5,000 stock options, vesting over four (4) years with a one (1) year cliff, subject to Board approval.",
+  "source_document": {
+    "document_id": "offer_letter_001",
+    "file": "documents/offer_letter_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 4 - Equity",
+      "span_hint": "Employee is eligible for 5,000 stock options, vesting over four (4) years with a one (1) year cliff, subject to Board approval."
+    }
+  ],
+  "document_metadata": {
+    "title": "Employment Offer Letter (Synthetic)",
+    "doc_type": "Offer Letter",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "equity",
+    "vesting"
+  ],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,27 @@
+CONFIDENTIALITY AGREEMENT
+
+This Confidentiality Agreement ("Agreement") is entered into as of February 20, 2026, between Vertex Robotics Inc. ("Disclosing Party") and Innotech Consulting LLC ("Receiving Party"), in connection with Receiving Party's evaluation of a potential technology licensing arrangement.
+
+Clause 1 - Purpose
+Receiving Party may access Disclosing Party's confidential technical specifications solely to evaluate the potential licensing arrangement.
+
+Clause 2 - Definition
+"Confidential Information" includes technical drawings, source code, and financial projections marked confidential or reasonably understood to be confidential.
+
+Clause 3 - Obligations
+Receiving Party shall use the same degree of care it uses to protect its own confidential information, and no less than reasonable care, and shall not disclose Confidential Information to any third party without Disclosing Party's prior written consent.
+
+Clause 4 - Term
+The confidentiality obligations in this Agreement survive for four (4) years from the date of disclosure of the applicable Confidential Information.
+
+Clause 5 - Return or Destruction
+Upon Disclosing Party's request, Receiving Party shall return or destroy all Confidential Information within ten (10) business days.
+
+Clause 6 - No Obligation to Proceed
+Nothing in this Agreement obligates either party to enter into any further business relationship.
+
+Clause 7 - Remedies
+The Parties agree that a breach of this Agreement may cause irreparable harm for which monetary damages may be inadequate, entitling Disclosing Party to seek injunctive relief.
+
+Clause 8 - Governing Law
+This Agreement shall be governed by the laws of the State of Michigan.

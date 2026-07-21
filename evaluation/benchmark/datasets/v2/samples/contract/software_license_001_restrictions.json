@@ -1,0 +1,30 @@
+{
+  "id": "software_license_001_restrictions",
+  "question": "Is Licensee permitted to sublicense or resell the Software to another company?",
+  "ground_truth_answer": "No. Licensee shall not reverse-engineer, sublicense, or resell the Software.",
+  "source_document": {
+    "document_id": "software_license_001",
+    "file": "documents/software_license_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 4 - Restrictions",
+      "span_hint": "Licensee shall not reverse-engineer, sublicense, or resell the Software."
+    }
+  ],
+  "document_metadata": {
+    "title": "Software License Agreement (Synthetic)",
+    "doc_type": "Software License Agreement",
+    "jurisdiction": "US-MA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "negative questions",
+  "tags": [
+    "restrictions",
+    "negative-question"
+  ],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "loan_agreement_001_late_fee",
+  "question": "What happens if Borrower's payment is 15 days late?",
+  "ground_truth_answer": "A late fee of 5% of the overdue payment applies, since the payment is more than ten (10) days late.",
+  "source_document": {
+    "document_id": "loan_agreement_001",
+    "file": "documents/loan_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 5 - Late Fee",
+      "span_hint": "If a payment is more than ten (10) days late, a late fee of 5% of the overdue payment applies."
+    }
+  ],
+  "document_metadata": {
+    "title": "Loan Agreement (Synthetic)",
+    "doc_type": "Loan Agreement",
+    "jurisdiction": "US-OH",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "numeric reasoning",
+  "tags": [
+    "late-fee"
+  ],
+  "dataset_version": "v2"
+}

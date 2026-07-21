@@ -1,0 +1,30 @@
+{
+  "id": "confidentiality_agreement_001_return_destruction_deadline",
+  "question": "How quickly must the Receiving Party return or destroy Confidential Information after the Disclosing Party requests it?",
+  "ground_truth_answer": "Within ten (10) business days of the Disclosing Party's request.",
+  "source_document": {
+    "document_id": "confidentiality_agreement_001",
+    "file": "documents/confidentiality_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 5 - Return or Destruction",
+      "span_hint": "Upon Disclosing Party's request, Receiving Party shall return or destroy all Confidential Information within ten (10) business days."
+    }
+  ],
+  "document_metadata": {
+    "title": "Confidentiality Agreement (Synthetic)",
+    "doc_type": "Confidentiality Agreement",
+    "jurisdiction": "US-MI",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "return-of-information",
+    "deadline"
+  ],
+  "dataset_version": "v2"
+}

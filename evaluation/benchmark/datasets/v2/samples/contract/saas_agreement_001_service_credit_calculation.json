@@ -1,0 +1,31 @@
+{
+  "id": "saas_agreement_001_service_credit_calculation",
+  "question": "If actual uptime in a month is 97%, what service credit is Customer entitled to?",
+  "ground_truth_answer": "10% of that month's fees. Uptime is 2.5 percentage points below the 99.5% target, and the credit is 5% of monthly fees for each full percentage point below target — two full points below, so a 10% credit (the 2.5 is not rounded up to a third full point).",
+  "source_document": {
+    "document_id": "saas_agreement_001",
+    "file": "documents/saas_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 3 - Service Credits",
+      "span_hint": "If uptime falls below 99.5% in a given month, Customer is entitled to a service credit equal to 5% of that month's fees for each full percentage point below the target, up to a maximum credit of 30%."
+    }
+  ],
+  "document_metadata": {
+    "title": "SaaS Subscription Agreement (Synthetic)",
+    "doc_type": "SaaS Agreement",
+    "jurisdiction": "US-NY",
+    "source": "synthetic"
+  },
+  "difficulty": "hard",
+  "category": "contract",
+  "question_type": "numeric reasoning",
+  "tags": [
+    "service-credit",
+    "multi-clause",
+    "sla"
+  ],
+  "dataset_version": "v2"
+}

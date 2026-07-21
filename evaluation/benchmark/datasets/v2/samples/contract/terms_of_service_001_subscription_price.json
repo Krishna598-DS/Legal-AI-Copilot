@@ -1,0 +1,13 @@
+{
+  "id": "terms_of_service_001_subscription_price",
+  "question": "What does the Premium subscription cost?",
+  "ground_truth_answer": "$9.99 per month or $89 per year.",
+  "source_document": { "document_id": "terms_of_service_001", "file": "documents/terms_of_service_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 3 - Subscription and Billing", "span_hint": "$9.99 per month or $89 per year" } ],
+  "document_metadata": { "title": "Terms of Service (Synthetic)", "doc_type": "Terms of Service", "jurisdiction": "US-DE", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "money",
+  "tags": ["money", "subscription"],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "confidentiality_agreement_001_no_obligation_to_proceed",
+  "question": "Does signing this Agreement obligate either party to enter into a business relationship?",
+  "ground_truth_answer": "No. Nothing in the Agreement obligates either party to enter into any further business relationship.",
+  "source_document": {
+    "document_id": "confidentiality_agreement_001",
+    "file": "documents/confidentiality_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 6 - No Obligation to Proceed",
+      "span_hint": "Nothing in this Agreement obligates either party to enter into any further business relationship."
+    }
+  ],
+  "document_metadata": {
+    "title": "Confidentiality Agreement (Synthetic)",
+    "doc_type": "Confidentiality Agreement",
+    "jurisdiction": "US-MI",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "negative questions",
+  "tags": [
+    "no-obligation",
+    "negative-question"
+  ],
+  "dataset_version": "v2"
+}

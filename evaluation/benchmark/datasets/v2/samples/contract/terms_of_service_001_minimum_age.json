@@ -1,0 +1,13 @@
+{
+  "id": "terms_of_service_001_minimum_age",
+  "question": "What is the minimum age to use this service?",
+  "ground_truth_answer": "18 years old.",
+  "source_document": { "document_id": "terms_of_service_001", "file": "documents/terms_of_service_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 2 - Eligibility", "span_hint": "must be at least 18 years old" } ],
+  "document_metadata": { "title": "Terms of Service (Synthetic)", "doc_type": "Terms of Service", "jurisdiction": "US-DE", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "fact lookup",
+  "tags": ["age", "eligibility"],
+  "dataset_version": "v2"
+}

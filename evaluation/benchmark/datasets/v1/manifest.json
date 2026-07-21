@@ -1,0 +1,12 @@
+{
+  "dataset_version": "v1",
+  "description": "Sprint 1 benchmark: synthetic NDA, residential lease, and employment agreement fixtures.",
+  "documents": [
+    "nda_mutual_001",
+    "lease_residential_001",
+    "employment_agreement_001"
+  ],
+  "categories": ["contract"],
+  "sample_count": 15,
+  "notes": "All source documents are synthetic (no real user or client data). IPC / Constitution categories are planned for a later dataset version, not v1."
+}

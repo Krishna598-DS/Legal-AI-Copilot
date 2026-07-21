@@ -1,0 +1,13 @@
+{
+  "id": "purchase_agreement_001_delivery",
+  "question": "How long does the seller have to deliver the equipment?",
+  "ground_truth_answer": "Within forty-five (45) days of the effective date of the Agreement.",
+  "source_document": { "document_id": "purchase_agreement_001", "file": "documents/purchase_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 2 - Delivery", "span_hint": "within forty-five (45) days" } ],
+  "document_metadata": { "title": "Equipment Purchase Agreement (Synthetic)", "doc_type": "Purchase Agreement", "jurisdiction": "US-OR", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "general",
+  "tags": ["time-limits", "delivery"],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "terms_of_service_001_refund_policy",
+  "question": "Are partial refunds available if a user cancels mid-billing-period?",
+  "ground_truth_answer": "No. Cancellation takes effect at the end of the current billing period, and no partial refunds are provided.",
+  "source_document": { "document_id": "terms_of_service_001", "file": "documents/terms_of_service_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 5 - Cancellation", "span_hint": "no partial refunds are provided" } ],
+  "document_metadata": { "title": "Terms of Service (Synthetic)", "doc_type": "Terms of Service", "jurisdiction": "US-DE", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "negative questions",
+  "tags": ["refunds", "cancellation"],
+  "dataset_version": "v2"
+}

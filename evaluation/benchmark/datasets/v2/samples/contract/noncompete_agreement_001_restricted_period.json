@@ -1,0 +1,30 @@
+{
+  "id": "noncompete_agreement_001_restricted_period",
+  "question": "How long does the non-compete restriction last after Employee's employment ends?",
+  "ground_truth_answer": "Eighteen (18) months following termination of employment for any reason.",
+  "source_document": {
+    "document_id": "noncompete_agreement_001",
+    "file": "documents/noncompete_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 1 - Restricted Period",
+      "span_hint": "The restrictions in this Agreement apply for eighteen (18) months following termination of Employee's employment for any reason."
+    }
+  ],
+  "document_metadata": {
+    "title": "Restrictive Covenant (Non-Compete) Agreement (Synthetic)",
+    "doc_type": "Non-Compete Agreement",
+    "jurisdiction": "US-MA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "restricted-period",
+    "duration"
+  ],
+  "dataset_version": "v2"
+}

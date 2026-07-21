@@ -1,0 +1,30 @@
+{
+  "id": "settlement_agreement_001_confidentiality_exceptions",
+  "question": "Are there any exceptions to the confidentiality obligation covering the settlement terms?",
+  "ground_truth_answer": "Yes. The terms must be kept confidential except as required by law or as necessary to disclose to the parties' attorneys or accountants.",
+  "source_document": {
+    "document_id": "settlement_agreement_001",
+    "file": "documents/settlement_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 5 - Confidentiality",
+      "span_hint": "The Parties agree to keep the terms of this settlement confidential, except as required by law or as necessary to their attorneys or accountants."
+    }
+  ],
+  "document_metadata": {
+    "title": "Settlement Agreement and Release (Synthetic)",
+    "doc_type": "Settlement Agreement",
+    "jurisdiction": "US-AZ",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "confidentiality",
+    "exceptions"
+  ],
+  "dataset_version": "v2"
+}

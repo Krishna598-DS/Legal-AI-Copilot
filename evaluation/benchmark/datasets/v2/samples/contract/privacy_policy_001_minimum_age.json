@@ -1,0 +1,13 @@
+{
+  "id": "privacy_policy_001_minimum_age",
+  "question": "Is the service directed to children, and if so, what age?",
+  "ground_truth_answer": "No. The Service is not directed to children under the age of 13, and the Company does not knowingly collect personal information from children under 13.",
+  "source_document": { "document_id": "privacy_policy_001", "file": "documents/privacy_policy_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Section 7 - Children's Privacy", "span_hint": "not directed to children under the age of 13" } ],
+  "document_metadata": { "title": "Privacy Policy (Synthetic)", "doc_type": "Privacy Policy", "jurisdiction": "US-CA", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "fact lookup",
+  "tags": ["children", "age"],
+  "dataset_version": "v2"
+}

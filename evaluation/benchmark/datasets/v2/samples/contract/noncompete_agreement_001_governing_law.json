@@ -1,0 +1,29 @@
+{
+  "id": "noncompete_agreement_001_governing_law",
+  "question": "Which jurisdiction's law governs this Non-Compete Agreement?",
+  "ground_truth_answer": "The Commonwealth of Massachusetts.",
+  "source_document": {
+    "document_id": "noncompete_agreement_001",
+    "file": "documents/noncompete_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 7 - Governing Law",
+      "span_hint": "This Agreement shall be governed by the laws of the Commonwealth of Massachusetts."
+    }
+  ],
+  "document_metadata": {
+    "title": "Restrictive Covenant (Non-Compete) Agreement (Synthetic)",
+    "doc_type": "Non-Compete Agreement",
+    "jurisdiction": "US-MA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "governing-law"
+  ],
+  "dataset_version": "v2"
+}

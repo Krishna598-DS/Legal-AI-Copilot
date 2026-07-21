@@ -1,0 +1,30 @@
+{
+  "id": "vendor_agreement_001_return_policy",
+  "question": "What is Buyer's window to return defective products, and what does Buyer receive?",
+  "ground_truth_answer": "Buyer may return defective products within fourteen (14) days of receipt for full credit.",
+  "source_document": {
+    "document_id": "vendor_agreement_001",
+    "file": "documents/vendor_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 5 - Quality and Returns",
+      "span_hint": "Buyer may return defective products within fourteen (14) days of receipt for full credit."
+    }
+  ],
+  "document_metadata": {
+    "title": "Vendor Supply Agreement (Synthetic)",
+    "doc_type": "Vendor Agreement",
+    "jurisdiction": "US-GA",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "factual",
+  "tags": [
+    "returns",
+    "quality"
+  ],
+  "dataset_version": "v2"
+}

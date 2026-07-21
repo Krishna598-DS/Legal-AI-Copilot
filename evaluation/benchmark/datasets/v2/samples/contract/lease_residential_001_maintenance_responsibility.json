@@ -1,0 +1,24 @@
+{
+  "id": "lease_residential_001_maintenance_responsibility",
+  "question": "Who is responsible for routine maintenance and repair costs under $150?",
+  "ground_truth_answer": "The Tenant is responsible for routine maintenance and any repair costs under $150 arising from the Tenant's use of the Premises.",
+  "source_document": {
+    "document_id": "lease_residential_001",
+    "file": "documents/lease_residential_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    { "section": "Clause 5 - Maintenance and Repairs", "span_hint": "Tenant is responsible for routine maintenance" }
+  ],
+  "document_metadata": {
+    "title": "Residential Lease Agreement (Synthetic)",
+    "doc_type": "Lease",
+    "jurisdiction": "US-OR",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "general",
+  "tags": ["maintenance", "responsibility"],
+  "dataset_version": "v2"
+}

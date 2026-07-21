@@ -1,0 +1,30 @@
+{
+  "id": "vendor_agreement_001_price_fixed_period",
+  "question": "For how long are the prices in Schedule A fixed?",
+  "ground_truth_answer": "Twelve (12) months from the effective date.",
+  "source_document": {
+    "document_id": "vendor_agreement_001",
+    "file": "documents/vendor_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 1 - Products and Pricing",
+      "span_hint": "Vendor shall supply the products listed in Schedule A at the prices listed, fixed for twelve (12) months from the effective date."
+    }
+  ],
+  "document_metadata": {
+    "title": "Vendor Supply Agreement (Synthetic)",
+    "doc_type": "Vendor Agreement",
+    "jurisdiction": "US-GA",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "numeric",
+  "tags": [
+    "pricing",
+    "fixed-period"
+  ],
+  "dataset_version": "v2"
+}

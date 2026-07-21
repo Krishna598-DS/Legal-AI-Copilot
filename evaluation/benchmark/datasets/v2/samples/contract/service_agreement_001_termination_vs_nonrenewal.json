@@ -1,0 +1,13 @@
+{
+  "id": "service_agreement_001_termination_vs_nonrenewal",
+  "question": "If a party wants to end the agreement immediately rather than waiting for the term to expire, what notice applies, and how is that different from the non-renewal notice?",
+  "ground_truth_answer": "Either party may terminate for convenience at any time with ninety (90) days' written notice (Clause 5), which is separate from the sixty (60) days' non-renewal notice (Clause 4) that only prevents automatic renewal at the end of a 12-month term rather than ending the agreement immediately.",
+  "source_document": { "document_id": "service_agreement_001", "file": "documents/service_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 5 - Termination for Convenience", "span_hint": "terminate this Agreement for convenience upon ninety (90) days' written notice" } ],
+  "document_metadata": { "title": "Managed IT Services Agreement (Synthetic)", "doc_type": "Service Agreement", "jurisdiction": "US-IL", "source": "synthetic" },
+  "difficulty": "hard",
+  "category": "contract",
+  "question_type": "multi-clause reasoning",
+  "tags": ["multi-clause", "termination", "renewal"],
+  "dataset_version": "v2"
+}

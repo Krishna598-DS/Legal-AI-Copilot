@@ -1,0 +1,13 @@
+{
+  "id": "partnership_agreement_001_withdrawing_partner_interest",
+  "question": "What happens to a withdrawing partner's ownership interest?",
+  "ground_truth_answer": "The remaining partner has the right of first refusal to purchase the withdrawing partner's interest at fair market value.",
+  "source_document": { "document_id": "partnership_agreement_001", "file": "documents/partnership_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 5 - Withdrawal of a Partner", "span_hint": "right of first refusal to purchase the withdrawing Partner's interest" } ],
+  "document_metadata": { "title": "General Partnership Agreement (Synthetic)", "doc_type": "Partnership Agreement", "jurisdiction": "US-CO", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "conditions",
+  "tags": ["withdrawal", "buyout"],
+  "dataset_version": "v2"
+}

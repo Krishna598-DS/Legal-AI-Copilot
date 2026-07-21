@@ -1,0 +1,13 @@
+{
+  "id": "consulting_agreement_001_assessment_duration",
+  "question": "How long is the operational assessment?",
+  "ground_truth_answer": "Ninety (90) days.",
+  "source_document": { "document_id": "consulting_agreement_001", "file": "documents/consulting_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 1 - Scope of Services", "span_hint": "ninety (90) day operational efficiency assessment" } ],
+  "document_metadata": { "title": "Consulting Agreement (Synthetic)", "doc_type": "Consulting Agreement", "jurisdiction": "US-MN", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "dates",
+  "tags": ["time-limits", "scope"],
+  "dataset_version": "v2"
+}

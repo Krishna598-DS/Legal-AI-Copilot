@@ -1,0 +1,13 @@
+{
+  "id": "terms_of_service_001_annual_refund_scenario",
+  "question": "Under what circumstances will the company issue a full refund for an annual subscription?",
+  "ground_truth_answer": "This information is not found in the provided document. The Terms only state that no partial refunds are given on cancellation; they do not address when, if ever, a full refund would be issued.",
+  "source_document": { "document_id": "terms_of_service_001", "file": "documents/terms_of_service_001.txt", "category": "contract" },
+  "expected_citations": [],
+  "document_metadata": { "title": "Terms of Service (Synthetic)", "doc_type": "Terms of Service", "jurisdiction": "US-DE", "source": "synthetic" },
+  "difficulty": "hard",
+  "category": "contract",
+  "question_type": "missing information",
+  "tags": ["missing-information", "refunds"],
+  "dataset_version": "v2"
+}

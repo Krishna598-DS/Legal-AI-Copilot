@@ -1,0 +1,13 @@
+{
+  "id": "contractor_agreement_001_tax_withholding",
+  "question": "Does the client withhold taxes from the contractor's compensation?",
+  "ground_truth_answer": "No. Contractor is an independent contractor, not an employee, and Client does not withhold taxes — Contractor is solely responsible for their own taxes and benefits.",
+  "source_document": { "document_id": "contractor_agreement_001", "file": "documents/contractor_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 3 - Independent Contractor Status", "span_hint": "Client shall not withhold taxes" } ],
+  "document_metadata": { "title": "Independent Contractor Agreement (Synthetic)", "doc_type": "Independent Contractor Agreement", "jurisdiction": "US-WA", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "negative questions",
+  "tags": ["taxes", "employment-status"],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "noncompete_agreement_001_severability_blue_pencil",
+  "question": "If a court finds a restriction in this Agreement unreasonable, is the entire Agreement voided?",
+  "ground_truth_answer": "No. The court may instead reduce the scope of the unreasonable restriction rather than void the entire Agreement (a blue-pencil / severability provision).",
+  "source_document": {
+    "document_id": "noncompete_agreement_001",
+    "file": "documents/noncompete_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 6 - Reasonableness and Severability",
+      "span_hint": "If a court finds any restriction in this Agreement unreasonable, the court may reduce the scope of the restriction rather than void the entire Agreement."
+    }
+  ],
+  "document_metadata": {
+    "title": "Restrictive Covenant (Non-Compete) Agreement (Synthetic)",
+    "doc_type": "Non-Compete Agreement",
+    "jurisdiction": "US-MA",
+    "source": "synthetic"
+  },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "negative questions",
+  "tags": [
+    "severability",
+    "blue-pencil",
+    "negative-question"
+  ],
+  "dataset_version": "v2"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "terms_of_service_001_content_ownership",
+  "question": "Who owns content that a user submits to the service?",
+  "ground_truth_answer": "Users retain ownership of content they submit, but grant the Company a license to use it to operate the Service.",
+  "source_document": { "document_id": "terms_of_service_001", "file": "documents/terms_of_service_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 6 - User Content", "span_hint": "Users retain ownership of content they submit" } ],
+  "document_metadata": { "title": "Terms of Service (Synthetic)", "doc_type": "Terms of Service", "jurisdiction": "US-DE", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "definition",
+  "tags": ["ownership", "user-content"],
+  "dataset_version": "v2"
+}

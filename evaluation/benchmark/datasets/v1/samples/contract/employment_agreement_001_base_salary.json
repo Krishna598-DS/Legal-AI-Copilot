@@ -1,0 +1,24 @@
+{
+  "id": "employment_agreement_001_base_salary",
+  "question": "What is the employee's annual base salary?",
+  "ground_truth_answer": "$95,000 per year.",
+  "source_document": {
+    "document_id": "employment_agreement_001",
+    "file": "documents/employment_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    { "section": "Clause 2 - Compensation", "span_hint": "annual base salary of $95,000" }
+  ],
+  "document_metadata": {
+    "title": "Employment Agreement (Synthetic)",
+    "doc_type": "Employment",
+    "jurisdiction": "US-CA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "financial",
+  "tags": ["salary", "compensation"],
+  "dataset_version": "v1"
+}

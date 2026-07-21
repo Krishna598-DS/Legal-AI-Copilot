@@ -1,0 +1,30 @@
+{
+  "id": "vendor_agreement_001_exclusivity",
+  "question": "Is Buyer required to purchase exclusively from this Vendor?",
+  "ground_truth_answer": "No. The Agreement is non-exclusive, so Buyer may purchase similar products from other vendors.",
+  "source_document": {
+    "document_id": "vendor_agreement_001",
+    "file": "documents/vendor_agreement_001.txt",
+    "category": "contract"
+  },
+  "expected_citations": [
+    {
+      "section": "Clause 7 - Exclusivity",
+      "span_hint": "This Agreement is non-exclusive. Buyer may purchase similar products from other vendors."
+    }
+  ],
+  "document_metadata": {
+    "title": "Vendor Supply Agreement (Synthetic)",
+    "doc_type": "Vendor Agreement",
+    "jurisdiction": "US-GA",
+    "source": "synthetic"
+  },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "negative questions",
+  "tags": [
+    "exclusivity",
+    "negative-question"
+  ],
+  "dataset_version": "v2"
+}

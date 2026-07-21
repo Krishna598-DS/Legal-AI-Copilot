@@ -1,0 +1,13 @@
+{
+  "id": "consulting_agreement_001_total_fee",
+  "question": "What is the total project fee for this consulting engagement?",
+  "ground_truth_answer": "$48,000.",
+  "source_document": { "document_id": "consulting_agreement_001", "file": "documents/consulting_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 2 - Fees", "span_hint": "flat project fee of $48,000" } ],
+  "document_metadata": { "title": "Consulting Agreement (Synthetic)", "doc_type": "Consulting Agreement", "jurisdiction": "US-MN", "source": "synthetic" },
+  "difficulty": "easy",
+  "category": "contract",
+  "question_type": "financial",
+  "tags": ["money", "fees"],
+  "dataset_version": "v2"
+}

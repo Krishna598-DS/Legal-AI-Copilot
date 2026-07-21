@@ -1,0 +1,13 @@
+{
+  "id": "purchase_agreement_001_title_vs_risk",
+  "question": "Do title and risk of loss for the equipment pass to the buyer at the same time?",
+  "ground_truth_answer": "No. Title passes to Buyer upon receipt of full payment, while risk of loss passes to Buyer upon delivery — these are two different events, and delivery occurs before full payment is complete under the payment schedule in Clause 1.",
+  "source_document": { "document_id": "purchase_agreement_001", "file": "documents/purchase_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 5 - Title and Risk of Loss", "span_hint": "Title to the Equipment passes to Buyer upon receipt of full payment" } ],
+  "document_metadata": { "title": "Equipment Purchase Agreement (Synthetic)", "doc_type": "Purchase Agreement", "jurisdiction": "US-OR", "source": "synthetic" },
+  "difficulty": "hard",
+  "category": "contract",
+  "question_type": "multi-clause reasoning",
+  "tags": ["multi-clause", "title", "risk-of-loss"],
+  "dataset_version": "v2"
+}

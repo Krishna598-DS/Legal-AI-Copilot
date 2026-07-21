@@ -1,0 +1,13 @@
+{
+  "id": "partnership_agreement_001_unanimous_consent_threshold",
+  "question": "What size of decision requires unanimous consent of both partners?",
+  "ground_truth_answer": "Decisions involving expenditures over $10,000 require unanimous consent.",
+  "source_document": { "document_id": "partnership_agreement_001", "file": "documents/partnership_agreement_001.txt", "category": "contract" },
+  "expected_citations": [ { "section": "Clause 4 - Management", "span_hint": "expenditures over $10,000 require unanimous consent" } ],
+  "document_metadata": { "title": "General Partnership Agreement (Synthetic)", "doc_type": "Partnership Agreement", "jurisdiction": "US-CO", "source": "synthetic" },
+  "difficulty": "medium",
+  "category": "contract",
+  "question_type": "conditions",
+  "tags": ["management", "consent-threshold"],
+  "dataset_version": "v2"
+}
