@@ -1,18 +1,40 @@
-# Free Render blueprint — single web service (API + UI).
+# Render blueprint — single web service (API + UI) with a persistent disk.
 # Set OPENAI_API_KEY in the Render dashboard (sync: false).
 # After first deploy, set APP_BASE_URL / FRONTEND_URL to the service URL.
 # Do not set CORS_ORIGINS to a bare URL — omit it or use a JSON array.
+#
+# Persistence fix (production blocker): Render's free instance type does not
+# support persistent disks at all — every redeploy previously wiped the SQLite
+# DB, uploaded documents, and FAISS indexes, all of which live under /app/data
+# (confirmed: this path is recreated at *runtime* by db/database.py::init_db(),
+# not just at Docker build time, so mounting a disk here needs no application
+# code changes). `plan: starter` is the cheapest Render tier that supports a
+# disk — this is a real billing change from the previous free tier; confirm
+# before deploying this configuration.
 
 services:
   - type: web
     name: legal-rag
     runtime: docker
-    plan: free
+    plan: starter
     region: oregon
     healthCheckPath: /health
+    disk:
+      name: legal-ai-copilot-data
+      mountPath: /app/data
+      sizeGB: 1
     envVars:
       - key: ENVIRONMENT
         value: production
+      # Alternative persistence path (not active): a Render managed Postgres
+      # instance would also survive redeploys and is already fully supported by
+      # the app (SQLAlchemy + `psycopg2-binary`, both already in requirements.txt)
+      # — just point this at the Postgres connection string Render provides.
+      # NOT a drop-in replacement for the disk above: it only covers this one
+      # value, not uploaded documents or FAISS indexes, and migrate_sqlite() is a
+      # deliberate no-op for any non-sqlite DATABASE_URL (see db/database.py) —
+      # schema changes on Postgres have no migration tooling yet (no Alembic),
+      # a separate, already-tracked gap (see CLAUDE.md Known Technical Debt).
       - key: DATABASE_URL
         value: sqlite:///./data/app.db
       - key: PYTHONPATH
