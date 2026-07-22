@@ -15,7 +15,8 @@ import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 
-from src.evaluation.benchmark.environment import BENCHMARK_DIR, settings
+from src.evaluation.benchmark import environment
+from src.evaluation.benchmark.environment import BENCHMARK_DIR
 from src.evaluation.benchmark.ragas_eval import ScoredSample, aggregate_scores
 
 RESULTS_DIR = BENCHMARK_DIR / "results"
@@ -45,15 +46,7 @@ def build_run_record(dataset_version: str, scored: list[ScoredSample]) -> dict:
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "dataset_version": dataset_version,
         "git_commit": _git_sha(),
-        "model_config": {
-            "llm_model": settings.LLM_MODEL,
-            "embedding_model": settings.EMBEDDING_MODEL,
-            "retrieval_k": settings.RETRIEVAL_K,
-            "chunk_size": settings.CHUNK_SIZE,
-            "chunk_overlap": settings.CHUNK_OVERLAP,
-            "hybrid_dense_weight": settings.HYBRID_DENSE_WEIGHT,
-            "hybrid_bm25_weight": settings.HYBRID_BM25_WEIGHT,
-        },
+        "model_config": environment.model_config_snapshot(),
         "aggregate_scores": aggregate_scores(scored),
         "results": [
             {

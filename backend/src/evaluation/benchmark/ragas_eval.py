@@ -23,13 +23,16 @@ production text — note included — is still what's persisted and reported eve
 from __future__ import annotations
 
 import logging
+import os
 from dataclasses import dataclass, field
+from pathlib import Path
 
 from datasets import Dataset
 from langchain_openai import OpenAIEmbeddings
 from ragas import RunConfig, evaluate
 from ragas.metrics import answer_relevancy, context_precision, context_recall, faithfulness
 
+from src.evaluation.benchmark import checkpoint as checkpoint_mod
 from src.evaluation.benchmark import environment
 from src.evaluation.benchmark.runner import SampleResult
 from src.services import rag_service
@@ -40,12 +43,24 @@ METRIC_KEYS = ("faithfulness", "answer_relevancy", "context_precision", "context
 # Sprint 3 benchmark-robustness fix: RAGAS's library default (max_workers=16) fires
 # up to 16 concurrent judge-LLM calls against `rag_service.get_llm()` — a client
 # configured with a 60s request_timeout tuned for one interactive user request, not
-# bulk scoring. Investigation (see conversation history) traced a run's near-total
-# scoring failure (5/141 valid Context Precision samples) to this concurrency level
-# saturating the API, not to anything in retrieval/generation (0 pipeline errors
-# every time). Lowering to 4 is a config-only change to the evaluation harness; it
-# does not touch retrieval, generation, or what is measured.
-RAGAS_RUN_CONFIG = RunConfig(max_workers=4, log_tenacity=True)
+# bulk scoring. Investigation traced a run's near-total scoring failure (5/141 valid
+# Context Precision samples) to this concurrency level. The *further* investigation
+# (with retry logging enabled) found the real constraint one level down: the OpenAI
+# response headers showed `x-ratelimit-limit-requests: 10000` / `remaining: 0` /
+# `reset: ~24h` — a *daily* request-count quota, exhausted by this session's
+# cumulative usage across many 141-sample runs, not a per-minute burst problem.
+# max_workers=4 reduces collision-driven waste while approaching that ceiling, but
+# cannot raise the ceiling itself — see `checkpoint.py`, the actual mitigation for a
+# hard daily-quota wall (nothing is lost if a run must stop and resume tomorrow).
+# Configurable via RAGAS_MAX_WORKERS so a future account/tier with different limits
+# doesn't require a code change.
+DEFAULT_RAGAS_MAX_WORKERS = 4
+
+
+def _ragas_run_config() -> RunConfig:
+    max_workers = int(os.environ.get("RAGAS_MAX_WORKERS", DEFAULT_RAGAS_MAX_WORKERS))
+    return RunConfig(max_workers=max_workers, log_tenacity=True)
+
 
 # Below this fraction of valid (non-null) scores for any metric, the aggregate mean
 # is computed over too small/non-representative a sample to trust — see
@@ -103,46 +118,40 @@ def _ragas_answer_text(result: SampleResult) -> str:
     return result.answer
 
 
-def _ragas_inputs(
-    results: list[SampleResult],
-) -> tuple[dict[str, list], list[int]]:
-    """Build the RAGAS input columns, skipping samples that errored before an answer
-    was produced. Returns (columns, indices-into-results-that-were-scored)."""
-    questions: list[str] = []
-    answers: list[str] = []
-    contexts: list[list[str]] = []
-    ground_truths: list[str] = []
-    scored_indices: list[int] = []
-
-    for i, r in enumerate(results):
-        if r.error:
-            continue
-        questions.append(r.sample.question)
-        answers.append(_ragas_answer_text(r))
-        # RAGAS requires a non-empty context list per row.
-        contexts.append(r.contexts or [""])
-        ground_truths.append(r.sample.ground_truth_answer)
-        scored_indices.append(i)
-
-    columns = {
-        "question": questions,
-        "answer": answers,
-        "contexts": contexts,
-        "ground_truth": ground_truths,
+def _ragas_columns_for(r: SampleResult) -> dict[str, list]:
+    """One sample's RAGAS input as single-row columns."""
+    return {
+        "question": [r.sample.question],
+        "answer": [_ragas_answer_text(r)],
+        "contexts": [r.contexts or [""]],  # RAGAS requires a non-empty context list
+        "ground_truth": [r.sample.ground_truth_answer],
     }
-    return columns, scored_indices
 
 
-def run_ragas(results: list[SampleResult]) -> list[ScoredSample]:
-    """Score every non-errored sample with RAGAS; errored samples pass through with
-    empty scores so they still appear in the report (as errors, not silently dropped)."""
+def run_ragas(
+    results: list[SampleResult], checkpoint_path: Path | None = None
+) -> list[ScoredSample]:
+    """Score every non-errored sample with RAGAS, one at a time; errored samples pass
+    through with empty scores so they still appear in the report (as errors, not
+    silently dropped).
+
+    Scoring one sample per `evaluate()` call (rather than one batched call for all
+    samples) is what makes "checkpoint after every successfully evaluated sample"
+    possible — `evaluate()` only returns when its whole batch is done, so a single
+    all-141 call offers no place to checkpoint from outside it. Each sample's score
+    depends only on its own question/answer/context/ground_truth — RAGAS's four
+    metrics never use cross-sample information — so this is a scheduling change,
+    not a scoring-methodology change: the same score should result whether a sample
+    is evaluated alone or as part of a larger batch, modulo the same LLM-judge
+    nondeterminism already documented as a real, pre-existing source of run-to-run
+    variance independent of this harness.
+    """
     scored = [ScoredSample(result=r) for r in results]
-
-    columns, scored_indices = _ragas_inputs(results)
-    if not scored_indices:
-        return scored
-
-    ragas_dataset = Dataset.from_dict(columns)
+    checkpoint = (
+        checkpoint_mod.load_checkpoint(checkpoint_path)
+        if checkpoint_path
+        else {"pipeline_results": {}, "scores": {}}
+    )
 
     settings = environment.settings
     llm = rag_service.get_llm()
@@ -150,21 +159,32 @@ def run_ragas(results: list[SampleResult]) -> list[ScoredSample]:
         model=settings.EMBEDDING_MODEL, openai_api_key=settings.OPENAI_API_KEY
     )
     _enable_ragas_retry_logging()
-    ragas_result = evaluate(
-        dataset=ragas_dataset,
-        metrics=RAGAS_METRICS,
-        llm=llm,
-        embeddings=embeddings,
-        run_config=RAGAS_RUN_CONFIG,
-    )
-    scores_df = ragas_result.to_pandas()
+    run_config = _ragas_run_config()
 
-    for row_position, original_index in enumerate(scored_indices):
-        row = scores_df.iloc[row_position]
-        scored[original_index] = ScoredSample(
-            result=results[original_index],
-            scores={key: _safe_float(row.get(key)) for key in METRIC_KEYS},
+    for i, r in enumerate(results):
+        if r.error:
+            continue
+
+        cached_scores = checkpoint["scores"].get(r.sample.id)
+        if cached_scores is not None:
+            scored[i] = ScoredSample(result=r, scores=cached_scores)
+            continue
+
+        ragas_dataset = Dataset.from_dict(_ragas_columns_for(r))
+        ragas_result = evaluate(
+            dataset=ragas_dataset,
+            metrics=RAGAS_METRICS,
+            llm=llm,
+            embeddings=embeddings,
+            run_config=run_config,
+            show_progress=False,
         )
+        row = ragas_result.to_pandas().iloc[0]
+        sample_scores = {key: _safe_float(row.get(key)) for key in METRIC_KEYS}
+        scored[i] = ScoredSample(result=r, scores=sample_scores)
+        if checkpoint_path:
+            checkpoint_mod.save_score(checkpoint_path, r.sample.id, sample_scores)
+
     return scored
 
 

@@ -17,6 +17,7 @@ import asyncio
 # run from production data (separate SQLite DB, separate upload/index/log directories).
 from src.evaluation.benchmark import environment  # noqa: F401  (import order matters)
 
+from src.evaluation.benchmark import checkpoint as checkpoint_mod
 from src.evaluation.benchmark.dataset import load_dataset
 from src.evaluation.benchmark.ragas_eval import run_ragas
 from src.evaluation.benchmark.report import render_console_summary, render_markdown_report
@@ -39,17 +40,26 @@ def main() -> None:
 
     dataset = load_dataset(args.dataset_dir)
     print(f"Loaded {len(dataset.samples)} benchmark samples (dataset {dataset.version}).")
+
+    checkpoint_file = checkpoint_mod.checkpoint_path(
+        dataset.version, environment.model_config_snapshot()
+    )
+    existing = checkpoint_mod.load_checkpoint(checkpoint_file)
+    if existing["pipeline_results"] or existing["scores"]:
+        print(f"Resuming from checkpoint {checkpoint_file}: "
+              f"{checkpoint_mod.progress_summary(existing, len(dataset.samples))}")
+
     print("Ingesting fixture documents and running each question through the production "
           "RAG pipeline (retrieval + generation + safety scrubbing + confidence scoring)...")
 
-    results = asyncio.run(run_benchmark(dataset))
+    results = asyncio.run(run_benchmark(dataset, checkpoint_path=checkpoint_file))
 
     error_count = sum(1 for r in results if r.error)
     if error_count:
         print(f"WARNING: {error_count}/{len(results)} samples errored — see the report for detail.")
 
     print("Running RAGAS (faithfulness, answer relevancy, context precision, context recall)...")
-    scored = run_ragas(results)
+    scored = run_ragas(results, checkpoint_path=checkpoint_file)
 
     run_record = build_run_record(dataset.version, scored)
     previous_run = find_previous_run(dataset.version, run_record["run_id"])

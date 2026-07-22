@@ -32,11 +32,14 @@ measurement, not a production inefficiency, and is unaffected by Task 2.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from pathlib import Path
 
 from src.evaluation.benchmark import environment
 from src.evaluation.benchmark.dataset import BenchmarkDataset, BenchmarkSample
 from src.evaluation.benchmark.instrumentation import RequestProfile, profile_request
 from src.services import rag_service
+
+_EMPTY_CHECKPOINT: dict = {"pipeline_results": {}, "scores": {}}
 
 
 @dataclass
@@ -162,7 +165,18 @@ def _run_sample(db, user, document, sample: BenchmarkSample) -> SampleResult:
     return _apply_profile(sample_result, profile)
 
 
-async def run_benchmark(dataset: BenchmarkDataset) -> list[SampleResult]:
+async def run_benchmark(
+    dataset: BenchmarkDataset, checkpoint_path: Path | None = None
+) -> list[SampleResult]:
+    """`checkpoint_path`, if given, is a checkpoint file (see `checkpoint.py`) keyed
+    to this exact dataset + retrieval/model config. Samples already present in it
+    are reused as-is (no re-run of retrieval/generation); every newly-computed
+    sample is persisted to it immediately, not batched, so an interruption loses
+    at most the one sample in flight."""
+    # Imported lazily: `checkpoint.py` imports `SampleResult` from this module, so a
+    # top-level import here would be circular.
+    from src.evaluation.benchmark import checkpoint as checkpoint_mod
+
     environment.ensure_environment()
     db = environment.SessionLocal()
     try:
@@ -170,27 +184,40 @@ async def run_benchmark(dataset: BenchmarkDataset) -> list[SampleResult]:
         environment.reset_benchmark_documents(db, user)
         doc_map = await environment.ingest_fixture_documents(db, user, dataset.documents_dir)
 
+        checkpoint = (
+            checkpoint_mod.load_checkpoint(checkpoint_path)
+            if checkpoint_path
+            else _EMPTY_CHECKPOINT
+        )
+
         results: list[SampleResult] = []
         for sample in dataset.samples:
+            cached = checkpoint["pipeline_results"].get(sample.id)
+            if cached is not None:
+                results.append(checkpoint_mod.rebuild_sample_result(sample, cached))
+                continue
+
             document = doc_map.get(sample.source_document_id)
             if document is None:
-                results.append(
-                    SampleResult(
-                        sample=sample,
-                        answer="",
-                        contexts=[],
-                        retrieved_chunk_count=0,
-                        confidence_score=None,
-                        confidence_level=None,
-                        end_to_end_latency_s=0.0,
-                        error=(
-                            f"fixture document '{sample.source_document_id}' "
-                            "not found among ingested documents"
-                        ),
-                    )
+                result = SampleResult(
+                    sample=sample,
+                    answer="",
+                    contexts=[],
+                    retrieved_chunk_count=0,
+                    confidence_score=None,
+                    confidence_level=None,
+                    end_to_end_latency_s=0.0,
+                    error=(
+                        f"fixture document '{sample.source_document_id}' "
+                        "not found among ingested documents"
+                    ),
                 )
-                continue
-            results.append(_run_sample(db, user, document, sample))
+            else:
+                result = _run_sample(db, user, document, sample)
+
+            results.append(result)
+            if checkpoint_path:
+                checkpoint_mod.save_pipeline_result(checkpoint_path, sample.id, result)
         return results
     finally:
         db.close()

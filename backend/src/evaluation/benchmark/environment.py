@@ -45,6 +45,21 @@ BENCHMARK_USER_EMAIL = "benchmark-harness@eval.local"
 settings = get_settings()
 
 
+def model_config_snapshot() -> dict:
+    """The exact retrieval/model configuration under test — shared by `storage.py`
+    (records it alongside scores) and `checkpoint.py` (keys a checkpoint file to it,
+    so one experiment's progress can never be silently reused by a different one)."""
+    return {
+        "llm_model": settings.LLM_MODEL,
+        "embedding_model": settings.EMBEDDING_MODEL,
+        "retrieval_k": settings.RETRIEVAL_K,
+        "chunk_size": settings.CHUNK_SIZE,
+        "chunk_overlap": settings.CHUNK_OVERLAP,
+        "hybrid_dense_weight": settings.HYBRID_DENSE_WEIGHT,
+        "hybrid_bm25_weight": settings.HYBRID_BM25_WEIGHT,
+    }
+
+
 def ensure_environment() -> None:
     """Create tables / runtime directories for the isolated eval database."""
     init_db()
