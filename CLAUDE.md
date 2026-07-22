@@ -300,7 +300,7 @@ Full detail and target fixes: `PRODUCT_ARCHITECTURE.md` (priorities as stated th
 
 | Area | Priority | Issue |
 |---|---|---|
-| Deployment persistence | **Critical** | No persistent disk in `render.yaml` — DB/indexes/uploads may not survive a redeploy. Treat as an operational check, not a backlog item. |
+| Deployment persistence | **Resolved in code, pending deploy** | `render.yaml` now mounts a persistent disk at `/app/data` (covers the SQLite DB, uploads, and FAISS indexes — confirmed via a local Docker-volume test: user/document data and a working RAG answer all survived a simulated redeploy that previously wiped everything). Requires `plan: starter` (was `free`) — a real billing change that takes effect only once actually deployed to Render, not yet live. |
 | Authentication | High | Single 24h JWT, `localStorage` (XSS-exposed), no refresh tokens/session revocation, `ADMIN_EMAILS` env-var allowlist instead of RBAC. |
 | Testing coverage | High | Two liveness tests total; zero coverage on auth, ingestion, retrieval, RAG answers, safety, grounding. |
 | AI provider coupling | High | `ChatOpenAI`/`OpenAIEmbeddings` instantiated directly at call sites — no router/interface. |
