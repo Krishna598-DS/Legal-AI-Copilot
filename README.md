@@ -1,57 +1,63 @@
+<div align="center">
+
 # AI Legal Copilot
 
-**A production RAG system that turns dense legal documents into cited, trustworthy answers — and knows when *not* to answer.**
+**Upload a contract. Ask a question in plain English. Get a cited, confidence-scored answer — never a hallucinated one.**
 
-Upload a contract, lease, or NDA. Ask questions in plain English. Get grounded answers with source citations, a deterministic confidence score, and automatic safety guardrails that block anything that reads like legal advice rather than legal information.
+[![CI](https://github.com/Krishna598-DS/legal-ai-copilot/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Krishna598-DS/legal-ai-copilot/actions/workflows/ci-cd.yml)
+![Python](https://img.shields.io/badge/python-3.12-blue?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=white)
 
-**Live:** [https://legal-rag-t4gw.onrender.com](https://legal-rag-t4gw.onrender.com)
+[**Live Demo**](https://legal-rag-t4gw.onrender.com) · [Architecture](#architecture) · [Results](#results) · [Quickstart](#quickstart) · [Roadmap](#roadmap)
 
-> Legal information, not legal advice — by design, not just by disclaimer.
+</div>
+
+<br>
+
+<div align="center">
+  <img src="docs/screenshots/qa-citations.jpg" alt="Cited answer with confidence score" width="800">
+  <p><em>Every answer cites the exact clause it came from and carries a deterministic, auditable confidence score — never invented by the model itself.</em></p>
+</div>
 
 ---
 
-## Why this project is interesting
+## What it does
 
-Most RAG demos stop at "it retrieves and it answers." This one is built and benchmarked like a product that has to be *right*, not just plausible:
+Upload a contract, lease, or NDA → ask questions, get plain-language explanations, risk flags, and consultation prep, all grounded in *your* document with page-level citations. Positioned deliberately as **legal information, not legal advice** — a real architectural constraint (safety guardrails, confidence gating), not just a disclaimer.
 
-- **Hybrid retrieval, not a single vector search.** Dense (FAISS) + sparse (BM25) retrieval combined via a weighted ensemble — legal text is full of exact-match terms (defined terms, section numbers, dollar figures) that pure semantic similarity alone misses.
-- **A real evaluation harness, not vibes.** Every retrieval and chunking decision is validated against a RAGAS-based benchmark — 141 hand-checked questions across 20 synthetic legal documents, scored on Faithfulness, Answer Relevancy, Context Precision, and Context Recall, run against the *actual* production answer path, not a mocked shortcut.
-- **Deterministic trust scoring, not another LLM's opinion.** Confidence is computed from retrieval scores, citation coverage, and answer grounding — auditable and reproducible, never invented by the model itself.
-- **Safety enforced in code, after generation.** A guardrail layer scrubs Legal-Advice-shaped claims from every response before it reaches the user — defense in depth, not just a system prompt asking nicely.
-- **Evaluation infrastructure built for reliability.** Configurable concurrency, automatic retry logging, a data-integrity gate that refuses to silently report a corrupted benchmark run as valid, and checkpoint/resume for long evaluation jobs — survives real interruptions (rate limits, host sleep, session timeouts) with zero lost work.
+<div align="center">
+  <img src="docs/screenshots/landing.jpg" alt="AI Legal Copilot landing page" width="700">
+</div>
 
-### Results from the benchmark, not marketing copy
+## Why it's engineered differently
 
-| Change | Result |
-|---|---|
-| Systematic chunk-size/overlap optimization (500 → 256 chars, benchmarked at every step) | **Faithfulness +8.8%** (0.826 → 0.899), **hard-question faithfulness +18%** (0.417 → 0.492), no recall regression |
-| Eliminated a duplicate embedding call + an unnecessary LLM classification round-trip | **Mean response latency −43%** (2.88s → 1.64s) at matched retrieval config, zero quality regression |
-| Persistent-disk-backed storage (fixing a redeploy-wipes-everything bug) | User accounts, documents, and vector indexes now survive redeployment — validated against a simulated production redeploy |
-
-Full run history, per-question breakdowns, and methodology: [`evaluation/benchmark/results/`](evaluation/benchmark/results/).
+- **Hybrid retrieval, not a single vector search.** Dense (FAISS) + sparse (BM25) retrieval combined via a weighted ensemble — legal text is full of exact-match terms a semantic-only search misses.
+- **Benchmarked, not tuned by feel.** A RAGAS evaluation harness scores every retrieval/chunking decision against the real production pipeline — 141 questions, 20 synthetic legal documents, four metrics — before it ships.
+- **Confidence you can audit.** Scored from retrieval strength, citation coverage, and answer grounding — deterministic and reproducible, never another LLM's opinion of itself.
+- **Safety enforced in code, after generation** — a guardrail layer strips Legal-Advice-shaped claims from every response, defense in depth beyond the system prompt.
+- **Built to survive real failure.** Configurable concurrency, retry logging, a data-integrity gate that refuses to report a corrupted benchmark run as valid, and checkpoint/resume that has survived actual production interruptions with zero lost work.
 
 ---
 
 ## Architecture
 
+```mermaid
+flowchart TD
+    A["Browser — Next.js SPA"] -->|"Bearer JWT"| B["FastAPI routes"]
+    B --> C["Ingestion — chunk → embed → FAISS"]
+    B --> D1["Dense search — FAISS"]
+    B --> D2["Sparse search — BM25"]
+    D1 --> E["Ensemble merge (0.6 / 0.4)"]
+    D2 --> E
+    E --> F["LLM generation"]
+    F --> G["Safety guardrails"]
+    G --> H["Deterministic confidence scoring"]
+    H --> I["Answer + citations + confidence"]
+    I --> A
 ```
-Browser (Next.js static SPA)
-   │  fetch, Bearer JWT
-   ▼
-FastAPI routes (thin, delegate immediately)
-   ▼
-Ingestion (upload → chunk → embed → FAISS, background job)
-   ▼
-Hybrid retrieval (dense FAISS + BM25 ensemble)
-   ▼
-LLM generation (prompt templates + safety preamble)
-   ▼
-Safety scrub + deterministic confidence scoring
-   ▼
-Response (answer + citations + confidence) → Browser
-```
-
-## Stack
 
 | Layer | Tech |
 |---|---|
@@ -60,48 +66,60 @@ Response (answer + citations + confidence) → Browser
 | Retrieval | FAISS (dense) + BM25 (sparse) hybrid ensemble |
 | LLM / Embeddings | OpenAI (`gpt-4o-mini`, `text-embedding-3-small`) |
 | Evaluation | RAGAS + a custom production-path benchmark harness |
-| Auth | JWT + Google Sign-In |
 | Deployment | Docker, Render (persistent disk), GitHub Actions CI/CD |
 
----
-
-## Evaluation & Benchmarking
-
-The RAG pipeline has one source of truth for whether a change made answers *better* or *worse*: `backend/scripts/run_benchmark.py`, which runs the real production `/chat/ask` code path — including safety scrubbing and confidence scoring — against a versioned, checked-in dataset, and scores it with RAGAS.
-
-```bash
-PYTHONPATH=backend python backend/scripts/run_benchmark.py --dataset-dir evaluation/benchmark/datasets/v2
-```
-
-No retrieval, chunking, or prompt change ships without a before/after benchmark delta. Results are timestamped and never overwritten, so the full experiment history — including the ones that *didn't* work — is preserved in git, not just the winning configuration.
+<div align="center">
+  <img src="docs/screenshots/workspace.jpg" alt="Document workspace" width="800">
+</div>
 
 ---
 
-## Local Development
+## Results
+
+Every number below is from a checked-in, timestamped benchmark run — not a vibe.
+
+| Change | Result |
+|---|---|
+| Systematic chunk-size optimization (benchmarked at every step, 141 samples) | **Faithfulness +8.8%**, **hard-question faithfulness +18%**, no recall regression |
+| Eliminated a duplicate embedding call + redundant LLM classification step | **Mean latency −43%** (2.88s → 1.64s), zero quality regression |
+| Persistent-disk-backed storage | User data, documents, and vector indexes now survive redeployment |
+
+Full run history and methodology → [`evaluation/benchmark/results/`](evaluation/benchmark/results/).
+
+---
+
+## Quickstart
 
 ```bash
 python3 -m venv venv && source venv/bin/activate
 pip install -r backend/requirements.txt
 cp .env.example .env   # set OPENAI_API_KEY + SECRET_KEY
 
-# API (terminal 1)
 export PYTHONPATH=$PWD/backend
-bash backend/scripts/start.sh
-# → http://127.0.0.1:8000
-
-# UI (terminal 2)
-cd web && npm install && npm run dev
-# → http://127.0.0.1:3000
-# web/.env.local: NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
+bash backend/scripts/start.sh          # API  → http://127.0.0.1:8000
+cd web && npm install && npm run dev   # UI   → http://127.0.0.1:3000
 ```
 
-Optional: build the static UI for same-origin serving by FastAPI:
+Full setup, CI/CD, Google Sign-In, and deployment details → [below](#development--deployment-details).
 
-```bash
-cd web && npm run build:static   # writes ./frontend (gitignored)
-```
+---
 
-## CI/CD
+## Roadmap
+
+- [ ] Benchmark and ship a `RETRIEVAL_K` / hybrid-weight sweep (next evaluation experiment)
+- [ ] Migrate to managed Postgres + Alembic (schema currently additive-only on SQLite)
+- [ ] Session-based auth: refresh tokens, revocation, and real RBAC (past the current single-JWT model)
+- [ ] AI provider abstraction — remove direct OpenAI coupling ahead of any multi-provider routing
+- [ ] Object-storage-backed vector indexes for horizontal scaling beyond one API instance
+- [ ] Expand backend test coverage beyond the current liveness-only suite
+- [ ] Metrics/tracing beyond structured logs; bring evaluation into CI as an automated gate
+
+---
+
+## Development & Deployment Details
+
+<details>
+<summary>CI/CD</summary>
 
 GitHub Actions (`.github/workflows/ci-cd.yml`) on every PR and push to `main`:
 
@@ -109,20 +127,29 @@ GitHub Actions (`.github/workflows/ci-cd.yml`) on every PR and push to `main`:
 2. **Backend** — install deps, route smoke, pytest
 3. **Docker** — build the production image
 
-Render auto-deploys from `main` once CI is green (native GitHub integration, no manual deploy hook).
+Render auto-deploys from `main` once CI is green (native GitHub integration).
 
-## Google Sign-In
+</details>
+
+<details>
+<summary>Google Sign-In</summary>
 
 1. [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials → **OAuth 2.0 Client ID** (Web)
 2. Authorized JavaScript origins: `http://localhost:3000`, `http://127.0.0.1:8010`, and your production URL
 3. Set `GOOGLE_CLIENT_ID` (and optional `GOOGLE_CLIENT_SECRET`) in `.env` / Render
 4. UI shows **Sign in with Google** when `/auth/google/config` reports `enabled: true`
 
-## Deploy
+</details>
+
+<details>
+<summary>Deploy</summary>
 
 Render uses `Dockerfile` + `render.yaml`, including a persistent disk mounted at `/app/data` so the database, uploads, and vector indexes survive redeployment. Set `OPENAI_API_KEY`, `SECRET_KEY`, and `GOOGLE_CLIENT_ID` in the service environment.
 
-## Layout
+</details>
+
+<details>
+<summary>Repository layout</summary>
 
 ```
 web/                            UI source (edit here)
@@ -132,3 +159,5 @@ evaluation/benchmark/           Versioned eval datasets + timestamped run histor
 Dockerfile                       production image
 render.yaml                      Render config (persistent disk included)
 ```
+
+</details>
