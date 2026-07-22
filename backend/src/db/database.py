@@ -6,6 +6,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 from src.config import get_settings
+from src.logging_config import logger
 
 settings = get_settings()
 
@@ -70,7 +71,12 @@ def migrate_sqlite() -> None:
             )
             conn.commit()
     except Exception:
-        pass
+        # Best-effort by design (see docstring) — but a silently swallowed failure
+        # here previously left the DB schema out of sync with the ORM models with
+        # zero trace back to the cause. Log it; still don't block startup on it,
+        # since existing deployments must keep booting even if one additive
+        # column add fails for an unrelated reason (e.g. already applied).
+        logger.exception("migrate_sqlite: additive migration step failed")
 
 
 def init_db() -> None:

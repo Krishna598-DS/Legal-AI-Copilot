@@ -1,6 +1,6 @@
 """FastAPI dependencies: DB session, current user, rate limits."""
 
-from fastapi import Depends
+from fastapi import Depends, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.orm import Session
 
@@ -82,6 +82,22 @@ def enforce_upload_rate_limit(
             details={"limit": settings.MAX_UPLOADS_PER_HOUR, "resource": "uploads"},
         )
     return user
+
+
+def enforce_auth_rate_limit(request: Request) -> None:
+    """Deployment-readiness fix: login/register previously had no rate limiting at
+    all, unlike every other user-facing endpoint. Keyed by client IP, since no
+    authenticated user exists yet at the point of a login/register attempt."""
+    client_ip = request.client.host if request.client else "unknown"
+    allowed, _ = rate_limit.hit(
+        f"auth:{client_ip}", settings.MAX_AUTH_ATTEMPTS_PER_HOUR
+    )
+    if not allowed:
+        raise RateLimitExceededError(
+            f"Too many login/registration attempts. Max "
+            f"{settings.MAX_AUTH_ATTEMPTS_PER_HOUR} per hour — try again later.",
+            details={"limit": settings.MAX_AUTH_ATTEMPTS_PER_HOUR, "resource": "auth"},
+        )
 
 
 def get_usage_counts(user_id: str, db: Session) -> dict:

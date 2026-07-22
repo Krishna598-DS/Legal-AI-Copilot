@@ -6,9 +6,10 @@ from datetime import datetime
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
-from src.api.deps import get_current_user
+from src.api.deps import enforce_auth_rate_limit, get_current_user
 from src.auth.schemas import (
     GoogleAuthRequest,
+    GoogleConfigResponse,
     LoginRequest,
     PasswordResetConfirm,
     PasswordResetRequest,
@@ -70,7 +71,11 @@ def _user_response(user: User, db: Session) -> UserResponse:
 
 
 @router.post("/register", response_model=TokenResponse, status_code=201)
-def register(payload: RegisterRequest, db: Session = Depends(get_db)):
+def register(
+    payload: RegisterRequest,
+    db: Session = Depends(get_db),
+    _rate_limit: None = Depends(enforce_auth_rate_limit),
+):
     if not payload.accept_disclaimer:
         raise ValidationAppError(
             DISCLAIMER_REQUIRED,
@@ -119,7 +124,11 @@ def register(payload: RegisterRequest, db: Session = Depends(get_db)):
 
 
 @router.post("/login", response_model=TokenResponse)
-def login(payload: LoginRequest, db: Session = Depends(get_db)):
+def login(
+    payload: LoginRequest,
+    db: Session = Depends(get_db),
+    _rate_limit: None = Depends(enforce_auth_rate_limit),
+):
     user = db.query(User).filter(User.email == payload.email.lower()).first()
     if (
         not user
@@ -225,6 +234,13 @@ def reset_password(payload: PasswordResetConfirm, db: Session = Depends(get_db))
     return {"message": "Password updated"}
 
 
+@router.get("/google/config", response_model=GoogleConfigResponse)
+def google_config():
+    """Public client config for Sign in with Google (client_id is not a secret)."""
+    client_id = (settings.GOOGLE_CLIENT_ID or "").strip()
+    return GoogleConfigResponse(enabled=bool(client_id), client_id=client_id or None)
+
+
 @router.post("/google", response_model=TokenResponse)
 def google_auth(payload: GoogleAuthRequest, db: Session = Depends(get_db)):
     """
@@ -280,7 +296,7 @@ def google_auth(payload: GoogleAuthRequest, db: Session = Depends(get_db)):
             google_sub=sub,
             email_verified=True,
             hashed_password=None,
-            role=DEFAULT_ROLE,
+            role=normalize_role(payload.role) if payload.role else DEFAULT_ROLE,
             accepted_disclaimer_at=datetime.utcnow(),
             terms_version=settings.TERMS_VERSION,
             privacy_version=settings.PRIVACY_VERSION,

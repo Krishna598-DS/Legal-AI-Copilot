@@ -129,6 +129,10 @@ class Settings(BaseSettings):
     MAX_QUESTIONS_PER_HOUR: int = 60
     MAX_UPLOADS_PER_HOUR: int = 10
     MAX_DOCUMENTS_PER_USER: int = 20
+    # Deployment-readiness fix: login/register had no rate limiting at all (unlike
+    # questions/uploads above) — keyed by client IP since these are unauthenticated
+    # endpoints, no user id exists yet at the time of the attempt.
+    MAX_AUTH_ATTEMPTS_PER_HOUR: int = 20
 
     # ── Models / RAG ────────────────────────────────────────────
     LLM_MODEL: str = Field(
