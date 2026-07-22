@@ -139,7 +139,14 @@ class Settings(BaseSettings):
     EMBEDDING_MODEL: str = "text-embedding-3-small"
     LLM_TEMPERATURE: float = 0.0
     RETRIEVAL_K: int = 3
-    CHUNK_SIZE: int = 500
+    # Sprint 3: chosen over 500 (original default), 768, and 384 after a full
+    # chunk-size sweep on the v2 benchmark (141 samples) — highest Faithfulness
+    # (0.899) and Hard-question Faithfulness (0.492) of every size tested, with
+    # Context Recall statistically flat across the whole sweep (~0.955-0.959).
+    # An overlap sweep at this chunk size (50 vs. 75) confirmed 50 remains best —
+    # 75 regressed every metric, most sharply on hard questions (-18.7% Faithfulness).
+    # See evaluation/benchmark/results/reports/ for the full run history.
+    CHUNK_SIZE: int = 256
     CHUNK_OVERLAP: int = 50
     CHAT_MEMORY_WINDOW: int = 6
     # Sprint 2A Task 3 (see OPTIMIZATION_PLAN.md Section 2, bottleneck #2): defaulted
