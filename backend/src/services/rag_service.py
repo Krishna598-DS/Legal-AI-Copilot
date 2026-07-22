@@ -26,6 +26,7 @@ from src.observability.events import log_event
 from src.retrieval.retriever import get_retriever
 from src.services import document_service
 from src.services import confidence as confidence_service
+from src.services.query_embedding_cache import install_query_embedding_cache
 
 settings = get_settings()
 _rag_cache: OrderedDict[str, ConversationalRAG] = OrderedDict()
@@ -72,7 +73,13 @@ def _cache_put(document_id: str, rag: ConversationalRAG) -> None:
 
 @lru_cache
 def get_embeddings_model():
-    return create_embeddings()
+    embeddings = create_embeddings()
+    # Sprint 2A Task 2 (see query_embedding_cache.py): avoids re-embedding the same
+    # standalone query twice per question (once for retrieval, once for
+    # `_faiss_score_map`'s confidence-scoring lookup). Retrieval behavior/results
+    # are unchanged — this only removes a duplicate, deterministic API call.
+    install_query_embedding_cache(embeddings)
+    return embeddings
 
 
 @lru_cache

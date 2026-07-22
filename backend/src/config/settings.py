@@ -142,7 +142,15 @@ class Settings(BaseSettings):
     CHUNK_SIZE: int = 500
     CHUNK_OVERLAP: int = 50
     CHAT_MEMORY_WINDOW: int = 6
-    USE_LLM_CLASSIFIER: bool = True
+    # Sprint 2A Task 3 (see OPTIMIZATION_PLAN.md Section 2, bottleneck #2): defaulted
+    # to False after benchmarking confirmed `classify_question_keyword` (already
+    # implemented in llm/prompt_templates.py as the existing fallback whenever this
+    # is False or the LLM call errors) selects the same general/financial/risk
+    # template as the LLM classifier for this project's question set, at zero
+    # additional latency/cost — removing a full chat-completion round trip spent
+    # solely on routing between 3 fixed prompt templates. Kept configurable (not
+    # deleted) in case future question complexity outgrows keyword matching.
+    USE_LLM_CLASSIFIER: bool = False
     HYBRID_DENSE_WEIGHT: float = 0.6
     HYBRID_BM25_WEIGHT: float = 0.4
 
