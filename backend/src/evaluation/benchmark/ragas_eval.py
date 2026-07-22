@@ -22,11 +22,12 @@ production text — note included — is still what's persisted and reported eve
 
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass, field
 
 from datasets import Dataset
 from langchain_openai import OpenAIEmbeddings
-from ragas import evaluate
+from ragas import RunConfig, evaluate
 from ragas.metrics import answer_relevancy, context_precision, context_recall, faithfulness
 
 from src.evaluation.benchmark import environment
@@ -35,6 +36,41 @@ from src.services import rag_service
 
 RAGAS_METRICS = [faithfulness, answer_relevancy, context_precision, context_recall]
 METRIC_KEYS = ("faithfulness", "answer_relevancy", "context_precision", "context_recall")
+
+# Sprint 3 benchmark-robustness fix: RAGAS's library default (max_workers=16) fires
+# up to 16 concurrent judge-LLM calls against `rag_service.get_llm()` — a client
+# configured with a 60s request_timeout tuned for one interactive user request, not
+# bulk scoring. Investigation (see conversation history) traced a run's near-total
+# scoring failure (5/141 valid Context Precision samples) to this concurrency level
+# saturating the API, not to anything in retrieval/generation (0 pipeline errors
+# every time). Lowering to 4 is a config-only change to the evaluation harness; it
+# does not touch retrieval, generation, or what is measured.
+RAGAS_RUN_CONFIG = RunConfig(max_workers=4, log_tenacity=True)
+
+# Below this fraction of valid (non-null) scores for any metric, the aggregate mean
+# is computed over too small/non-representative a sample to trust — see
+# `_integrity_check`. 90% chosen as a round, conservative bar: a handful of
+# transient failures shouldn't invalidate a run, but the kind of collapse observed
+# (e.g. 5/141) must never be reported as if it were a clean number.
+MIN_VALID_SAMPLE_RATIO = 0.9
+
+
+def _enable_ragas_retry_logging() -> None:
+    """Surface RAGAS's internal tenacity retry logging so a future failure's console
+    output names the actual underlying exception (rate limit, timeout, connection
+    reset, ...) instead of only a final bare exception after retries are exhausted.
+
+    Scoped to the root logger only. This app's own production logger (`legal_rag`,
+    see `logging_config.py`) sets `propagate=False` and never touches root, so
+    nothing here can alter production log output or behavior — this process is
+    also the isolated benchmark harness, never the production app server.
+    """
+    root = logging.getLogger()
+    if not any(isinstance(h, logging.StreamHandler) for h in root.handlers):
+        handler = logging.StreamHandler()
+        handler.setFormatter(logging.Formatter("%(asctime)s %(name)s %(levelname)s: %(message)s"))
+        root.addHandler(handler)
+    root.setLevel(logging.DEBUG)
 
 
 @dataclass
@@ -113,8 +149,13 @@ def run_ragas(results: list[SampleResult]) -> list[ScoredSample]:
     embeddings = OpenAIEmbeddings(
         model=settings.EMBEDDING_MODEL, openai_api_key=settings.OPENAI_API_KEY
     )
+    _enable_ragas_retry_logging()
     ragas_result = evaluate(
-        dataset=ragas_dataset, metrics=RAGAS_METRICS, llm=llm, embeddings=embeddings
+        dataset=ragas_dataset,
+        metrics=RAGAS_METRICS,
+        llm=llm,
+        embeddings=embeddings,
+        run_config=RAGAS_RUN_CONFIG,
     )
     scores_df = ragas_result.to_pandas()
 
@@ -158,6 +199,29 @@ def _slice_summary(items: list[ScoredSample]) -> dict:
     return summary
 
 
+def _integrity_check(scored: list[ScoredSample], total_samples: int) -> dict:
+    """Sprint 3 benchmark-robustness fix: `_mean` correctly excludes missing/NaN
+    scores from its denominator rather than zero-filling them (avoids bias) — but
+    that same correct behavior means a run where RAGAS scoring mostly failed (e.g.
+    5/141 valid Context Precision samples) can still produce a plausible-looking
+    aggregate number with no visible sign anything went wrong. This makes that
+    failure mode structurally impossible to miss: every metric's valid/total count
+    is checked, and the run is marked invalid if any metric falls below
+    `MIN_VALID_SAMPLE_RATIO`."""
+    counts: dict[str, dict[str, int]] = {}
+    issues: list[str] = []
+    for key in METRIC_KEYS:
+        valid = sum(1 for s in scored if s.scores.get(key) is not None)
+        counts[key] = {"valid": valid, "total": total_samples}
+        if total_samples and valid / total_samples < MIN_VALID_SAMPLE_RATIO:
+            pct = valid / total_samples
+            issues.append(
+                f"{key}: only {valid}/{total_samples} samples scored ({pct:.0%}) — "
+                f"below the {MIN_VALID_SAMPLE_RATIO:.0%} integrity threshold"
+            )
+    return {"valid": not issues, "counts": counts, "issues": issues}
+
+
 def aggregate_scores(scored: list[ScoredSample]) -> dict:
     """Overall + per-category + per-difficulty rollups — the shape the report (and,
     later, a database-backed dashboard) reads directly."""
@@ -171,4 +235,5 @@ def aggregate_scores(scored: list[ScoredSample]) -> dict:
         "overall": _slice_summary(scored),
         "by_category": {k: _slice_summary(v) for k, v in by_category.items()},
         "by_difficulty": {k: _slice_summary(v) for k, v in by_difficulty.items()},
+        "data_integrity": _integrity_check(scored, len(scored)),
     }

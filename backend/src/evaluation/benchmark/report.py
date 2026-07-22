@@ -25,6 +25,7 @@ def _delta_str(current, previous) -> str:
 def render_console_summary(run_record: dict, previous_run: dict | None) -> str:
     overall = run_record["aggregate_scores"]["overall"]
     prev_overall = (previous_run or {}).get("aggregate_scores", {}).get("overall", {})
+    integrity = run_record["aggregate_scores"].get("data_integrity")
 
     lines = [
         "=" * 64,
@@ -34,6 +35,15 @@ def render_console_summary(run_record: dict, previous_run: dict | None) -> str:
         f"Dataset:    {run_record['dataset_version']}",
         f"Git commit: {run_record.get('git_commit') or 'n/a'}",
         f"Samples:    {overall['sample_count']}  (errors: {overall['error_count']})",
+    ]
+    if integrity and not integrity["valid"]:
+        lines += [
+            "!" * 64,
+            "BENCHMARK INTEGRITY: INVALID — scores below are not reliable",
+            *[f"  - {issue}" for issue in integrity["issues"]],
+            "!" * 64,
+        ]
+    lines += [
         "-" * 64,
         "RAGAS SCORES",
     ]
@@ -85,6 +95,7 @@ def render_console_summary(run_record: dict, previous_run: dict | None) -> str:
 def render_markdown_report(run_record: dict, previous_run: dict | None) -> str:
     overall = run_record["aggregate_scores"]["overall"]
     prev_overall = (previous_run or {}).get("aggregate_scores", {}).get("overall", {})
+    integrity = run_record["aggregate_scores"].get("data_integrity")
 
     lines = [
         f"# RAG Benchmark Report — {run_record['run_id']}",
@@ -101,6 +112,18 @@ def render_markdown_report(run_record: dict, previous_run: dict | None) -> str:
         f"- Samples evaluated: {overall['sample_count']} (errors: {overall['error_count']})",
         f"- Previous run compared: `{previous_run['run_id'] if previous_run else 'none'}`",
         "",
+    ]
+    if integrity and not integrity["valid"]:
+        lines += [
+            "## ⚠️ BENCHMARK INTEGRITY: INVALID",
+            "",
+            "The scores in this report are **not reliable** — too few samples scored "
+            "successfully for one or more metrics:",
+            "",
+            *[f"- {issue}" for issue in integrity["issues"]],
+            "",
+        ]
+    lines += [
         "## RAGAS scores",
         "",
         "| Metric | Score | vs previous |",
