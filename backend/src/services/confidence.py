@@ -76,6 +76,45 @@ _NOT_FOUND_RE = re.compile(
     re.IGNORECASE,
 )
 
+# Bug fix: the Low-confidence gate below was designed around cited legal
+# answers — citation_coverage/answer_grounding (40% of the score) heavily
+# penalize prose with no [Source N] markers. A plain descriptive summary
+# (resume, invoice, report) naturally has low citation density without being
+# wrong — there's nothing clause-by-clause to cite. This was causing correct
+# summaries to be discarded and replaced with a legal-consultation refusal.
+# Scope: only bypasses the *action* taken on a Low score for questions phrased
+# as description/summarization, and only when they don't also ask about legal
+# substance — legal-advice-seeking questions keep the exact same strict gate.
+_SUMMARY_REQUEST_RE = re.compile(
+    r"\b(summariz\w*|summary|overview|recap|outlin\w*|rundown|"
+    r"what('s| is) (in|on) this (document|file|resume|invoice|report)|"
+    r"what does this (document|file|resume|invoice|report) (say|contain|include))\b",
+    re.IGNORECASE,
+)
+_LEGAL_SUBSTANCE_RE = re.compile(
+    r"\b(risk\w*|liable|liabilit\w*|obligation\w*|must i|required to|terminat\w*|"
+    r"breach\w*|violation\w*|consequence\w*|responsible|duty|sue|lawsuit|"
+    r"legal action|enforceable|my rights|should i|penalt\w*)\b",
+    re.IGNORECASE,
+)
+
+DESCRIPTIVE_LOW_CONFIDENCE_NOTE = (
+    "Note: this is a general summary, not Legal Advice. Confirm important "
+    "details (dates, amounts, names) directly against the original document."
+)
+
+
+def is_descriptive_summary_request(question: str) -> bool:
+    """True for plain description/summarization requests (resume, invoice,
+    report, ...) that should not be discarded by the Low-confidence legal-
+    advice gate. False whenever the question also touches legal substance,
+    so legal-advice-seeking questions always keep strict enforcement."""
+    q = question or ""
+    if not _SUMMARY_REQUEST_RE.search(q):
+        return False
+    return not _LEGAL_SUBSTANCE_RE.search(q)
+
+
 MEDIUM_RECOMMENDATION = build_medium_confidence_note()
 
 LOW_RECOMMENDATION = (
@@ -269,13 +308,23 @@ def estimate_confidence(
     )
 
 
-def apply_confidence_policy(answer: str, confidence: ConfidenceResult) -> str:
+def apply_confidence_policy(
+    answer: str,
+    confidence: ConfidenceResult,
+    *,
+    is_descriptive: bool = False,
+) -> str:
     """
     Enforce High / Medium / Low answer behavior.
 
     High   → unchanged (caller should still run safety sanitize)
     Medium → append expert-review recommendation
-    Low    → replace with abstention that explains why + consult a professional
+    Low    → replace with abstention that explains why + consult a professional,
+             UNLESS `is_descriptive` is True (a plain summarization/description
+             request, not legal advice — see `is_descriptive_summary_request`),
+             in which case the answer is kept with a lighter, honest note
+             instead of being discarded. Legal-advice-seeking questions are
+             never eligible for this — `is_descriptive` is False for those.
     """
     if confidence.confidence_level == "High":
         return answer
@@ -285,6 +334,11 @@ def apply_confidence_policy(answer: str, confidence: ConfidenceResult) -> str:
         if note and note not in body:
             return f"{body}\n\n{note}" if body else note
         return body
+    if is_descriptive:
+        body = (answer or "").rstrip()
+        if not body:
+            return build_low_confidence_message(confidence.factors)
+        return f"{body}\n\n{DESCRIPTIVE_LOW_CONFIDENCE_NOTE}"
     return build_low_confidence_message(confidence.factors)
 
 

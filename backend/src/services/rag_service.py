@@ -274,6 +274,7 @@ def _finalize_text_answer(
     sources: list[dict],
     *,
     chunk_count: int | None = None,
+    question: str = "",
 ) -> tuple[str, confidence_service.ConfidenceResult]:
     from src.safety.guardrails import sanitize_legal_output
 
@@ -295,7 +296,10 @@ def _finalize_text_answer(
         chunk_count=chunk_count,
         target_k=max(3, settings.RETRIEVAL_K),
     )
-    finalized = confidence_service.apply_confidence_policy(answer, conf)
+    is_descriptive = confidence_service.is_descriptive_summary_request(question)
+    finalized = confidence_service.apply_confidence_policy(
+        answer, conf, is_descriptive=is_descriptive
+    )
     # Re-check after policy append (medium notes are safe; low is generated).
     finalized, post_violations = sanitize_legal_output(finalized)
     if post_violations:
@@ -419,7 +423,9 @@ def ask_document(
         latency_ms=llm_ms,
     )
 
-    answer, conf = _finalize_text_answer(answer, sources, chunk_count=len(docs))
+    answer, conf = _finalize_text_answer(
+        answer, sources, chunk_count=len(docs), question=question
+    )
 
     rag.chat_history.append(HumanMessage(content=question))
     rag.chat_history.append(AIMessage(content=answer))
@@ -542,7 +548,7 @@ def stream_ask_document(
 
     raw_answer = "".join(pieces)
     answer, conf = _finalize_text_answer(
-        raw_answer, sources, chunk_count=len(docs)
+        raw_answer, sources, chunk_count=len(docs), question=question
     )
     # If policy rewrote the answer (Low/Medium note), send a replace token block
     # so clients that only streamed tokens still see the final text from `done`.
@@ -719,6 +725,7 @@ def compare_documents(
         answer if isinstance(answer, str) else str(answer),
         sources,
         chunk_count=len(docs_a) + len(docs_b),
+        question=question,
     )
     processing_time = round(time.time() - start, 2)
     return {
