@@ -30,7 +30,7 @@ export function errorMessage(payload: unknown, fallback = "Request failed") {
 
 export async function api<T = unknown>(
   path: string,
-  opts: RequestInit & { json?: unknown; token?: string | null } = {}
+  opts: RequestInit & { json?: unknown; token?: string | null; timeoutMs?: number } = {}
 ): Promise<T> {
   const headers = new Headers(opts.headers || {});
   if (opts.token) headers.set("Authorization", `Bearer ${opts.token}`);
@@ -39,19 +39,38 @@ export async function api<T = unknown>(
     headers.set("Content-Type", "application/json");
     body = JSON.stringify(opts.json);
   }
-  const { json: _json, token: _token, ...rest } = opts;
+  const { json: _json, token: _token, timeoutMs = 10000, signal, ...rest } = opts;
   void _json;
   void _token;
-  const res = await fetch(apiUrl(path), { ...rest, headers, body });
-  const text = await res.text();
-  let data: unknown = null;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  const onAbort = () => controller.abort();
+  signal?.addEventListener("abort", onAbort);
   try {
-    data = text ? JSON.parse(text) : null;
-  } catch {
-    data = { detail: text };
+    const res = await fetch(apiUrl(path), {
+      ...rest,
+      headers,
+      body,
+      signal: controller.signal,
+    });
+    const text = await res.text();
+    let data: unknown = null;
+    try {
+      data = text ? JSON.parse(text) : null;
+    } catch {
+      data = { detail: text };
+    }
+    if (!res.ok) throw new Error(errorMessage(data, res.statusText));
+    return data as T;
+  } catch (err) {
+    if (err instanceof DOMException && err.name === "AbortError") {
+      throw new Error("Request timed out. Is the API running?");
+    }
+    throw err;
+  } finally {
+    clearTimeout(timer);
+    signal?.removeEventListener("abort", onAbort);
   }
-  if (!res.ok) throw new Error(errorMessage(data, res.statusText));
-  return data as T;
 }
 
 export function getToken() {

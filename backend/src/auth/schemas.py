@@ -3,7 +3,7 @@
 from datetime import datetime
 from typing import Literal
 
-from pydantic import BaseModel, EmailStr, Field, field_validator
+from pydantic import BaseModel, EmailStr, Field, field_validator, model_validator
 
 from src.auth.personas import ALLOWED_ROLES, DEFAULT_ROLE, is_valid_role, normalize_role
 
@@ -69,6 +69,44 @@ class PasswordResetConfirm(BaseModel):
     new_password: str = Field(min_length=8, max_length=128)
 
 
+class ProfileUpdateRequest(BaseModel):
+    full_name: str | None = Field(default=None, max_length=255)
+    role: UserRole | None = None
+
+    @field_validator("role", mode="before")
+    @classmethod
+    def validate_optional_role(cls, value: object) -> str | None:
+        if value is None or str(value).strip() == "":
+            return None
+        if not is_valid_role(str(value)):
+            raise ValueError(
+                "Invalid role. Allowed: " + ", ".join(sorted(ALLOWED_ROLES))
+            )
+        return normalize_role(str(value))
+
+    @field_validator("full_name", mode="before")
+    @classmethod
+    def normalize_name(cls, value: object) -> str | None:
+        if value is None:
+            return None
+        text = str(value).strip()
+        return text or None
+
+
+class ChangePasswordRequest(BaseModel):
+    current_password: str = Field(min_length=1, max_length=128)
+    new_password: str = Field(min_length=8, max_length=128)
+    confirm_password: str = Field(min_length=8, max_length=128)
+
+    @model_validator(mode="after")
+    def passwords_match(self) -> "ChangePasswordRequest":
+        if self.new_password != self.confirm_password:
+            raise ValueError("New password and confirmation do not match.")
+        if self.current_password == self.new_password:
+            raise ValueError("New password must be different from the current password.")
+        return self
+
+
 class UserResponse(BaseModel):
     id: str
     email: str
@@ -102,6 +140,10 @@ class DocumentResponse(BaseModel):
     created_at: datetime
 
     model_config = {"from_attributes": True}
+
+
+class DocumentRenameRequest(BaseModel):
+    original_filename: str = Field(min_length=1, max_length=255)
 
 
 class QuestionRequest(BaseModel):
@@ -339,8 +381,23 @@ class ChatMessageResponse(BaseModel):
     question_type: str | None = None
     processing_time: float | None = None
     created_at: datetime
+    sources: list[dict] | None = None
+    sources_json: str | None = Field(default=None, exclude=True)
 
     model_config = {"from_attributes": True}
+
+    @model_validator(mode="after")
+    def _unpack_sources(self) -> "ChatMessageResponse":
+        if self.sources is None and self.sources_json:
+            try:
+                import json
+
+                parsed = json.loads(self.sources_json)
+                if isinstance(parsed, list):
+                    self.sources = parsed
+            except Exception:
+                self.sources = None
+        return self
 
 
 class UploadResponse(BaseModel):
@@ -369,6 +426,12 @@ class OrgInviteRequest(BaseModel):
 class GoogleAuthRequest(BaseModel):
     id_token: str
     accept_disclaimer: bool = False
+    role: str | None = None
+
+
+class GoogleConfigResponse(BaseModel):
+    enabled: bool
+    client_id: str | None = None
 
 
 class CheckoutRequest(BaseModel):

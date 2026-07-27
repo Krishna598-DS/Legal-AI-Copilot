@@ -1,5 +1,7 @@
-import { AppShell } from "@/components/app-shell";
+"use client";
 
-export default function HomePage() {
-  return <AppShell />;
+import { LandingView } from "@/components/auth/landing-view";
+
+export default function LandingPage() {
+  return <LandingView />;
 }

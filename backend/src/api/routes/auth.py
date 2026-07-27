@@ -8,10 +8,13 @@ from sqlalchemy.orm import Session
 
 from src.api.deps import enforce_auth_rate_limit, get_current_user
 from src.auth.schemas import (
+    ChangePasswordRequest,
     GoogleAuthRequest,
+    GoogleConfigResponse,
     LoginRequest,
     PasswordResetConfirm,
     PasswordResetRequest,
+    ProfileUpdateRequest,
     RegisterRequest,
     TokenResponse,
     UserResponse,
@@ -186,6 +189,57 @@ def me(
     return _user_response(user, db)
 
 
+@router.patch("/me", response_model=UserResponse)
+def update_me(
+    payload: ProfileUpdateRequest,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Update display name and product persona."""
+    if payload.full_name is not None:
+        user.full_name = payload.full_name
+    if payload.role is not None:
+        user.role = normalize_role(payload.role)
+    db.commit()
+    db.refresh(user)
+    log_event(
+        logger,
+        "profile_updated",
+        message="user profile updated",
+        user_id=user.id,
+        role=user.role,
+    )
+    return _user_response(user, db)
+
+
+@router.post("/change-password")
+def change_password(
+    payload: ChangePasswordRequest,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Change password while authenticated (password accounts only)."""
+    if not user.hashed_password:
+        raise ValidationAppError(
+            "This account uses Google sign-in and has no password to change.",
+            code="PASSWORD_NOT_SET",
+        )
+    if not verify_password(payload.current_password, user.hashed_password):
+        raise AuthenticationError(
+            "Current password is incorrect.",
+            code="INVALID_CREDENTIALS",
+        )
+    user.hashed_password = hash_password(payload.new_password)
+    db.commit()
+    log_event(
+        logger,
+        "password_changed",
+        message="user changed password",
+        user_id=user.id,
+    )
+    return {"message": "Password updated successfully"}
+
+
 @router.get("/verify-email")
 def verify_email(token: str = Query(...), db: Session = Depends(get_db)):
     user = token_service.consume_token(db, token, "verify_email")
@@ -231,6 +285,13 @@ def reset_password(payload: PasswordResetConfirm, db: Session = Depends(get_db))
     user.hashed_password = hash_password(payload.new_password)
     db.commit()
     return {"message": "Password updated"}
+
+
+@router.get("/google/config", response_model=GoogleConfigResponse)
+def google_config():
+    """Public client config for Sign in with Google (client_id is not a secret)."""
+    client_id = (settings.GOOGLE_CLIENT_ID or "").strip()
+    return GoogleConfigResponse(enabled=bool(client_id), client_id=client_id or None)
 
 
 @router.post("/google", response_model=TokenResponse)
@@ -288,7 +349,7 @@ def google_auth(payload: GoogleAuthRequest, db: Session = Depends(get_db)):
             google_sub=sub,
             email_verified=True,
             hashed_password=None,
-            role=DEFAULT_ROLE,
+            role=normalize_role(payload.role) if payload.role else DEFAULT_ROLE,
             accepted_disclaimer_at=datetime.utcnow(),
             terms_version=settings.TERMS_VERSION,
             privacy_version=settings.PRIVACY_VERSION,
