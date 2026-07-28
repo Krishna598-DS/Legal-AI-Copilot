@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ChevronDown, MoreHorizontal } from "lucide-react";
 import { useAuth } from "@/components/providers/auth-provider";
@@ -27,8 +28,17 @@ import { CitationList } from "@/components/patterns/citation-list";
 import { DisclaimerCallout } from "@/components/patterns/disclaimer-callout";
 import { ConfirmDialog, EmptyState, Input, StatusBadge } from "@/design-system";
 import { AskChat } from "@/components/chat/ask-chat";
-import { PdfReader } from "@/components/reader/pdf-reader";
 import { api, apiUrl, errorMessage } from "@/lib/api";
+
+// react-pdf / pdf.js touch DOMMatrix at import time — keep off the SSR/prerender path.
+const PdfReader = dynamic(
+  () =>
+    import("@/components/reader/pdf-reader").then((m) => m.PdfReader),
+  {
+    ssr: false,
+    loading: () => <LoadingBlock label="Loading reader…" />,
+  }
+);
 import {
   WORKSPACE_MODES,
   parseWorkspaceMode,
