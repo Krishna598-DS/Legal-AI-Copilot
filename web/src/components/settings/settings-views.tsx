@@ -533,10 +533,18 @@ export function SettingsMcpView() {
   const { token } = useAuth();
   const [status, setStatus] = useState<FormStatusState>(IDLE);
   const [copied, setCopied] = useState<"url" | "token" | null>(null);
+  // NEXT_PUBLIC_API_URL first — local dev runs the frontend (next dev) and backend
+  // (uvicorn) on different ports, so window.location.origin (the frontend's own
+  // port) would build an MCP URL that 404s. Production has no such env var and is
+  // genuinely same-origin, where window.location.origin is correct.
   const origin =
-    typeof window !== "undefined" ? window.location.origin : "https://your-host";
+    process.env.NEXT_PUBLIC_API_URL ||
+    (typeof window !== "undefined" ? window.location.origin : "https://your-host");
 
-  const mcpUrl = `${origin}/mcp`;
+  // Trailing slash required: the mount only matches "/mcp/..." — a request to the
+  // bare "/mcp" path falls through to the SPA catch-all instead (confirmed: it
+  // 200s with the marketing page's HTML for GET, 405s for POST).
+  const mcpUrl = `${origin.replace(/\/$/, "")}/mcp/`;
   const snippet = useMemo(
     () =>
       JSON.stringify(
