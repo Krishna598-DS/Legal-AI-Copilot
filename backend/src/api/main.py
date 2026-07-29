@@ -104,6 +104,44 @@ app.add_middleware(
 # Outermost: request_id + access logging
 app.add_middleware(RequestLoggingMiddleware)
 
+
+def _resolve_static_asset(cleaned_path: str) -> Path | None:
+    """Resolve a cleaned (no leading/trailing slash) path against WEB_DIR, returning
+    the file if it exists and is safely contained. Shared by the reserved-asset
+    middleware below and the SPA catch-all so the path-traversal containment check
+    only lives in one place."""
+    if not WEB_DIR.is_dir():
+        return None
+    web_root = WEB_DIR.resolve()
+    candidate = (web_root / cleaned_path).resolve()
+    if candidate.is_relative_to(web_root) and candidate.is_file():
+        return candidate
+    return None
+
+
+@app.middleware("http")
+async def serve_reserved_static_assets(request, call_next):
+    """Let Next.js's own per-route sidecar files (index.txt, fetched by the client
+    router to prefetch RSC data for a page) reach the filesystem before any API
+    router gets a look at them.
+
+    Confirmed root cause of a real bug: any router with a bare `/{id}`-shaped route
+    under the same path prefix as a frontend page — e.g. documents.py's
+    `GET /{document_id}` under the `/documents/` page — matches `/documents/index.txt`
+    by treating "index.txt" as the id, and since that request is the browser's own
+    background prefetch (not our api() client, which is the only thing that attaches
+    the Bearer token), it has no Authorization header and 401s. That looked like
+    "every protected request fails after login" in the Network tab, when the real
+    API calls were succeeding the whole time — only this one background, harmless
+    prefetch was being wrongly routed and rejected.
+    """
+    if request.method == "GET" and request.url.path.endswith(("/index.txt", "/index.html")):
+        asset = _resolve_static_asset(request.url.path.strip("/"))
+        if asset is not None:
+            return FileResponse(asset)
+    return await call_next(request)
+
+
 app.include_router(health.router)
 app.include_router(auth.router)
 app.include_router(documents.router)
@@ -165,19 +203,16 @@ def serve_spa(full_path: str):
     if not cleaned:
         return FileResponse(index) if index.is_file() else api_info()
 
-    # Resolve against the real filesystem root and confirm containment before
-    # serving — full_path is attacker-controlled and "../" segments survive
-    # `strip("/")` untouched, so an unresolved join (WEB_DIR / cleaned) would
-    # let a request like "/../../etc/passwd" read any file the process can
-    # access. is_relative_to() is the containment check; resolve() is what
-    # actually collapses the "..' segments so it's meaningful.
-    candidate = (web_root / cleaned).resolve()
-    if candidate.is_relative_to(web_root):
-        if candidate.is_file():
-            return FileResponse(candidate)
-        nested = candidate / "index.html"
-        if nested.is_file():
-            return FileResponse(nested)
+    # full_path is attacker-controlled and "../" segments survive `strip("/")`
+    # untouched, so an unresolved join (WEB_DIR / cleaned) would let a request like
+    # "/../../etc/passwd" read any file the process can access — _resolve_static_asset
+    # resolves and confirms containment before ever returning a path.
+    candidate = _resolve_static_asset(cleaned)
+    if candidate is not None:
+        return FileResponse(candidate)
+    nested = _resolve_static_asset(f"{cleaned}/index.html")
+    if nested is not None:
+        return FileResponse(nested)
 
     # Client-side app shell fallback for unknown UI paths
     if index.is_file():
