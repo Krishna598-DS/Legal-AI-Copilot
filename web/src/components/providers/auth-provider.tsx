@@ -6,6 +6,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import { api, getToken, setToken as persistToken } from "@/lib/api";
@@ -47,16 +48,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [usage, setUsage] = useState<UsageInfo | null>(null);
   const [docs, setDocs] = useState<DocumentRow[]>([]);
 
+  // Read via ref, not the `token` state, so these callbacks (and afterAuth/the
+  // mount effect below that depends on it) keep a stable identity across
+  // renders — afterAuth itself calls setTok() partway through, and a `[token]`
+  // dependency here previously made afterAuth's own identity change mid-call,
+  // re-triggering the mount effect and running the whole login sequence twice
+  // (confirmed: every endpoint afterAuth calls was hit exactly twice on login).
+  const tokenRef = useRef<string | null>(null);
+  tokenRef.current = token;
+
   const refreshDocs = useCallback(async (t?: string | null) => {
-    const access = t ?? token;
+    const access = t ?? tokenRef.current;
     if (!access) return [] as DocumentRow[];
     const list = await api<DocumentRow[]>("/documents", { token: access });
     setDocs(list);
     return list;
-  }, [token]);
+  }, []);
 
   const refreshUsage = useCallback(async (t?: string | null) => {
-    const access = t ?? token;
+    const access = t ?? tokenRef.current;
     if (!access) return;
     try {
       const u = await api<UsageInfo>("/account/usage", { token: access });
@@ -64,7 +74,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch {
       setUsage(null);
     }
-  }, [token]);
+  }, []);
 
   const afterAuth = useCallback(
     async (access: string) => {
@@ -142,8 +152,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       afterAuth,
       logout,
       refreshUser,
-      refreshDocs: () => refreshDocs(),
-      refreshUsage: () => refreshUsage(),
+      refreshDocs,
+      refreshUsage,
       setDocs,
     }),
     [
