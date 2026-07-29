@@ -1,11 +1,23 @@
 """Pydantic schemas for auth and API payloads."""
 
-from datetime import datetime
-from typing import Literal
+from datetime import datetime, timezone
+from typing import Annotated, Literal
 
-from pydantic import BaseModel, EmailStr, Field, field_validator, model_validator
+from pydantic import BaseModel, EmailStr, Field, PlainSerializer, field_validator, model_validator
 
 from src.auth.personas import ALLOWED_ROLES, DEFAULT_ROLE, is_valid_role, normalize_role
+
+
+def _utc_iso(dt: datetime) -> str:
+    """Every timestamp column in this app is written via datetime.utcnow() (naive) —
+    serializing it without a UTC marker makes browsers outside UTC parse it as local
+    time (e.g. a document uploaded seconds ago showing "6h ago" for an IST viewer)."""
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.isoformat()
+
+
+UTCDatetime = Annotated[datetime, PlainSerializer(_utc_iso, return_type=str)]
 
 
 UserRole = Literal[
@@ -114,8 +126,8 @@ class UserResponse(BaseModel):
     role: str = DEFAULT_ROLE
     role_label: str = "Individual"
     welcome_message: str = ""
-    created_at: datetime
-    accepted_disclaimer_at: datetime | None
+    created_at: UTCDatetime
+    accepted_disclaimer_at: UTCDatetime | None
     email_verified: bool = False
     terms_version: str | None = None
     privacy_version: str | None = None
@@ -137,7 +149,7 @@ class DocumentResponse(BaseModel):
     processing_error: str | None = None
     page_count: int = 0
     has_tables: bool = False
-    created_at: datetime
+    created_at: UTCDatetime
 
     model_config = {"from_attributes": True}
 
@@ -380,7 +392,7 @@ class ChatMessageResponse(BaseModel):
     content: str
     question_type: str | None = None
     processing_time: float | None = None
-    created_at: datetime
+    created_at: UTCDatetime
     sources: list[dict] | None = None
     sources_json: str | None = Field(default=None, exclude=True)
 
