@@ -151,3 +151,35 @@ def favicon():
     if icon.is_file():
         return FileResponse(icon)
     return api_info()
+
+
+# Next.js static-export deep links (Home / Documents / Workspace / Settings / Auth).
+# Registered last so API routes always win. Serves folder index.html when present.
+@app.get("/{full_path:path}")
+def serve_spa(full_path: str):
+    if not WEB_DIR.is_dir():
+        return api_info()
+    web_root = WEB_DIR.resolve()
+    index = web_root / "index.html"
+    cleaned = full_path.strip("/")
+    if not cleaned:
+        return FileResponse(index) if index.is_file() else api_info()
+
+    # Resolve against the real filesystem root and confirm containment before
+    # serving — full_path is attacker-controlled and "../" segments survive
+    # `strip("/")` untouched, so an unresolved join (WEB_DIR / cleaned) would
+    # let a request like "/../../etc/passwd" read any file the process can
+    # access. is_relative_to() is the containment check; resolve() is what
+    # actually collapses the "..' segments so it's meaningful.
+    candidate = (web_root / cleaned).resolve()
+    if candidate.is_relative_to(web_root):
+        if candidate.is_file():
+            return FileResponse(candidate)
+        nested = candidate / "index.html"
+        if nested.is_file():
+            return FileResponse(nested)
+
+    # Client-side app shell fallback for unknown UI paths
+    if index.is_file():
+        return FileResponse(index)
+    return api_info()
